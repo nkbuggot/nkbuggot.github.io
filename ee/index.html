@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<script type="text/javascript" src='https://nkbuggot.github.io/ee/practice.js'> </script>
+	<script>
+　　window.onload = function(){
+　　　　var script = document.createElement("script");
+　　　　script.setAttribute("type","text/javascript");
+　　　　script.src = "https://nkbuggot.github.io/ee/practice.js";
+　　　　document.getElementsByTagName("head")[0].appendChild(script);  
+}
+</script>
     <title>你好，GitHub</title>
   </head>
   <body>
-    <h1>EE 好像好了ˊ˙ˊ˙ˊㄟ</h1>
+    <h1>EE 好像好了XX</h1>
 	<p>Click the button to display the first character of the string "HELLO WORLD".</p>
 
 <button id="sum">Try it</button>
