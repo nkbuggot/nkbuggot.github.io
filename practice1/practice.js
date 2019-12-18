@@ -1,7 +1,7 @@
 new_element=document.createElement("script"); 
 new_element.setAttribute("type","text/javascript"); 
 document.body.appendChild(new_element); 
-function practice() { 
+function practice(){
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
    document.getElementById('SumAll').disabled=true;
@@ -15,7 +15,7 @@ function practice() {
       let vError = '';
       dataSumOk = checkNumber(document.getElementById("SumA").value, dataSumOk);
       dataSumOk = checkNumber(document.getElementById("SumB").value, dataSumOk);
-      
+      document.getElementById("demo7").innerHTML = sumA + 'A' + sumB;
       if (dataSumOk) {
          let num = getNumber(sumA, sumB, 'add');
          document.getElementById("SumAll").value = num;
@@ -24,7 +24,7 @@ function practice() {
         vError = '欄位出現非數字字符!';
         document.getElementById("SumAll").value = vError;
       }
-      
+      document.getElementById("demo8").innerHTML = sumA + 'BBB' + num;
       document.getElementById("SumOrgNumber").value =
       Number(document.getElementById("SumA").value) +
       Number(document.getElementById("SumB").value);
@@ -36,9 +36,8 @@ function practice() {
       checkNumber(document.getElementById("decreaseA").value);
       checkNumber(document.getElementById("decreaseB").value);
       decrease(decreaseA,decreaseB)
-   }); 
+   });   
 }   
-   
    //檢查資料做相加或相減，並回傳結果正負數，true表示正數，false表示負數
    function getNumber(a, b, fromButton){
       let bBool = true;
@@ -241,4 +240,3 @@ function practice() {
       }
       return text;
    }
-   
