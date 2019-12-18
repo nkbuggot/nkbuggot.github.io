@@ -13,7 +13,6 @@ function practice(){
       var sumB = document.getElementById("SumB").value;
       let dataSumOk = true;
       let vError = '';
-	  document.getElementById("demo9").innerHTML = sumA + 'MM' + sumB;
       dataSumOk = checkNumber(document.getElementById("SumA").value, dataSumOk);
       dataSumOk = checkNumber(document.getElementById("SumB").value, dataSumOk);
       document.getElementById("demo7").innerHTML = sumA + 'A' + sumB;
