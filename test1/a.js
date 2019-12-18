@@ -1,3 +1,3 @@
 function abc(str){
-alert(str);
+document.write(str);
 }
