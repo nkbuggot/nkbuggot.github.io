@@ -5,7 +5,7 @@
     <title>你好，GitHub</title>
   </head>
   <body>
-    <h1>EE OKOK</h1>
+    <h1>EE sccO</h1>
 	<p>Click the button to display the first character of the string "HELLO WORLD".</p>
 
 <button id="sum">Try it</button>
@@ -40,6 +40,43 @@ A:<input id="decreaseA" type="text">
 <p id="demo8">CC</p>
 <p id="demo9">CC</p>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script>
+   //顯示資料長度
+   const max = 50;//Math.max(a.length,b.length);
+   document.getElementById('SumAll').disabled=true;
+   document.getElementById('SumNumber').disabled=true;
+   document.getElementById('SumOrgNumber').disabled=true;
+   
+   document.getElementById("sum").addEventListener("click", function(){      
+      var sumA = document.getElementById("SumA").value;
+      var sumB = document.getElementById("SumB").value;
+      let dataSumOk = true;
+      let vError = '';
+      dataSumOk = checkNumber(document.getElementById("SumA").value, dataSumOk);
+      dataSumOk = checkNumber(document.getElementById("SumB").value, dataSumOk);
+      
+      if (dataSumOk) {
+         let num = getNumber(sumA, sumB, 'add');
+         document.getElementById("SumAll").value = num;
+         document.getElementById("SumNumber").value = Number(num);
+      } else {
+        vError = '欄位出現非數字字符!';
+        document.getElementById("SumAll").value = vError;
+      }
+      
+      document.getElementById("SumOrgNumber").value =
+      Number(document.getElementById("SumA").value) +
+      Number(document.getElementById("SumB").value);
+   });
+   
+   document.getElementById("decrease").addEventListener("click", function(){
+      var decreaseA = document.getElementById("decreaseA").value;
+      var decreaseB = document.getElementById("decreaseB").value;
+      checkNumber(document.getElementById("decreaseA").value);
+      checkNumber(document.getElementById("decreaseB").value);
+      decrease(decreaseA,decreaseB)
+   });   
+   
    //檢查資料做相加或相減，並回傳結果正負數，true表示正數，false表示負數
    function getNumber(a, b, fromButton){
       let bBool = true;
@@ -242,5 +279,7 @@ A:<input id="decreaseA" type="text">
       }
       return text;
    }
+   
+</script>
   </body>
 </html>
