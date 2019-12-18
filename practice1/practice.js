@@ -37,7 +37,7 @@ function practice(){
       checkNumber(document.getElementById("decreaseB").value);
       decrease(decreaseA,decreaseB)
    });   
-}   
+  
    //檢查資料做相加或相減，並回傳結果正負數，true表示正數，false表示負數
    function getNumber(a, b, fromButton){
       let bBool = true;
@@ -240,3 +240,4 @@ function practice(){
       }
       return text;
    }
+} 
