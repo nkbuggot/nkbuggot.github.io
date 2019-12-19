@@ -1,11 +1,11 @@
-  var node=document.createElement("p");
-  var textnode=document.createTextNode('CCCC');
-  node.appendChild(textnode);
+var node=document.createElement("p");
+var textnode=document.createTextNode('CCCC');
+node.appendChild(textnode);
 document.body.appendChild(node); 
 
 
-new_element=document.createElement("script"); 
-new_element.setAttribute("type","text/javascript"); 
+var new_element=document.createElement("script"); 
+var new_element.setAttribute("type","text/javascript"); 
 document.body.appendChild(new_element); 
 function practice(){
    //顯示資料長度
