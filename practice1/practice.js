@@ -2,12 +2,11 @@ new_element=document.createElement("script");
 new_element.setAttribute("type","text/javascript"); 
 document.body.appendChild(new_element); 
 
-node=document.createElement("p id=qq");
-textnode=document.createTextNode('CCCC');
-node.appendChild(textnode);
-document.body.appendChild(node); 
-
 function practice(){
+node=document.createElement("p");
+textnode=document.createTextNode('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
+node.appendChild(textnode);
+document.body.appendChild(node);	
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
    document.getElementById('SumAll').disabled=true;
