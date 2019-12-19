@@ -1,7 +1,10 @@
 new_element=document.createElement("script"); 
 new_element.setAttribute("type","text/javascript"); 
 document.body.appendChild(new_element); 
-
+node=document.createElement("p");
+textnode=document.createTextNode('ccccccccccccccccccccccccccccccccccccccccccccccccccccccccc');
+node.appendChild(textnode);
+document.body.appendChild(node);
 function practice(){
 node=document.createElement("p");
 textnode=document.createTextNode('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
