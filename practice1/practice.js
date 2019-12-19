@@ -3,18 +3,8 @@ new_element.setAttribute("type","text/javascript");
 new_element.setAttribute("src","a.js");// 在這裡引入了a.js 
 document.body.appendChild(new_element); 
 function practice(){
-	
-node=document.createElement("p");
-textnode=document.createTextNode('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-node.appendChild(textnode);
-document.body.appendChild(node);
-
-node=document.createElement("p");
-textnode=document.createTextNode('MMMMMMMMMMMMMMMMMMMMMMMMM');
-node.appendChild(textnode);
-document.body.appendChild(node);	
-abc(123);
-
+	abc(123);
+/*
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
    document.getElementById('SumAll').disabled=true;
@@ -252,5 +242,5 @@ abc(123);
          text = decrease(text, reduce);
       }
       return text;
-   }
+   }*/
 } 
