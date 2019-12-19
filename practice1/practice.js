@@ -3,7 +3,7 @@ new_element.setAttribute("type","text/javascript");
 new_element.setAttribute("src","a.js");// 在這裡引入了a.js 
 document.body.appendChild(new_element); 
 function practice(){
-	//abc();
+	
 node=document.createElement("p");
 textnode=document.createTextNode('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
 node.appendChild(textnode);
@@ -13,6 +13,7 @@ node=document.createElement("p");
 textnode=document.createTextNode('MMMMMMMMMMMMMMMMMMMMMMMMM');
 node.appendChild(textnode);
 document.body.appendChild(node);	
+abc();
 
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
