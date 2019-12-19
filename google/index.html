@@ -7,7 +7,8 @@
   <body>
     <p>Google Calendar API Quickstart</p>
 	<p id="demo">CC</p>
-
+    <input type="button" value="測試" onClick="listUpcomingEvents()"> 
+	
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
@@ -108,10 +109,6 @@
       function listUpcomingEvents() {
         gapi.client.calendar.events.list({
           'calendarId': CLIENT_ID,
-          'timeMin': null,
-          'showDeleted': false,
-          'singleEvents': true,
-          'maxResults': 10,
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
