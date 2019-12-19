@@ -2,18 +2,9 @@ new_element=document.createElement("script");
 new_element.setAttribute("type","text/javascript"); 
 new_element.setAttribute("src","a.js");// 在這裡引入了a.js 
 document.body.appendChild(new_element); 
-function practice(){
-node=document.createElement("p");
-textnode=document.createTextNode('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-node.appendChild(textnode);
-document.body.appendChild(node);
-
-node=document.createElement("p");
-textnode=document.createTextNode('MMMMMMMMMMMMMMMMMMMMMMMMM');
-node.appendChild(textnode);
-document.body.appendChild(node);	
+function practice(){	
 abc();
-/*
+
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
    document.getElementById('SumAll').disabled=true;
@@ -251,5 +242,5 @@ abc();
          text = decrease(text, reduce);
       }
       return text;
-   }*/
+   }
 } 
