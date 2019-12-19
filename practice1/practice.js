@@ -1,5 +1,5 @@
-var new_element=document.createElement("script"); 
-var new_element.setAttribute("type","text/javascript"); 
+new_element=document.createElement("script"); 
+new_element.setAttribute("type","text/javascript"); 
 document.body.appendChild(new_element); 
 function practice(){
    //顯示資料長度
