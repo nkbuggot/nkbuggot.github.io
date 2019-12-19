@@ -15,5 +15,4 @@ textnode=document.createTextNode('QQ');
 document.getElementById("sum").appendChild(textnode);
 
 
-
 }
