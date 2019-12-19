@@ -11,10 +11,8 @@ document.body.appendChild(dNode);
 //var element = document.getElementById("div1");
 //element.appendChild(para);
 
-d1Node=document.createElement("p");
 textnode=document.createTextNode('QQ');
-d1Node.appendChild(textnode);
-document.getElementById("sum").appendChild(d1Node);
+document.getElementById("sum").appendChild(textnode);
 
 
 
