@@ -13,7 +13,7 @@ node=document.createElement("p");
 textnode=document.createTextNode('MMMMMMMMMMMMMMMMMMMMMMMMM');
 node.appendChild(textnode);
 document.body.appendChild(node);	
-abc();
+abc(123);
 
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
