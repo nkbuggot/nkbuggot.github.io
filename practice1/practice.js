@@ -1,12 +1,12 @@
-node=document.createElement("p");
+new_element=document.createElement("script"); 
+new_element.setAttribute("type","text/javascript"); 
+document.body.appendChild(new_element); 
+
+node=document.createElement("p id=qq");
 textnode=document.createTextNode('CCCC');
 node.appendChild(textnode);
 document.body.appendChild(node); 
 
-
-new_element=document.createElement("script"); 
-new_element.setAttribute("type","text/javascript"); 
-document.body.appendChild(new_element); 
 function practice(){
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
