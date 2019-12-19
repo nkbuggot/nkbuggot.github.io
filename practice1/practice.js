@@ -2,8 +2,8 @@ new_element=document.createElement("script");
 new_element.setAttribute("type","text/javascript"); 
 new_element.setAttribute("src","a.js");// 在這裡引入了a.js 
 document.body.appendChild(new_element); 
-function practice(){	
-abc();
+function practice(){
+	picture();
 
    //顯示資料長度
    const max = 50;//Math.max(a.length,b.length);
