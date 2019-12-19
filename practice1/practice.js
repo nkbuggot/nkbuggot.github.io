@@ -1,9 +1,3 @@
-var node=document.createElement("p");
-var textnode=document.createTextNode('CCCC');
-node.appendChild(textnode);
-document.body.appendChild(node); 
-
-
 var new_element=document.createElement("script"); 
 var new_element.setAttribute("type","text/javascript"); 
 document.body.appendChild(new_element); 
