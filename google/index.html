@@ -20,6 +20,7 @@
       // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
 	  var Calendar_CLIENT_ID = 'nkbuggot1@gmail.com';
+	  var API_KEY = 'AIzaSyBkXFUYRuKU2Wx8YFYh2AJXCP9IVIgKKJ4';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -44,6 +45,7 @@
        */
       function initClient() {
         gapi.client.init({
+		  apiKey: API_KEY,
           clientId: JAVASCRIPT_CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES
