@@ -174,41 +174,50 @@
         });
       }
 	  
+      function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+      }	  
+	  
       function insertEvents() {
-	    var event = {
-          'summary': document.getElementById("summary").value,
-          'description': document.getElementById("description").value,
-          'created': sDate,
-          'updated': sDate,
-          'start': {
-            'dateTime': document.getElementById("start").value + 'T' + '09:00:00' +'+08:00'
-          },
-          'end': {
-            'dateTime': document.getElementById("end").value + 'T' + '19:00:00' +'+08:00'
-          },
-          'creator': {
-            'email': document.getElementById("email").value
-          },
-          'reminders': {
-            'useDefault': true
-          }
-	    };
+	    if (!validateEmail(document.getElementById("email").value)) {
+		  appendPre('請輸入Email資料!');		
+		} else {
+          var event = {
+            'summary': document.getElementById("summary").value,
+            'description': document.getElementById("description").value,
+            'created': sDate,
+            'updated': sDate,
+            'start': {
+              'dateTime': document.getElementById("start").value + 'T' + '09:00:00' +'+08:00'
+            },
+            'end': {
+              'dateTime': document.getElementById("end").value + 'T' + '19:00:00' +'+08:00'
+            },
+            'creator': {
+              'email': document.getElementById("email").value
+            },
+            'reminders': {
+              'useDefault': true
+            }
+            };
 		
-	    var calendarObject = {
-	      'calendarId': Calendar_CLIENT_ID,
-	      'resource': event
-	    };
+            var calendarObject = {
+              'calendarId': Calendar_CLIENT_ID,
+              'resource': event
+            };
 
-        var request = gapi.client.calendar.events.insert(calendarObject);
-	    request.execute(function(calendarObject) {
-		  console.log(calendarObject);
-		  if (!calendarObject.iCalUID) {
-		    appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
-		  } else {
-		    appendPre('calendarObject created: ' + calendarObject.iCalUID);
-		  }
-	    });
-      }    
+            var request = gapi.client.calendar.events.insert(calendarObject);
+            request.execute(function(calendarObject) {
+              console.log(calendarObject);
+            if (!calendarObject.iCalUID) {
+              appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
+            } else {
+              appendPre('calendarObject created: ' + calendarObject.iCalUID);
+            }
+          });
+      }
+	  }
 
     </script>
 
