@@ -125,7 +125,7 @@
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + ' (' + when + ')' + event.description + event.created + event.updated + event.status + event.organizer.email + event.reminders)
+              appendPre(event.summary + ' (' + when + ')' + event.description + "<BR>" + event.created + event.updated + event.status + "<BR>" + event.creator.email + event.reminders)
             }
           } else {
             appendPre('No upcoming events found.');
@@ -152,7 +152,7 @@
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + ' (' + when + ')' + event.description + event.created + event.updated + event.status + event.organizer.email + event.reminders)
+              appendPre(event.summary + ' (' + when + ')' + event.description + "<BR>" + event.created + event.updated + event.status + "<BR>" + event.creator.email + event.reminders)
             }
           } else {
             appendPre('No upcoming events found.');
