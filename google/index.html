@@ -218,7 +218,7 @@ for (x in calendarObject) {
               appendPre(event);
             }
           } else {
-            appendPre('No upcoming calendarObject found.' + txt);
+            appendPre('No upcoming calendarObject found.' + calendarObject.error.errors);
           }
 	    });
       }    
