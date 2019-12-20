@@ -189,8 +189,8 @@
 		    document.getElementById("startTime").value = dDate.getHours() + ':' + (dDate.getMinutes()+1) + ':' + (dDate.getSeconds()+1);
 		  }
 		  
-		  if (!document.getElementById("endTime").value) {
-		    document.getElementById("endTime").value = dDate.getHours() + ':' + (dDate.getMinutes()+50) + ':' + (dDate.getSeconds()+1);
+		  if (!document.getElementById("endTime").value) {//空值加一小時
+		    document.getElementById("endTime").value = (dDate.getHours() +1) + ':' + (dDate.getMinutes()+1) + ':' + (dDate.getSeconds()+1);
 		  }
 		  
           var event = {
