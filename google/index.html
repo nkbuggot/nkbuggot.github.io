@@ -205,7 +205,7 @@
 	    });*/
         var request = gapi.client.calendar.events.insert(calendarObject);
 	    request.execute(function(calendarObject) {
-  	      appendPre('Event created: ' + calendarObject.resource.summary);
+  	      appendPre('Event created: ' + calendarObject);
 	    });
       }    
 
