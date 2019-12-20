@@ -11,7 +11,9 @@
 	Title:<input id="summary" type="text"> 
 	說明:<input id="description" type="text"> 
 	起始日:<input id="start" type="date">
+	起始日Time:<input id="startTime" type="timestamp">
 	結束日:<input id="end" type="date"> 
+	結束日Time:<input id="endTime" type="timestamp">
 
 	Email<input id="email" type="text">
 	<input type="button" value="write into my calendardsdsdd" onClick="insertEvents()"> 
@@ -178,21 +180,29 @@
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
       }	  
-	  
+	    
       function insertEvents() {
 	    if (!validateEmail(document.getElementById("email").value)) {
 		  appendPre('請輸入Email資料!');		
 		} else {
+		  if (!document.getElementById("startTime").value) {
+		    document.getElementById("startTime").value = dDate.getHours() + ':' + (dDate.getMinutes()+1) + ':' + (dDate.getSeconds()+1);
+		  }
+		  
+		  if (!document.getElementById("endTime").value) {
+		    document.getElementById("endTime").value = dDate.getHours() + ':' + (dDate.getMinutes()+50) + ':' + (dDate.getSeconds()+1);
+		  }
+		  
           var event = {
             'summary': document.getElementById("summary").value,
             'description': document.getElementById("description").value,
             'created': sDate,
             'updated': sDate,
             'start': {
-              'dateTime': document.getElementById("start").value + 'T' + '09:00:00' +'+08:00'
+              'dateTime': document.getElementById("start").value + 'T' + document.getElementById("startTime").value +'+08:00'
             },
             'end': {
-              'dateTime': document.getElementById("end").value + 'T' + '19:00:00' +'+08:00'
+              'dateTime': document.getElementById("end").value + 'T' + document.getElementById("endTime").value +'+08:00'
             },
             'creator': {
               'email': document.getElementById("email").value
