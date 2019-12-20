@@ -158,7 +158,7 @@
         }).then(function(response) {
           var events = response.result.items;
           appendPre('Upcoming events: CBP09' );
-          console.log(events);
+//          console.log(events);
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
@@ -199,9 +199,9 @@
   	      'calendarId': Calendar_CLIENT_ID,
   	      'resource': event
 	    });
-
+        var events = request.result.items;
 	    request.execute(function(event) {
-  	      appendPre('Event created: ' + event);
+  	      appendPre('Event created: ' + events);
 	    });
       }    
 
