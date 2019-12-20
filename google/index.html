@@ -203,16 +203,22 @@
   	      'calendarId': Calendar_CLIENT_ID,
   	      'resource': event
 	    });*/
+		var txt ='';
         var request = gapi.client.calendar.events.insert(calendarObject);
 	    request.execute(function(calendarObject) {
   	      appendPre('calendarObject created: ' + calendarObject);
+for (x in calendarObject) {
+   txt += calendarObject[x] + " ";
+   appendPre(txt);
+}
+
           if (calendarObject.length > 0) {
             for (i = 0; i < calendarObject.length; i++) {
               var event = calendarObject[i];
-              appendPre(event.summary);
+              appendPre(event);
             }
           } else {
-            appendPre('No upcoming calendarObject found.');
+            appendPre('No upcoming calendarObject found.' + txt);
           }
 	    });
       }    
