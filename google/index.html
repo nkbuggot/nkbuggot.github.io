@@ -193,16 +193,19 @@
             'useDefault': true
           }
 	    };
+		
+	    var calendarObject = {
+	      'calendarId': Calendar_CLIENT_ID,
+	      'resource': event
+	    };
 
-
-	    var request = gapi.client.calendar.events.insert({
+	    /*var request = gapi.client.calendar.events.insert({
   	      'calendarId': Calendar_CLIENT_ID,
   	      'resource': event
-	    });
-		
-	    request.execute(function(event) {
-		  var events = event;
-  	      appendPre('Event created: ' + events);
+	    });*/
+        var request = gapi.client.calendar.events.insert(calendarObject);
+	    request.execute(function(calendarObject) {
+  	      appendPre('Event created: ' + calendarObject.resource.summary);
 	    });
       }    
 
