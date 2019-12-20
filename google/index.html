@@ -199,9 +199,9 @@
   	      'calendarId': Calendar_CLIENT_ID,
   	      'resource': event
 	    });
-        var events = request.result;
+		
 	    request.execute(function(event) {
-  	      appendPre('Event created: ' + events);
+  	      appendPre('Event created: ' + event.summary);
 	    });
       }    
 
