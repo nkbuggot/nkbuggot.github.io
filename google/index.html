@@ -185,7 +185,7 @@
           }
         };
         var request = gapi.client.calendar.events.insert({
-          'calendarId': 'primary',
+          'calendarId': Calendar_CLIENT_ID,
           'resource': resource
         });
           request.execute(function(resp) {
