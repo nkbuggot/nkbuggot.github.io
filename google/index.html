@@ -201,7 +201,7 @@
 
         var request = gapi.client.calendar.events.insert(calendarObject);
 	    request.execute(function(calendarObject) {
-  	      appendPre('calendarObject created: ' + calendarObject.message);
+  	      appendPre('calendarObject created: ' + calendarObject.iCalUID);
           console.log(calendarObject);
   	      if (calendarObject.length > 0) {
             for (i = 0; i < calendarObject.length; i++) {
