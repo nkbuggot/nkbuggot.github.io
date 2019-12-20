@@ -201,16 +201,12 @@
 
         var request = gapi.client.calendar.events.insert(calendarObject);
 	    request.execute(function(calendarObject) {
-  	      appendPre('calendarObject created: ' + calendarObject.iCalUID);
-          console.log(calendarObject);
-  	      if (calendarObject.length > 0) {
-            for (i = 0; i < calendarObject.length; i++) {
-              var event = calendarObject[i];
-              appendPre(event);
-            }
-  	      } else {
-            appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
-  	      }
+		  console.log(calendarObject);
+		  if (!calendarObject.iCalUID) {
+		    appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
+		  else {
+		    appendPre('calendarObject created: ' + calendarObject.iCalUID);
+		  }}
 	    });
       }    
 
