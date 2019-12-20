@@ -201,7 +201,8 @@
 	    });
 		
 	    request.execute(function(event) {
-  	      appendPre('Event created: ' + event);
+		  var events = event.result.items;
+  	      appendPre('Event created: ' + events);
 	    });
       }    
 
