@@ -18,7 +18,7 @@
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
+      var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
 	  var Calendar_CLIENT_ID = 'nkbuggot1@gmail.com';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
@@ -44,7 +44,7 @@
        */
       function initClient() {
         gapi.client.init({
-          clientId: CLIENT_ID,
+          clientId: JAVASCRIPT_CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES
         }).then(function () {
@@ -125,7 +125,7 @@
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + ' (' + when + ')')
+              appendPre(event.summary + ' (' + when + ')' + event.description + event.created + event.updated + event.status + event.organizer.email + event.reminders)
             }
           } else {
             appendPre('No upcoming events found.');
@@ -152,7 +152,7 @@
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + ' (' + when + ')')
+              appendPre(event.summary + ' (' + when + ')' + event.description + event.created + event.updated + event.status + event.organizer.email + event.reminders)
             }
           } else {
             appendPre('No upcoming events found.');
