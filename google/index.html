@@ -199,27 +199,18 @@
 	      'resource': event
 	    };
 
-	    /*var request = gapi.client.calendar.events.insert({
-  	      'calendarId': Calendar_CLIENT_ID,
-  	      'resource': event
-	    });*/
-		var txt ='';
         var request = gapi.client.calendar.events.insert(calendarObject);
 	    request.execute(function(calendarObject) {
-  	      appendPre('calendarObject created: ' + calendarObject);
-for (x in calendarObject) {
-   txt += calendarObject[x] + " ";
-   appendPre(txt);
-}
+  	      appendPre('calendarObject created: ' + calendarObject.message);
 
-          if (calendarObject.length > 0) {
+  	      if (calendarObject.length > 0) {
             for (i = 0; i < calendarObject.length; i++) {
               var event = calendarObject[i];
               appendPre(event);
             }
-          } else {
-            appendPre('No upcoming calendarObject found.' + calendarObject.message);
-          }
+  	      } else {
+            appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
+  	      }
 	    });
       }    
 
