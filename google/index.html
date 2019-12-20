@@ -9,7 +9,12 @@
 	<p id="demo">CC</p>
     <input type="button" value="測試" onClick="listUpcomingEvents()"> 
     <input type="button" value="測試CBP09" onClick="listCBP09Events()"> 
+	<input id="start" type="text"> 
+	<input id="end" type="text"> 
+	<input id="title" type="text"> 
+	<input id="des" type="text"> 
 
+		
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
@@ -161,6 +166,32 @@
           }
         });
       }
+	  
+      function insertEvents() {
+        var start = document.getElementById("start").value;
+        var end = document.getElementById("end").value;
+        var title = document.getElementById('title');
+        var des = document.getElementById('des');
+
+        var resource = {
+          "summary": title,
+          "description": des,
+          "location": "Tapie",
+          "start": {
+          "dateTime": start+".000+08:00"
+          },
+          "end": {
+            "dateTime": end+".000+08:00"
+          }
+        };
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': resource
+        });
+          request.execute(function(resp) {
+            console.log(resp);
+          });
+      }    
 
     </script>
 
