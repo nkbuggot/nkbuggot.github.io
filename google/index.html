@@ -27,8 +27,8 @@
 	Email<input id="email" type="text">
 	<BR>
 	<input id="insertCalendar" type="button" value="寫入行事曆" onClick="insertEvents()">
-	<p id="iddw">CC</p>
-	<input id="deleteCalendar" type="button" value="刪除行事曆" onClick="deleteIdEvents(document.getElementById('iddw').innerHTML)"> 
+	<input id="iddw" type="text" value='m37fk7hdo4m6pd6bci67bmr3ak'> 
+	<input id="deleteCalendar" type="button" value="刪除行事曆" onClick="deleteIdEvents(document.getElementById('iddw').value)"> 
 	
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
@@ -233,7 +233,7 @@
             } else {
               appendPre('calendarObject created: ' + calendarObject.iCalUID);
 			  listIdEvents(calendarObject.iCalUID);
-			  document.getElementById("iddw").innerHTML = calendarObject.id;
+			  document.getElementById("iddw").value = calendarObject.id;
             }
           });
 		}
@@ -271,7 +271,7 @@
           'calendarId': Calendar_CLIENT_ID,
           'eventId': p_id
         }).then(function(response) {
-          var events = response.result.items;
+          var events = response;
           appendPre('Upcoming events:' + Calendar_CLIENT_ID + ' eventId:' + p_id);
           console.log(response);
           if (events.length > 0) {
