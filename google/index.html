@@ -273,14 +273,8 @@
           'eventId': p_id
         });
         request.execute(function(){
-		 if (listDeleteIdEvents(p_id)) {
-		   appendPre('刪除失敗');		 
-		 } else {
-		   appendPre('刪除成功');		 
-		 }
-          
-		  listDeleteIdEvents(p_id);
-        })
+		  appendPre('刪除結束');	
+        });
       }
 	  
       function listDeleteIdEvents(p_id) {
@@ -295,7 +289,8 @@
 
         var request = gapi.client.calendar.events.list(calendarObject);
         request.execute(function(calendarObject) {
-        console.log(calendarObject);
+        var events = request.result.items;
+        console.log(events);
         if (calendarObject.id) {
           appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
         } else {
