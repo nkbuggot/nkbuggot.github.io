@@ -239,6 +239,33 @@
 		}
       }
 	  
+      function listIdEvents(p_id) {
+        gapi.client.calendar.events.list({
+          'calendarId': Calendar_CLIENT_ID,
+          'iCalUID': p_id,
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        }).then(function(response) {
+          var events = response.result.items;
+          appendPre('Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + p_id);
+          console.log(events);
+          if (events.length > 0) {
+            for (i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
+            }
+          } else {
+            appendPre('No upcoming events found.');
+          }
+        });
+      }
+	  
       function deleteIdEvents(p_id) {
         gapi.client.calendar.events.delete({
           'calendarId': Calendar_CLIENT_ID,
