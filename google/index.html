@@ -269,18 +269,24 @@
       }
 	  
       function deleteIdEvents(p_id, p_iCalUID) {
+	    var bool = true;
 	    appendPre('我要刪了喔');
-	    listDeleteIdEvents(p_iCalUID);
-        var request = gapi.client.calendar.events.delete({
-          'calendarId': Calendar_CLIENT_ID,
-          'eventId': p_id
-        });
-        request.execute(function(){
-		  listDeleteIdEvents(p_iCalUID);
-        });
-      }
+	    listDeleteIdEvents(p_iCalUID, bool);
+		
+		if (bool) {
+          var request = gapi.client.calendar.events.delete({
+            'calendarId': Calendar_CLIENT_ID,
+            'eventId': p_id
+          });
+          request.execute(function(){
+		    listDeleteIdEvents(p_iCalUID, bool);
+          });
+		} else {
+		  appendPre('查無可刪除資料!');
+		}
+	  }
 	  
-      function listDeleteIdEvents(p_id) {
+      function listDeleteIdEvents(p_id, p_bool) {
         gapi.client.calendar.events.list({
           'calendarId': Calendar_CLIENT_ID,
           'iCalUID': p_id,
@@ -302,6 +308,7 @@
               appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
           }
         } else {
+		  p_bool = false;
           appendPre('刪除結束');
         }
         });
