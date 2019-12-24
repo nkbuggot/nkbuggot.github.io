@@ -6,22 +6,28 @@
   </head>
   <body>
     <p>Google Calendar API Quickstart</p>
-    <input type="button" value="測試" onClick="listUpcomingEvents()"> 
-    <input type="button" value="測試CBP09" onClick="listCBP09Events()"> 
-	Title:<input id="summary" type="text"> 
-	說明:<input id="description" type="text"> 
-	起始日:<input id="start" type="date">
-	起始日Time:<input id="startTime" type="timestamp">
-	結束日:<input id="end" type="date"> 
-	結束日Time:<input id="endTime" type="timestamp">
-
-	Email<input id="email" type="text">
-	<input type="button" value="write into my calendardsdsdd" onClick="insertEvents()"> 
 		
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
 
+    <input type="button" value="測試" onClick="listUpcomingEvents()"> 
+    <input type="button" value="測試CBP09" onClick="listCBP09Events()"> 	
+	<BR>
+	Title:<input id="summary" type="text"> 
+	<BR>
+	說明:<input id="description" type="text"> 
+	<BR>
+	起始日:<input id="start" type="date">
+	起始日Time:<input id="startTime" type="timestamp">
+	<BR>
+	結束日:<input id="end" type="date"> 	
+	結束日Time:<input id="endTime" type="timestamp">
+	<BR>
+	Email<input id="email" type="text">
+	<BR>
+	<input type="button" value="寫入行事曆" onClick="insertEvents()"> 
+	
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
     <script type="text/javascript">
@@ -224,10 +230,38 @@
               appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
             } else {
               appendPre('calendarObject created: ' + calendarObject.iCalUID);
+			  listIdEvents(calendarObject.iCalUID);
             }
           });
+		}
       }
-	  }
+	  
+      function listIdEvents(p_id) {
+        gapi.client.calendar.events.list({
+          'calendarId': Calendar_CLIENT_ID,
+          'iCalUID': p_id,
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        }).then(function(response) {
+          var events = response.result.items;
+          appendPre('Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + p_id);
+          console.log(events);
+          if (events.length > 0) {
+            for (i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              appendPre(event.summary + ' (' + when + ')' + event.description + "<BR>" + event.created + event.updated + event.status + "<BR>" + event.creator.email + event.reminders);
+            }
+          } else {
+            appendPre('No upcoming events found.');
+          }
+        });
+      }
 
     </script>
 
