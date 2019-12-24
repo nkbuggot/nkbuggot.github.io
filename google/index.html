@@ -269,13 +269,15 @@
       }
 	  
       function deleteIdEvents(p_id, p_iCalUID) {
+	    appendPre('我要刪了喔');
 	    listDeleteIdEvents(p_iCalUID);
         var request = gapi.client.calendar.events.delete({
           'calendarId': Calendar_CLIENT_ID,
           'eventId': p_id
         });
         request.execute(function(){
-		  appendPre('刪除結束');	
+		  listDeleteIdEvents(p_iCalUID);
+		  appendPre('刪除結束');
         });
       }
 	  
