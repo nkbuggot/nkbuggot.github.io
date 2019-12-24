@@ -28,7 +28,8 @@
 	<BR>
 	<input id="insertCalendar" type="button" value="寫入行事曆" onClick="insertEvents()">
 	<input id="iddw" type="text" value='m37fk7hdo4m6pd6bci67bmr3ak'> 
-	<input id="deleteCalendar" type="button" value="刪除行事曆" onClick="deleteIdEvents(document.getElementById('iddw').value)"> 
+	<input id="iCalUID" type="text"> 
+	<input id="deleteCalendar" type="button" value="刪除行事曆" onClick="deleteIdEvents(document.getElementById('iddw').value, document.getElementById('iCalUID').value)"> 
 	
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
@@ -234,6 +235,7 @@
             appendPre('calendarObject created: ' + calendarObject.iCalUID);
             listIdEvents(calendarObject.iCalUID);
             document.getElementById("iddw").value = calendarObject.id;
+			document.getElementById("iCalUID").value = calendarObject.iCalUID;
           }
           });
 		}
@@ -266,8 +268,8 @@
         });
       }
 	  
-      function deleteIdEvents(p_id) {
-	    listDeleteIdEvents(p_id);
+      function deleteIdEvents(p_id, p_iCalUID) {
+	    listDeleteIdEvents(p_iCalUID);
         var request = gapi.client.calendar.events.delete({
           'calendarId': Calendar_CLIENT_ID,
           'eventId': p_id
@@ -280,7 +282,7 @@
       function listDeleteIdEvents(p_id) {
         gapi.client.calendar.events.list({
           'calendarId': Calendar_CLIENT_ID,
-          'id': p_id,
+          'iCalUID': p_id,
           'showDeleted': false,
           'singleEvents': true,
           'maxResults': 10,
@@ -304,7 +306,7 @@
         });
         /*var calendarObject = {
           'calendarId': Calendar_CLIENT_ID,
-          'id': p_id,
+          'iCalUID': p_id,
           'showDeleted': false,
           'singleEvents': true,
           'maxResults': 10,
