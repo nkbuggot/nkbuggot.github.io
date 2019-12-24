@@ -277,7 +277,6 @@
         });
         request.execute(function(){
 		  listDeleteIdEvents(p_iCalUID);
-		  appendPre('刪除結束');
         });
       }
 	  
@@ -303,7 +302,7 @@
               appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
           }
         } else {
-          appendPre('No upcoming events found.');
+          appendPre('刪除結束');
         }
         });
         /*var calendarObject = {
