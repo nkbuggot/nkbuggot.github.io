@@ -267,21 +267,13 @@
       }
 	  
       function deleteIdEvents(p_id) {
-        var event = {
-          'id': p_id
-        };
-        var calendarObject = {
+        var request = gapi.client.calendar.events.delete({
           'calendarId': Calendar_CLIENT_ID,
-          'resource': event
-        };
-		var request = gapi.client.calendar.events.delete(calendarObject);
-        request.execute(function(calendarObject){
-        console.log(calendarObject);
-        if (!calendarObject.id) {
-          appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
-        } else {
-          appendPre('calendarObject created: ' + calendarObject.id);
-        }
+          'eventId': p_id
+        });
+        request.execute(function(){
+          appendPre(p_id);
+		  listIdEvents(p_id);
         })
       }
     </script>
