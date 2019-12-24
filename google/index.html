@@ -280,7 +280,7 @@
       function listDeleteIdEvents(p_id) {
         gapi.client.calendar.events.list({
           'calendarId': Calendar_CLIENT_ID,
-          'id': p_id,
+          'iCalUID': p_id,
           'showDeleted': false,
           'singleEvents': true,
           'maxResults': 10,
