@@ -218,23 +218,23 @@
             'reminders': {
               'useDefault': true
             }
-            };
+          };
 		
-            var calendarObject = {
-              'calendarId': Calendar_CLIENT_ID,
-              'resource': event
-            };
+          var calendarObject = {
+            'calendarId': Calendar_CLIENT_ID,
+            'resource': event
+          };
 
-            var request = gapi.client.calendar.events.insert(calendarObject);
-            request.execute(function(calendarObject) {
-              console.log(calendarObject);
-            if (!calendarObject.iCalUID) {
-              appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
-            } else {
-              appendPre('calendarObject created: ' + calendarObject.iCalUID);
-			  listIdEvents(calendarObject.iCalUID);
-			  document.getElementById("iddw").value = calendarObject.id;
-            }
+          var request = gapi.client.calendar.events.insert(calendarObject);
+          request.execute(function(calendarObject) {
+          console.log(calendarObject);
+          if (!calendarObject.iCalUID) {
+            appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
+          } else {
+            appendPre('calendarObject created: ' + calendarObject.iCalUID);
+            listIdEvents(calendarObject.iCalUID);
+            document.getElementById("iddw").value = calendarObject.id;
+          }
           });
 		}
       }
@@ -267,12 +267,20 @@
       }
 	  
       function deleteIdEvents(p_id) {
-        var request = gapi.client.calendar.events.delete({
+        var calendarObject = {
           'calendarId': Calendar_CLIENT_ID,
-          'eventId': p_id
-        });
-        request.execute(function(){
-        appendPre(p_id);
+          'resource': p_id
+        };
+		var request = gapi.client.calendar.events.delete(calendarObject);
+        request.execute(function(calendarObject){
+        console.log(calendarObject);
+        if (!calendarObject.id) {
+          appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
+        } else {
+          appendPre('calendarObject created: ' + calendarObject.id);
+          listIdEvents(calendarObject.id);
+          document.getElementById("iddw").value = calendarObject.id;
+        }
         })
       }
     </script>
