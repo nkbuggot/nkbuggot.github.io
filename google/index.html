@@ -278,8 +278,6 @@
           appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
         } else {
           appendPre('calendarObject created: ' + calendarObject.id);
-          listIdEvents(calendarObject.id);
-          document.getElementById("iddw").value = calendarObject.id;
         }
         })
       }
