@@ -261,7 +261,7 @@
               appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
             }
           } else {
-            appendPre('No upcoming events found.');
+            appendPre('No upcoming events found.' + response.code);
           }
         });
       }
