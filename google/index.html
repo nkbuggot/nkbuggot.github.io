@@ -267,27 +267,14 @@
       }
 	  
       function deleteIdEvents(p_id) {
-        gapi.client.calendar.events.delete({
+        var request = gapi.client.calendar.events.delete({
           'calendarId': Calendar_CLIENT_ID,
           'eventId': p_id
-        }).then(function(response) {
-          var events = response;
-          appendPre('Upcoming events:' + Calendar_CLIENT_ID + ' eventId:' + p_id);
-          console.log(response);
-          if (events.length > 0) {
-            for (i = 0; i < events.length; i++) {
-              var event = events[i];
-              var when = event.start.dateTime;
-              if (!when) {
-                when = event.start.date;
-              }
-              appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
-            }
-          } else {
-            appendPre('No upcoming events found.');
-          }
         });
-      }
+        request.execute(function(){
+        document.getElementById("iddw").value = calendarObject.id;
+        }
+	  }
 
     </script>
 
