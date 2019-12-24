@@ -268,24 +268,6 @@
         });
       }
 	  
-      function deleteIdEvents(p_id, p_iCalUID) {
-	    var len = 0;
-	    appendPre('我要刪了喔');
-	    listDeleteIdEvents(p_iCalUID, len);
-		
-		if (len != 0) {
-          var request = gapi.client.calendar.events.delete({
-            'calendarId': Calendar_CLIENT_ID,
-            'eventId': p_id
-          });
-          request.execute(function(){
-          appendPre('刪除結束');
-          });
-		} else {
-		  appendPre('查無可刪除資料!');
-		}
-	  }
-	  
       function listDeleteIdEvents(p_id, p_length) {
         gapi.client.calendar.events.list({
           'calendarId': Calendar_CLIENT_ID,
@@ -311,26 +293,26 @@
           }
         }
         });
-        /*var calendarObject = {
-          'calendarId': Calendar_CLIENT_ID,
-          'iCalUID': p_id,
-          'showDeleted': false,
-          'singleEvents': true,
-          'maxResults': 10,
-          'orderBy': 'startTime'
-        };
-
-        var request = gapi.client.calendar.events.list(calendarObject);
-        request.execute(function(calendarObject) {
-        var events = request.result.items;
-        console.log(events);
-        if (calendarObject.id) {
-          appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
-        } else {
-          document.getElementById("iddw").value = calendarObject.id;
-        }
-        });*/
       }
+	  
+      function deleteIdEvents(p_id, p_iCalUID) {
+	    var len = 0;
+	    appendPre('我要刪了喔');
+	    listDeleteIdEvents(p_iCalUID, len);
+		
+		if (len != 0) {
+          var request = gapi.client.calendar.events.delete({
+            'calendarId': Calendar_CLIENT_ID,
+            'eventId': p_id
+          });
+          request.execute(function(){
+          appendPre('刪除結束');
+          });
+		} else {
+		  appendPre('查無可刪除資料!');
+		}
+	  }
+	  
     </script>
 
     <script async defer src="https://apis.google.com/js/api.js"
