@@ -279,7 +279,7 @@
             'eventId': p_id
           });
           request.execute(function(){
-		    listDeleteIdEvents(p_iCalUID, bool);
+          appendPre('刪除結束');
           });
 		} else {
 		  appendPre('查無可刪除資料!');
@@ -309,7 +309,6 @@
           }
         } else {
 		  p_bool = false;
-          appendPre('刪除結束');
         }
         });
         /*var calendarObject = {
