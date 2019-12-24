@@ -267,9 +267,12 @@
       }
 	  
       function deleteIdEvents(p_id) {
+        var event = {
+          'id': p_id
+        };
         var calendarObject = {
           'calendarId': Calendar_CLIENT_ID,
-          'resource': p_id
+          'resource': event
         };
 		var request = gapi.client.calendar.events.delete(calendarObject);
         request.execute(function(calendarObject){
