@@ -240,27 +240,7 @@
       }
 	  
       function listIdEvents(p_id) {
-        var calendarObject = {
-          'calendarId': Calendar_CLIENT_ID,
-          'iCalUID': p_id,
-          'showDeleted': false,
-          'singleEvents': true,
-          'maxResults': 10,
-          'orderBy': 'startTime'
-        };
-
-        var request = gapi.client.calendar.events.list(calendarObject);
-          request.execute(function(calendarObject) {
-          console.log(calendarObject);
-          if (!calendarObject.iCalUID) {
-            appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
-          } else {
-            appendPre('calendarObject created: ' + calendarObject.iCalUID);
-            listIdEvents(calendarObject.iCalUID);
-            document.getElementById("iddw").value = calendarObject.id;
-          }
-          });
-        /*gapi.client.calendar.events.list({
+        gapi.client.calendar.events.list({
           'calendarId': Calendar_CLIENT_ID,
           'iCalUID': p_id,
           'showDeleted': false,
@@ -283,7 +263,7 @@
           } else {
             appendPre('No upcoming events found.' + error.code);
           }
-        });*/
+        });
       }
 	  
       function deleteIdEvents(p_id) {
@@ -292,10 +272,31 @@
           'eventId': p_id
         });
         request.execute(function(){
-		  listIdEvents(p_id);
+		  listDeleteIdEvents(p_id);
           appendPre(p_id);
-		  listIdEvents(p_id);
+		  listDeleteIdEvents(p_id);
         })
+      }
+	  
+      function listDeleteIdEvents(p_id) {
+        var calendarObject = {
+          'calendarId': Calendar_CLIENT_ID,
+          'iCalUID': p_id,
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        };
+
+        var request = gapi.client.calendar.events.list(calendarObject);
+        request.execute(function(calendarObject) {
+        console.log(calendarObject);
+        if (!calendarObject.iCalUID) {
+          appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
+        } else {
+          document.getElementById("iddw").value = calendarObject.id;
+        }
+        });
       }
     </script>
 
