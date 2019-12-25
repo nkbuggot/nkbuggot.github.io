@@ -134,6 +134,7 @@
 		for (i=0;i<array.length;i++){
 		  var tr1 = tbody.appendChild(document.createElement('tr'));
           for (j in array[i]) {
+		    console.log(array[i][j] + " " + typeof(array[i][j]));
 		    if (typeof(array[i][j]) === 'object') {
 			  var oTemp = array[i][j];
 			} else {
