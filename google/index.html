@@ -129,14 +129,13 @@
 	  
       function showTable(array) {
         var tbody = document.createElement("tbody");
-		var x;
-		var y;
-		for (y=0;y<array.length;y++){
+		var i,j;
+		for (i=0;i<array.length;i++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
-          for (x in array[y]) {
+          for (j in array[i]) {
 		    var td = tr.appendChild(document.createElement('td'));
 		    var a = td.appendChild(document.createElement('p'));
-		    a.innerText = array[y][x];
+		    a.innerText = array[i][j] + ' ' + typeof(array[i][j]);
           }
 		}
 		document.getElementById('table1').appendChild(tbody);		
