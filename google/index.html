@@ -133,13 +133,13 @@
 		var j=0;
 		for (i=0;i<array.length;i++){
 		  var tr1 = tbody.appendChild(document.createElement('tr'));
-          for (j in oObject[i]) {
-		    if (typeof(oObject[i][j]) === 'object') {
-			  var oTemp = oObject[i][j];
+          for (j in array[i]) {
+		    if (typeof(array[i][j]) === 'object') {
+			  var oTemp = array[i][j];
 			} else {
 		      var td = tr1.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
-		      a.innerText = oObject[i][j];
+		      a.innerText = array[i][j];
 			}
           }
 		}
