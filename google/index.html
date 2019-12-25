@@ -133,9 +133,13 @@
 		for (i=0;i<array.length;i++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
           for (j in array[i]) {
-		    var td = tr.appendChild(document.createElement('td'));
-		    var a = td.appendChild(document.createElement('p'));
-		    a.innerText = array[i][j] + ' ' + typeof(array[i]);
+		    if (typeof(array[i][j]) === 'object') {
+			  showTable(array[i][j]);
+			} else {
+		      var td = tr.appendChild(document.createElement('td'));
+		      var a = td.appendChild(document.createElement('p'));
+		      a.innerText = array[i][j];
+			}
           }
 		}
 		document.getElementById('table1').appendChild(tbody);		
