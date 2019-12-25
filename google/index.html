@@ -149,8 +149,10 @@
 		  var tr = tbody.appendChild(document.createElement('tr'));
           for (j in oObject[i]) {
 		    if (typeof(oObject[i][j]) === 'object') {
-			  showTable(oObject[i][j]);
-			  console.log(oObject[i][j]);
+			  var oTemp = oObject[i][j];
+			  showTable(oTemp);
+			  //console.log(oObject[i][j]);
+			  null;
 			} else {
 		      var td = tr.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
