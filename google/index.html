@@ -130,19 +130,18 @@
       function showTable(array) {
 	    var oObject = array;
         var tbody = document.createElement("tbody");
-		var i, j, k = 0;
+		var i, j;
 		for (i=0;i<oObject.length;i++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
+          for (j in oObject[0]) {
+		    var td = tr.appendChild(document.createElement('td'));
+		    var a = td.appendChild(document.createElement('p'));
+		    a.innerText = j;
+          }
           for (j in oObject[i]) {
 		    if (typeof(oObject[i][j]) === 'object') {
 			  showTable(oObject[i][j]);
 			} else {
-			  if (k === 0) {
-			    var td = tr.appendChild(document.createElement('td'));
-		        var a = td.appendChild(document.createElement('p'));
-		        a.innerText = j;
-				k=1;
-			  }
 		      var td = tr.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
 		      a.innerText = oObject[i][j];
