@@ -131,7 +131,7 @@
       function showTrTd(array, tbody, tr) {
 		var i=0;
 		var j=0;
-		for (j in array[i]) {
+		for (j in array) {
 		  var tr1 = tbody.appendChild(document.createElement('tr'));
 		  console.log(array[j] + " " + typeof([j]));
 		  if (typeof(array[j]) === 'object') {
