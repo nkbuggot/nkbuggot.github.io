@@ -131,13 +131,15 @@
         var tbody = document.createElement("tbody");
 		var x;
 		var y;
-		for (x in array) {
+		for (y=0;y<array.length;y++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
-		  var td = tr.appendChild(document.createElement('td'));
-		  var a = td.appendChild(document.createElement('p'));
-		  a.innerText = array[x];
+          for (x in array[y]) {
+		    var td = tr.appendChild(document.createElement('td'));
+		    var a = td.appendChild(document.createElement('p'));
+		    a.innerText = array[y][x];
+          }
 		}
-		document.getElementById('table1').appendChild(tbody);
+		document.getElementById('table1').appendChild(tbody);		
       }
 
       /**
