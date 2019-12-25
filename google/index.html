@@ -128,18 +128,18 @@
         pre.appendChild(textContent);
       }
 	  
-      function showTrTd(array, tbody) {
+      function showTrTd(array, tbody, tr) {
 		var i=0;
 		var j=0;
-		var tr1 = tbody.appendChild(document.createElement('tr'));
+		var tr = tbody.appendChild(document.createElement('tr'));
 		for (j in array) {
-		  var td = tr1.appendChild(document.createElement('td'));
-		  console.log(array[j] + " " + typeof([j]));
+		  var td = tr.appendChild(document.createElement('td'));
+		  //console.log(array[j] + " " + typeof([j]));
 		  var a = td.appendChild(document.createElement('p'));
 		  a.innerText = array[j];
 		  break;
 		}
-		return tr1;
+		return tr;
       }
 	  
       function showTable(array) {
@@ -162,10 +162,15 @@
 		var tbody = document.createElement("tbody");
 		for (i=0;i<oObject.length;i++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
+		  var bool = true;
           for (j in oObject[i]) {
 		    if (typeof(oObject[i][j]) === 'object') {
+			  if (bool) {
+			    var tr1 = tbody.appendChild(document.createElement('tr'));			    
+				bool = false;
+			  }
 			  var oTemp = oObject[i][j];
-			  showTrTd(oTemp, tbody);
+			  showTrTd(oTemp, tbody, tr1);
 			} else {
 		      var td = tr.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
