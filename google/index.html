@@ -32,7 +32,6 @@
 	<input id="deleteCalendar" type="button" value="刪除行事曆" onClick="deleteIdEvents(document.getElementById('iddw').value, document.getElementById('iCalUID').value)"> 
 	
     <pre id="content" style="white-space: pre-wrap;"></pre>
-	<table id=tableTitle border =1px></table>
 	<table id=table1 border =1px></table>
 
     <script type="text/javascript">
@@ -140,7 +139,6 @@
       }
 	  
       function showTable(array) {
-	    document.removeChild("tbody");
 	    var oObject = array;
         var tbody = document.createElement("tbody");
 		var i, j;
@@ -152,20 +150,10 @@
 		    var a = td.appendChild(document.createElement('p'));
 		    a.innerText = j;
           }
-		}
-		/*for (i=0;i<1;i++){
-		  var tr = tbody.appendChild(document.createElement('tr'));
-          for (j in oObject[i]) {
-		    var td = tr.appendChild(document.createElement('td'));
-		    var a = td.appendChild(document.createElement('p'));
-		    a.innerText = j;
-          }
-		}*/
-		//document.getElementById('tbody').appendChild(tbody);	
+		}	
 		
 		i=0;
 		j=0;
-		//var tbody = document.createElement("tbody");
 		for (i=0;i<oObject.length;i++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
           for (j in oObject[i]) {
@@ -228,14 +216,15 @@
           appendPre('Upcoming events: CBP09' );
 //          console.log(events);
           if (events.length > 0) {
-            for (i = 0; i < events.length; i++) {
+		    showTable(events);
+            /*for (i = 0; i < events.length; i++) {
               var event = events[i];
               var when = event.start.dateTime;
               if (!when) {
                 when = event.start.date;
               }
               appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
-            }
+            }*/
           } else {
             appendPre('No upcoming events found.');
           }
