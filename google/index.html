@@ -146,7 +146,7 @@
 		
 		for (i=0;i<1;i++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
-          for (j in oObject[0]) {
+          for (j in oObject[i]) {
 		    var td = tr.appendChild(document.createElement('td'));
 		    var a = td.appendChild(document.createElement('p'));
 		    a.innerText = j;
@@ -158,7 +158,7 @@
 		j=0;
 		//var tbody = document.createElement("tbody");
 		for (i=0;i<oObject.length;i++){
-		  var tr = tbody.appendChild(document.createElement('tr'));
+		  //var tr = tbody.appendChild(document.createElement('tr'));
           for (j in oObject[i]) {
 		    if (typeof(oObject[i][j]) === 'object') {
 			  showTrTd(oObject[i][j], tbody, tr);
