@@ -128,13 +128,14 @@
         pre.appendChild(textContent);
       }
 	  
-      function showTrTd(array, tbody, tr) {
+      function showTrTd(array, tbody) {
 		var i=0;
 		var j=0;
+		var tr1 = tbody.appendChild(document.createElement('tr'));
 		for (j in array) {
-		  var tr1 = tbody.appendChild(document.createElement('tr'));
+		  var td = tr1.appendChild(document.createElement('td'));
 		  console.log(array[j] + " " + typeof([j]));
-		  var a = tr1.appendChild(document.createElement('p'));
+		  var a = td.appendChild(document.createElement('p'));
 		  a.innerText = array[j];
 		  break;
 		}
@@ -164,7 +165,7 @@
           for (j in oObject[i]) {
 		    if (typeof(oObject[i][j]) === 'object') {
 			  var oTemp = oObject[i][j];
-			  showTrTd(oTemp, tbody, tr);
+			  showTrTd(oTemp, tbody);
 			} else {
 		      var td = tr.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
