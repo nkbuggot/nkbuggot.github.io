@@ -129,11 +129,9 @@
       }
 	  
       function showTrTd(array, tbody, tr) {
-		var i=0;
 		var j=0;
 		for (j in array) {
 		  var td = tr.appendChild(document.createElement('td'));
-		  //console.log(array[j] + " " + typeof([j]));
 		  var a = td.appendChild(document.createElement('p'));
 		  a.innerText = array[j];
 		  break;
@@ -143,33 +141,27 @@
 	  
       function showTable(array) {
 	    var oObject = array;
-        var tbodyTitle = document.createElement("tbodyTitle");
+        var tbody = document.createElement("tbody");
 		var i, j;
 		
 		for (i=0;i<1;i++){
-		  var tr = tbodyTitle.appendChild(document.createElement('tr'));
+		  var tr = tbody.appendChild(document.createElement('tr'));
           for (j in oObject[0]) {
 		    var td = tr.appendChild(document.createElement('td'));
 		    var a = td.appendChild(document.createElement('p'));
 		    a.innerText = j;
           }
 		}
-		document.getElementById('tableTitle').appendChild(tbodyTitle);	
+		//document.getElementById('tbody').appendChild(tbody);	
 		
 		i=0;
 		j=0;
-		var tbody = document.createElement("tbody");
+		//var tbody = document.createElement("tbody");
 		for (i=0;i<oObject.length;i++){
 		  var tr = tbody.appendChild(document.createElement('tr'));
-		  var bool = true;
           for (j in oObject[i]) {
 		    if (typeof(oObject[i][j]) === 'object') {
-			  if (bool) {
-			    var tr1 = tbody.appendChild(document.createElement('tr'));			    
-				bool = false;
-			  }
-			  var oTemp = oObject[i][j];
-			  showTrTd(oTemp, tbody, tr);
+			  showTrTd(oObject[i][j], tbody, tr);
 			} else {
 		      var td = tr.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
@@ -178,7 +170,6 @@
           }
 		}
 		document.getElementById('table1').appendChild(tbody);
-
       }
 
       /**
