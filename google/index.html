@@ -130,18 +130,18 @@
 	  
       function showTable(array) {
 	    var oObject = array;
-        var tbody = document.createElement("tbody");
+        var tbodyTitle = document.createElement("tbodyTitle");
 		var i, j;
 		
 		for (i=0;i<1;i++){
-		  var tr = tbody.appendChild(document.createElement('tr'));
+		  var tr = tbodyTitle.appendChild(document.createElement('tr'));
           for (j in oObject[0]) {
 		    var td = tr.appendChild(document.createElement('td'));
 		    var a = td.appendChild(document.createElement('p'));
 		    a.innerText = j;
           }
 		}
-		document.getElementById('tableTitle').appendChild(tbody);	
+		document.getElementById('tableTitle').appendChild(tbodyTitle);	
 		
 		i=0;
 		j=0;
