@@ -132,41 +132,74 @@
 		for (j in array) {
 		  var td = tr.appendChild(document.createElement('td'));
 		  var a = td.appendChild(document.createElement('p'));
-		  a.innerText = array[j];
+		  a.innerHTML = array[j];
 		  break;
 		}
 		return tr;
       }
 	  
-      function showTable(array) {
-	    var oObject = array;
-        var tbody = document.createElement("tbody");
-		var i, j;
+      function showTable(array) {	  
+	    if (document.getElementById("table1").childNodes[0]) {
+		  var oObject = array;
+          var tbody = document.createElement("tbody");
+		  var i, j;
 		
-		if (oObject.length > 0) {
-		  var tr = tbody.appendChild(document.createElement('tr'));
-          for (j in oObject[0]) {
-		    var td = tr.appendChild(document.createElement('td'));
-		    var a = td.appendChild(document.createElement('p'));
-		    a.innerText = j;
-          }
-		}	
-		
-		i=0;
-		j=0;
-		for (i=0;i<oObject.length;i++){
-		  var tr = tbody.appendChild(document.createElement('tr'));
-          for (j in oObject[i]) {
-		    if (typeof(oObject[i][j]) === 'object') {
-			  showTrTd(oObject[i][j], tbody, tr);
-			} else {
+		  if (oObject.length > 0) {
+		    var tr = tbody.appendChild(document.createElement('tr'));
+            for (j in oObject[0]) {
 		      var td = tr.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
-		      a.innerText = oObject[i][j];
-			}
-          }
+		      a.innerHTML = j;
+            }
+		  }	
+		
+		  i=0;
+		  j=0;
+		  for (i=0;i<oObject.length;i++){
+		    var tr = tbody.appendChild(document.createElement('tr'));
+            for (j in oObject[i]) {
+  		      if (typeof(oObject[i][j]) === 'object') {
+	  		    showTrTd(oObject[i][j], tbody, tr);
+			  } else {
+		        var td = tr.appendChild(document.createElement('td'));
+		        var a = td.appendChild(document.createElement('p'));
+		        a.innerHTML = oObject[i][j];
+			  }
+            }
+		  }
+		  document.getElementById('table1').appendChild(tbody);
+		  document.getElementById('table1').removeChild(document.getElementById("table1").childNodes[0]);
 		}
-		document.getElementById('table1').appendChild(tbody);
+		else {
+		  var oObject = array;
+          var tbody = document.createElement("tbody");
+		  var i, j;
+		
+		  if (oObject.length > 0) {
+		    var tr = tbody.appendChild(document.createElement('tr'));
+            for (j in oObject[0]) {
+		      var td = tr.appendChild(document.createElement('td'));
+		      var a = td.appendChild(document.createElement('p'));
+		      a.innerHTML = j;
+            }
+		  }	
+		
+		  i=0;
+		  j=0;
+		  for (i=0;i<oObject.length;i++){
+		    var tr = tbody.appendChild(document.createElement('tr'));
+            for (j in oObject[i]) {
+  		      if (typeof(oObject[i][j]) === 'object') {
+	  		    showTrTd(oObject[i][j], tbody, tr);
+			  } else {
+		        var td = tr.appendChild(document.createElement('td'));
+		        var a = td.appendChild(document.createElement('p'));
+		        a.innerHTML = oObject[i][j];
+			  }
+            }
+		  }
+		  document.getElementById('table1').appendChild(tbody);
+		}
       }
 
       /**
