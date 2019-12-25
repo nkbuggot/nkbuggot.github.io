@@ -150,9 +150,11 @@
 		  var tr = tbody.appendChild(document.createElement('tr'));
           for (j in oObject[i]) {
 		    if (typeof(oObject[i][j]) === 'object') {
-			  var oTemp = oObject[i][j];
-			  showTable(oTemp);
-			  console.log(oTemp);
+			  if (oObject[i][j] !== '__proto__') {
+			    var oTemp = oObject[i][j];
+			    showTable(oTemp);
+			    console.log(oTemp);
+			  }
 			} else {
 		      var td = tr.appendChild(document.createElement('td'));
 		      var a = td.appendChild(document.createElement('p'));
