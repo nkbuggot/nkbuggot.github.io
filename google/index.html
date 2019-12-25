@@ -134,13 +134,9 @@
 		for (j in array) {
 		  var tr1 = tbody.appendChild(document.createElement('tr'));
 		  console.log(array[j] + " " + typeof([j]));
-		  if (typeof(array[j]) === 'object') {
-			 null;
-		  } else {
-		    var td = tr1.appendChild(document.createElement('td'));
-		    var a = td.appendChild(document.createElement('p'));
-		    a.innerText = array[j];
-		  }
+		  var a = tr1.appendChild(document.createElement('p'));
+		  a.innerText = array[j];
+		  break;
 		}
 		return tr1;
       }
