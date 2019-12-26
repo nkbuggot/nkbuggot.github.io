@@ -278,7 +278,7 @@
           if (events.length > 0) {
 		    let aOutJson = [];
             aOutJson = showTable(events);
-			gridOptions.api.setRowData(events);
+			gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
