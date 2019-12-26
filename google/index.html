@@ -174,7 +174,8 @@
       }
 	  
       function showTable(array) {
-        let aOutJson = [];
+        let aOutArray = [];
+		let oOutObject = {};
 		let aOutJsonValue = '';
 	    if (document.getElementById("table1").childNodes[0]) {
 		  var oObject = array;
@@ -197,12 +198,18 @@
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
 	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
-				aOutJson.push(aOutJsonValue);
+				let xString = j;
+				let yString = aOutJsonValue;
+				oOutObject = {xString : yString};
+				aOutArray.push(oOutObject);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
-				aOutJson.push(oObject[i][j]);
+				let xString = j;
+				let yString = oObject[i][j];
+				oOutObject = {xString : yString};
+				aOutArray.push(oOutObject);
 			  }
             }
 		  }
@@ -230,18 +237,24 @@
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
 	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
-				aOutJson.push(aOutJsonValue);
+				let xString = j;
+				let yString = aOutJsonValue;
+				oOutObject = {xString : yString};
+				aOutArray.push(oOutObject);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
-				aOutJson.push(oObject[i][j]);
+				let xString = j;
+				let yString = oObject[i][j];
+				oOutObject = {xString : yString};
+				aOutArray.push(oOutObject);
 			  }
             }
 		  }
 		  document.getElementById('table1').appendChild(tbody);
 		}
-		return aOutJson;
+		return aOutArray;
       }
 
       /**
