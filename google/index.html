@@ -260,12 +260,12 @@
         }).then(function(response) {
           var events = response.result.items;
           appendPre('Upcoming events:' + Calendar_CLIENT_ID);
-          console.log(events);		  
-		  
+          console.log(events);	
 		  
           if (events.length > 0) {
 		    let aOutJson = [];
             aOutJson = showTable(events);
+			console.log(aOutJson);	
 			gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
