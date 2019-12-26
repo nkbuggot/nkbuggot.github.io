@@ -2,9 +2,13 @@
 <html>
   <head>
     <title>Google Calendar API Quickstart</title>
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
     <meta charset="utf-8" />
   </head>
   <body>
+    <div id="myGrid" style="height: 1200px; width:1500px;" class="ag-theme-balham"></div>
     <p>Google Calendar API Quickstart</p>
 		
     <!--Add buttons to initiate auth sequence and sign out-->
@@ -35,6 +39,36 @@
 	<table id=table1 border =1px></table>
 
     <script type="text/javascript">
+      const columnDefs = [
+        {headerName: 'kind', field: 'kind'},
+        {headerName: 'etag', field: 'etag'},
+        {headerName: 'id', field: 'id', editable: true},
+        {headerName: 'status', field: 'status'},
+        {headerName: 'htmlLink', field: 'htmlLink'},
+        {headerName: 'created', field: 'created'},
+        {headerName: 'updated', field: 'updated'},
+        {headerName: 'summary', field: 'summary'},
+        {headerName: 'creator', field: 'creator'},
+        {headerName: 'organizer', field: 'organizer'},
+        {headerName: 'start', field: 'start'},
+        {headerName: 'end', field: 'end'},
+        {headerName: 'iCalUID', field: 'iCalUID'},
+        {headerName: 'sequence', field: 'sequence'},
+        {headerName: 'reminders', field: 'reminders'}
+      ];
+	  
+      const data =[];
+      const gridOptions = {
+        columnDefs: columnDefs,
+        rowData: data,
+        enableSorting: true,
+        enableFilter: true,
+        pagination: true
+      };
+	  
+      const eGridDiv = document.querySelector('#myGrid');
+      new agGrid.Grid(eGridDiv, gridOptions);
+	  
 	  //預設起迄日期
 	  var dDate = new Date();
 	  var sDate = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
@@ -219,17 +253,11 @@
           var events = response.result.items;
           appendPre('Upcoming events:' + Calendar_CLIENT_ID);
           console.log(events);		  
-		  showTable(events);
+		  
+		  
           if (events.length > 0) {
-            /*for (i = 0; i < events.length; i++) {
-              var event = events[i];
-              var when = event.start.dateTime;
-              if (!when) {
-                when = event.start.date;
-              }
-              appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
-            }*/
-			null;
+            showTable(events);
+			gridOptions.api.setRowData(events);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -250,14 +278,7 @@
 //          console.log(events);
           if (events.length > 0) {
 		    showTable(events);
-            /*for (i = 0; i < events.length; i++) {
-              var event = events[i];
-              var when = event.start.dateTime;
-              if (!when) {
-                when = event.start.date;
-              }
-              appendPre(event.summary + ' (' + when + ')' + event.description + " " + event.created + event.updated + event.status + " " + event.creator.email + event.reminders);
-            }*/
+            gridOptions.api.setRowData(events);
           } else {
             appendPre('No upcoming events found.');
           }
