@@ -200,7 +200,8 @@
 	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
 				let xString = j;
 				let yString = aOutJsonValue;
-				oOutObject = {xString : yString};
+				let kString = '{' + xString + ':' + yString + '}';
+				oOutObject = JSON.parse(kString);
 				aOutArray.push(oOutObject);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
@@ -208,7 +209,8 @@
 		        a.innerHTML = oObject[i][j];
 				let xString = j;
 				let yString = oObject[i][j];
-				oOutObject = {xString : yString};
+				let kString = '{' + xString + ':' + yString + '}';
+				oOutObject = JSON.parse(kString);
 				aOutArray.push(oOutObject);
 			  }
             }
@@ -239,7 +241,8 @@
 	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
 				let xString = j;
 				let yString = aOutJsonValue;
-				oOutObject = {xString : yString};
+				let kString = '{' + xString + ':' + yString + '}';
+				oOutObject = JSON.parse(kString);
 				aOutArray.push(oOutObject);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
@@ -247,7 +250,8 @@
 		        a.innerHTML = oObject[i][j];
 				let xString = j;
 				let yString = oObject[i][j];
-				oOutObject = {xString : yString};
+				let kString = '{' + xString + ':' + yString + '}';
+				oOutObject = JSON.parse(kString);
 				aOutArray.push(oOutObject);
 			  }
             }
