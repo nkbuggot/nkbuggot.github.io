@@ -42,16 +42,16 @@
       const columnDefs = [
         {headerName: 'kind', field: 'kind'},
         {headerName: 'etag', field: 'etag'},
-        {headerName: 'id', field: 'id', editable: true},
+        {headerName: 'id', field: 'id'},
         {headerName: 'status', field: 'status'},
         {headerName: 'htmlLink', field: 'htmlLink'},
         {headerName: 'created', field: 'created'},
-        {headerName: 'updated', field: 'updated'},
-        {headerName: 'summary', field: 'summary'},
-        {headerName: 'creator', field: 'creator'},
+        {headerName: 'updated', field: 'updated', editable: true},
+        {headerName: 'summary', field: 'summary', editable: true},
+        {headerName: 'creator', field: 'creator', editable: true},
         {headerName: 'organizer', field: 'organizer'},
-        {headerName: 'start', field: 'start'},
-        {headerName: 'end', field: 'end'},
+        {headerName: 'start', field: 'start', editable: true},
+        {headerName: 'end', field: 'end', editable: true},
         {headerName: 'iCalUID', field: 'iCalUID'},
         {headerName: 'sequence', field: 'sequence'},
         {headerName: 'reminders', field: 'reminders'}
@@ -167,12 +167,15 @@
 		  var td = tr.appendChild(document.createElement('td'));
 		  var a = td.appendChild(document.createElement('p'));
 		  a.innerHTML = array[j];
+		  return a.innerHTML;
 		  break;
 		}
-		return tr;
+		
       }
 	  
-      function showTable(array) {	  
+      function showTable(array) {
+        let aOutJson = [];
+		let aOutJsonValue = '';
 	    if (document.getElementById("table1").childNodes[0]) {
 		  var oObject = array;
           var tbody = document.createElement("tbody");
@@ -193,11 +196,13 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    showTrTd(oObject[i][j], tbody, tr);
+	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
+				aOutJson.push(aOutJsonValue);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
+				aOutJson.push(oObject[i][j]);
 			  }
             }
 		  }
@@ -224,16 +229,19 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    showTrTd(oObject[i][j], tbody, tr);
+	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
+				aOutJson.push(aOutJsonValue);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
+				aOutJson.push(oObject[i][j]);
 			  }
             }
 		  }
 		  document.getElementById('table1').appendChild(tbody);
 		}
+		return aOutJson;
       }
 
       /**
@@ -256,8 +264,9 @@
 		  
 		  
           if (events.length > 0) {
-            showTable(events);
-			gridOptions.api.setRowData(events);
+		    let aOutJson = [];
+            aOutJson = showTable(events);
+			gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -277,8 +286,9 @@
           appendPre('Upcoming events: CBP09' );
 //          console.log(events);
           if (events.length > 0) {
-		    showTable(events);
-            gridOptions.api.setRowData(events);
+		    let aOutJson = [];
+		    aOutJson = showTable(events);
+            gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
