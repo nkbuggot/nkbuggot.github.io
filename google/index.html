@@ -161,6 +161,32 @@
         pre.appendChild(textContent);
       }
 	  
+      function isArray(myArray) {
+        return myArray.constructor.toString().indexOf("Array") > -1;
+      }
+	  
+
+      function splitArray(myArray) {
+        var i=0,j=0, text ='', k=0;
+        text += '[';
+        for (i=0;i<myArray.length;i++){
+          text += '{';
+          for (j in myArray[i]){
+            if (isArray(myArray[i][j])) {
+              text += '"' +j + '":' + splitArray(myArray[i][j]);
+            } else {
+              text += '"' +j + '":"' + myArray[i][j] +'"';
+            }
+          text += ',';
+          }
+        text = text.slice(0,text.length-1);
+        text += '},';
+        }
+        text = text.slice(0,text.length-1);
+        text += ']';
+        return text;
+      }
+	  
       function showTrTd(array, tbody, tr) {
 		var j=0;
 		for (j in array) {
@@ -174,9 +200,6 @@
       }
 	  
       function showTable(array) {
-        let aOutArray = [];
-		let oOutObject = {};
-		let aOutJsonValue = '';
 	    if (document.getElementById("table1").childNodes[0]) {
 		  var oObject = array;
           var tbody = document.createElement("tbody");
@@ -197,21 +220,11 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
-				let xString = j;
-				let yString = aOutJsonValue;
-				let kString = '{' + xString + ':' + yString + '}';
-				oOutObject = JSON.parse(kString);
-				aOutArray.push(oOutObject);
+	  		    showTrTd(oObject[i][j], tbody, tr);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
-				let xString = j;
-				let yString = oObject[i][j];
-				let kString = '{' + xString + ':' + yString + '}';
-				oOutObject = JSON.parse(kString);
-				aOutArray.push(oOutObject);
 			  }
             }
 		  }
@@ -238,27 +251,17 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
-				let xString = j;
-				let yString = aOutJsonValue;
-				let kString = '{' + xString + ':' + yString + '}';
-				oOutObject = JSON.parse(kString);
-				aOutArray.push(oOutObject);
+	  		    showTrTd(oObject[i][j], tbody, tr);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
-				let xString = j;
-				let yString = oObject[i][j];
-				let kString = '{' + xString + ':' + yString + '}';
-				oOutObject = JSON.parse(kString);
-				aOutArray.push(oOutObject);
 			  }
             }
 		  }
 		  document.getElementById('table1').appendChild(tbody);
 		}
-		return aOutArray;
+		return splitArray(array);
       }
 
       /**
@@ -305,7 +308,7 @@
           if (events.length > 0) {
 		    let aOutJson = [];
 		    aOutJson = showTable(events);
-            gridOptions.api.setRowData(events);
+            gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
