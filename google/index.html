@@ -200,6 +200,9 @@
       }
 	  
       function showTable(array) {
+	    let aOutArray = [];
+	    let oOutObject = {};
+	    let aOutJsonValue = '';
 	    if (document.getElementById("table1").childNodes[0]) {
 		  var oObject = array;
           var tbody = document.createElement("tbody");
@@ -220,11 +223,13 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    showTrTd(oObject[i][j], tbody, tr);
+	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
+				aOutArray.push(aOutJsonValue);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
+				aOutArray.push(a.innerHTML);
 			  }
             }
 		  }
@@ -251,17 +256,19 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    showTrTd(oObject[i][j], tbody, tr);
+	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
+				aOutArray.push(aOutJsonValue);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
+				aOutArray.push(a.innerHTML);
 			  }
             }
 		  }
 		  document.getElementById('table1').appendChild(tbody);
 		}
-		return splitArray(array);
+		return aOutArray;
       }
 
       /**
@@ -285,8 +292,8 @@
           if (events.length > 0) {
 		    let aOutJson = [];
             aOutJson = showTable(events);
-			console.log(aOutJson);	
-			gridOptions.api.setRowData(events);
+			//console.log(aOutJson);	
+			gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -308,7 +315,7 @@
           if (events.length > 0) {
 		    let aOutJson = [];
 		    aOutJson = showTable(events);
-            gridOptions.api.setRowData(events);
+            gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
