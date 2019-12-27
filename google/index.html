@@ -200,9 +200,6 @@
       }
 	  
       function showTable(array) {
-	    let aOutArray = [];
-	    let oOutObject = {};
-	    let aOutJsonValue = '';
 	    if (document.getElementById("table1").childNodes[0]) {
 		  var oObject = array;
           var tbody = document.createElement("tbody");
@@ -223,13 +220,11 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
-				aOutArray.push(aOutJsonValue);
+	  		    showTrTd(oObject[i][j], tbody, tr);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
-				aOutArray.push(a.innerHTML);
 			  }
             }
 		  }
@@ -256,19 +251,43 @@
 		    var tr = tbody.appendChild(document.createElement('tr'));
             for (j in oObject[i]) {
   		      if (typeof(oObject[i][j]) === 'object') {
-	  		    aOutJsonValue = showTrTd(oObject[i][j], tbody, tr);
-				aOutArray.push(aOutJsonValue);
+	  		    showTrTd(oObject[i][j], tbody, tr);
 			  } else {
 		        var td = tr.appendChild(document.createElement('td'));
 		        var a = td.appendChild(document.createElement('p'));
 		        a.innerHTML = oObject[i][j];
-				aOutArray.push(a.innerHTML);
 			  }
             }
 		  }
 		  document.getElementById('table1').appendChild(tbody);
 		}
-		return aOutArray;
+      }
+	  
+      function changeToEvent(array) {
+        var changeEvent = array.reduce(function(result, item, index,array) {
+          var i=0, j=0;
+          for (i=0;i<Object.keys(item).length;i++) {
+            var key = Object.keys(item)[i]; //first property: a, b, c
+            var value = item[key];
+            if (typeof(item[key]) === 'object') {
+              if (isArray(item[key])) {
+                for (j in item[key][0]) {
+                  value = item[key][0][j];
+                  break;
+                }
+			  } else{
+                for (j in item[key]) {
+                  value = item[key][j];
+                  break;
+                }
+              }
+            }
+          var obj = {};
+          obj[key] = value;
+          result.push(obj);
+          }
+          return result;
+        }, []); //an empty array
       }
 
       /**
@@ -291,9 +310,10 @@
 		  
           if (events.length > 0) {
 		    let aOutJson = [];
-            aOutJson = showTable(events);
-			//console.log(aOutJson);	
-			gridOptions.api.setRowData(events);
+            showTable(events);
+			aOutJson = changeToEvent(array)
+			console.log(aOutJson);	
+			gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -313,8 +333,7 @@
           appendPre('Upcoming events: CBP09' );
 //          console.log(events);
           if (events.length > 0) {
-		    let aOutJson = [];
-		    aOutJson = showTable(events);
+		    showTable(events);
             gridOptions.api.setRowData(events);
           } else {
             appendPre('No upcoming events found.');
