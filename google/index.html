@@ -277,8 +277,8 @@
 		}
       }
 	  
-      function changeToEvent(array) {
-        var changeEvent = array.reduce(function(result, item, index,array) {
+      function changeToEvent(aArray) {
+        var changeEvent = aArray.reduce(function(result, item, index,array) {
           var i=0, j=0;
           for (i=0;i<Object.keys(item).length;i++) {
             var key = Object.keys(item)[i]; //first property: a, b, c
@@ -287,12 +287,13 @@
               if (isArray(item[key])) {
                 for (j in item[key][0]) {
                   value = item[key][0][j];
+				  key = j;
                   break;
                 }
 			  } else{
                 for (j in item[key]) {
                   value = item[key][j];
-                  break;
+                  //break;
                 }
               }
             }
@@ -324,10 +325,10 @@
           console.log(events);	
 		  
           if (events.length > 0) {
-		    //let aOutJson = [];
+		    let aOutJson = [];
             showTable(events);
-			//aOutJson = changeToEvent(events);
-			//console.log(aOutJson);	
+			aOutJson = changeToEvent(events);
+			console.log(aOutJson);	
 			gridOptions.api.setRowData(events);
           } else {
             appendPre('No upcoming events found.');
