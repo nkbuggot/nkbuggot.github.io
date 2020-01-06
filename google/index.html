@@ -202,11 +202,18 @@
       }
 	  
       function splitPushArray(myArray) {
-        var i=0,j=0, text ='', k=0;
+        var i=0,j=0, text ='', k=0, sFirst='-99';
         text += '[';
-        for (i=0;i<myArray.length;i++){
-          text += '{';
+        for (i=0;i<myArray.length;i++){          
+          
           for (j in myArray[i]){
+            if (sFirst === '-99') {
+              sFirst = j;
+              text += '{';
+            } else if (sFirst === j) {
+              text = text.slice(0,text.length-1);
+              text += '},{';
+            }
             if (isArray(myArray[i][j])) {
               text += '"' +j + '":' + splitArray(myArray[i][j]);
             } else {
@@ -214,12 +221,10 @@
             }
           text += ',';
           }
-        text = text.slice(0,text.length-1);
-        text += '},';
         }
 		
         text = text.slice(0,text.length-1);
-        text += ']';
+        text += '}]';
         return text;
       }
 	  
