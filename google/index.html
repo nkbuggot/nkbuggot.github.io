@@ -286,7 +286,7 @@
           obj[key] = value;
           result.push(obj);
           }
-		  console.log(result);	
+		  //console.log(result);	
           return result;
         }, []); //an empty array
       }
@@ -310,11 +310,11 @@
           console.log(events);	
 		  
           if (events.length > 0) {
-		    let aOutJson = [];
+		    //let aOutJson = [];
             showTable(events);
-			aOutJson = changeToEvent(events)
+			//aOutJson = changeToEvent(events);
 			//console.log(aOutJson);	
-			//gridOptions.api.setRowData(aOutJson);
+			gridOptions.api.setRowData(events);
           } else {
             appendPre('No upcoming events found.');
           }
