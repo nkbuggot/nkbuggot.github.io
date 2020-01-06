@@ -188,7 +188,9 @@
           for (j in myArray[i]){
             if (isArray(myArray[i][j])) {
               text += '"' +j + '":' + splitArray(myArray[i][j]);
-            } else {
+            } else if (typeof(myArray[i][j]) === 'number') {
+			  text += j + '":"' + myArray[i][j];
+			} else {
               text += '"' +j + '":"' + myArray[i][j] +'"';
             }
           text += ',';
@@ -216,7 +218,9 @@
             }
             if (isArray(myArray[i][j])) {
               text += '"' +j + '":' + splitArray(myArray[i][j]);
-            } else {
+            } else if (typeof(myArray[i][j]) === 'number') {
+			  text += j + '":"' + myArray[i][j];
+			} else {
               text += '"' +j + '":"' + myArray[i][j] +'"';
             }
           text += ',';
