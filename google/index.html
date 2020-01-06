@@ -201,6 +201,28 @@
         return text;
       }
 	  
+      function splitPushArray(myArray) {
+        var i=0,j=0, text ='', k=0;
+        text += '[';
+        for (i=0;i<myArray.length;i++){
+          text += '{';
+          for (j in myArray[i]){
+            if (isArray(myArray[i][j])) {
+              text += '"' +j + '":' + splitArray(myArray[i][j]);
+            } else {
+              text += '"' +j + '":"' + myArray[i][j] +'"';
+            }
+          text += ',';
+          }
+        text = text.slice(0,text.length-1);
+        
+        }
+		text += '},';
+        text = text.slice(0,text.length-1);
+        text += ']';
+        return text;
+      }
+	  
       function showTrTd(array, tbody, tr) {
 		var j=0;
 		for (j in array) {
@@ -352,7 +374,7 @@
           }	
           return result;
         }, []); //an empty array
-		console.log(splitArray(events));
+		console.log(splitPushArray(changeEvent));
 			gridOptions.api.setRowData(events);
           } else {
             appendPre('No upcoming events found.');
