@@ -70,11 +70,25 @@
       new agGrid.Grid(eGridDiv, gridOptions);
 	  
 	  //預設起迄日期
-	  var dDate = new Date();
+	  var dDate = new Date(); 
+	  var dDateMon;
+	  var dDateDay;
+	  if ((dDate.getMonth()+1).toString().length === 1) {
+	    dDateMon = '0'+ (dDate.getMonth()+1);
+	  }
+	  else {
+	    dDateMon = (dDate.getDate());
+	  }
+	  if ((dDate.getDate()).toString().length === 1) {
+	    dDateDay = '0'+ (dDate.getDate());
+	  }
+	  else {
+	    dDateDay = (dDate.getDate());
+	  }
 	  var sDate = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
 	              + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
-	  document.getElementById("start").value = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate());
-	  document.getElementById("end").value = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate());
+	  document.getElementById("start").value = dDate.getFullYear() + '-' + (dDateDay) + '-' + (dDateDay);
+	  document.getElementById("end").value = dDate.getFullYear() + '-' + (dDateDay) + '-' + (dDateDay);
       // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
 	  var Calendar_CLIENT_ID = 'nkbuggot1@gmail.com';
