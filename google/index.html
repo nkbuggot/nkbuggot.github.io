@@ -361,12 +361,12 @@
           if (events.length > 0) {
 		    let aOutJson = [];
             showTable(events);
-			aOutJson = changeToEvent(events);
-			console.log(splitPushArray(aOutJson));
-			let qq=[];
-			qq= JSON.parse(splitPushArray(aOutJson));
+			aOutJson = changeToEvent(events);//修改資料
+			//console.log(splitPushArray(aOutJson));
+			let showJson = [];
+			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			gridOptions.api.setRowData(qq);
+			gridOptions.api.setRowData(showJson);
           } else {
             appendPre('No upcoming events found.');
           }
