@@ -319,7 +319,7 @@
             if (typeof(item[key]) === 'object') {
               if (isArray(item[key])) {
                 for (j in item[key][0]) {
-                  value = item[key][0][j];
+                  value = item[key][0][0];
 				  key = j;
                   break;
                 }
