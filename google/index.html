@@ -149,6 +149,29 @@
         }
       }
 
+      //檢查資料是否為數字
+      function checkNumber(num){
+	    let bBool = true;
+        //判斷資料的點位置是否相同
+        if (num.indexOf('.') === num.lastIndexOf('.')) {
+          //判斷資料是否在0-9中，或有.的
+          //^代表at the beginning of a string，在[]外
+          //^代表characters NOT inside the brackets [h] in a string，在[]內，
+          //舉例來說[^h]代表字串中不含h的都可尋找到
+          //+代表at least one "0-9"|'.' in a string
+          //$代表at the end of a string
+          //下方解釋為^起頭為0-9或.的條件下，+印出後續資料，$結尾為0-9或.的條件下
+          if (num.match(/^[0-9 |'.']+$/i) == num) {
+            bBool = true;
+          } else {
+            bBool = false;
+          }
+        } else {
+         bBool = false;
+        }
+        return bBool;
+      }
+
       /**
        *  Sign in the user upon button click.
        */
@@ -188,10 +211,10 @@
           for (j in myArray[i]){
             if (isArray(myArray[i][j])) {
               text += '"' +j + '":' + splitArray(myArray[i][j]);
-            } else if (typeof(myArray[i][j]) === 'number') {
-			  text += j + '":"' + myArray[i][j] + typeof(myArray[i][j]);
+            } else if (checkNumber(myArray[i][j])) {
+			  text += j + '":"' + myArray[i][j];
 			} else {
-              text += '"' +j + '":"' + myArray[i][j] + typeof(myArray[i][j]) +'"';
+              text += '"' +j + '":"' + myArray[i][j] +'"';
             }
           text += ',';
           }
@@ -218,10 +241,10 @@
             }
             if (isArray(myArray[i][j])) {
               text += '"' +j + '":' + splitArray(myArray[i][j]);
-            } else if (typeof(myArray[i][j]) === 'number') {
-			  text += j + '":"' + myArray[i][j] + typeof(myArray[i][j]);
+            } else if (checkNumber(myArray[i][j])) {
+			  text += j + '":"' + myArray[i][j];
 			} else {
-              text += '"' +j + '":"' + myArray[i][j]+ typeof(myArray[i][j]) +'"';
+              text += '"' +j + '":"' + myArray[i][j] +'"';
             }
           text += ',';
           }
