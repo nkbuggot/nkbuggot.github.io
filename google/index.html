@@ -153,8 +153,8 @@
       function checkNumber(num){
 	    let bBool = true;
         //判斷資料的點位置是否相同
-		num = num.toString();
-		num = num.replace('"','');
+		//num = num.toString();
+		num = num.replace(/"/g,'');
         if (num.indexOf('.') === num.lastIndexOf('.')) {
           //判斷資料是否在0-9中，或有.的
           //^代表at the beginning of a string，在[]外
@@ -246,7 +246,7 @@
             } else if (checkNumber(myArray[i][j])) {
 			  text += '"' + j + '":' + myArray[i][j];
 			} else {
-              text +=  '"' + j + '":' + myArray[i][j] ;
+              text +=  '"' + j + '":"' + myArray[i][j] +'"';
             }
           text += ',';
           }
