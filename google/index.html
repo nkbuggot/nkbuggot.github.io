@@ -243,7 +243,7 @@
             if (isArray(myArray[i][j])) {
               text += '"' +j + '":' + splitArray(myArray[i][j]);
             } else if (checkNumber(myArray[i][j])) {
-			  text += j + '":"' + myArray[i][j];
+			  text += j + '":"' + myArray[i][j] +"checkNumber";
 			} else {
               text += '"' +j + '":"' + myArray[i][j] +'"';
             }
