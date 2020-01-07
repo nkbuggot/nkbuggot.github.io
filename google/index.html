@@ -363,8 +363,10 @@
             showTable(events);
 			aOutJson = changeToEvent(events);
 			console.log(splitPushArray(aOutJson));
+			let qq=[];
+			qq= splitPushArray(aOutJson);
 			//console.log(splitPushArray(events));
-			gridOptions.api.setRowData(events);
+			gridOptions.api.setRowData(qq);
           } else {
             appendPre('No upcoming events found.');
           }
