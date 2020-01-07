@@ -152,10 +152,14 @@
       //檢查資料是否為數字
       function checkNumber(num){
 	    let bBool = true;
-        //判斷資料的點位置是否相同
-		//num = num.toString();
-		num = num.replace(/"/g,'');
-        if (num.indexOf('.') === num.lastIndexOf('.')) {
+		let sNum;
+		if (typeof(num) !== 'number') {
+		  sNum = num.toString();
+		} else {
+		  sNum = num;
+		}
+		sNum = sNum.replace(/"/g,'');
+        if (sNum.indexOf('.') === sNum.lastIndexOf('.')) {
           //判斷資料是否在0-9中，或有.的
           //^代表at the beginning of a string，在[]外
           //^代表characters NOT inside the brackets [h] in a string，在[]內，
@@ -163,7 +167,7 @@
           //+代表at least one "0-9"|'.' in a string
           //$代表at the end of a string
           //下方解釋為^起頭為0-9或.的條件下，+印出後續資料，$結尾為0-9或.的條件下
-          if (num.match(/^[0-9 |'.']+$/i) == num) {
+          if (sNum.match(/^[0-9 |'.']+$/i) == sNum) {
             bBool = true;
           } else {
             bBool = false;
