@@ -204,30 +204,6 @@
         return myArray.constructor.toString().indexOf("Array") > -1;
       }
 	  
-
-      /*function splitArray(myArray) {
-        var i=0,j=0, text ='', k=0;
-        text += '[';
-        for (i=0;i<myArray.length;i++){
-          text += '{';
-          for (j in myArray[i]){
-            if (isArray(myArray[i][j])) {
-              text += '"' +j + '":' + splitArray(myArray[i][j]);
-            } else if (checkNumber(myArray[i][j])) {
-			  text += '"' + j + '":' + myArray[i][j];
-			} else {
-              text += '"' + j + '":"' + myArray[i][j] +'"';
-            }
-          text += ',';
-          }
-        text = text.slice(0,text.length-1);
-        text += '},';
-        }
-        text = text.slice(0,text.length-1);
-        text += ']';
-        return text;
-      }*/
-	  
       function splitPushArray(myArray) {
         var i=0,j=0, text ='', k=0, sFirst='-99';
         text += '[';
@@ -339,6 +315,7 @@
           for (i=0;i<Object.keys(item).length;i++) {
             var key = Object.keys(item)[i]; //first property: a, b, c
             var value = item[key];
+			//轉換object資料只有第一筆
             if (typeof(item[key]) === 'object') {
               if (isArray(item[key])) {
                 for (j in item[key][0]) {
@@ -386,7 +363,7 @@
             showTable(events);
 			aOutJson = changeToEvent(events);
 			console.log(splitPushArray(aOutJson));
-			gridOptions.api.setRowData(events);
+			gridOptions.api.setRowData(aOutJson);
           } else {
             appendPre('No upcoming events found.');
           }
