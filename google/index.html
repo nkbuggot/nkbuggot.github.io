@@ -319,14 +319,14 @@
             if (typeof(item[key]) === 'object') {
               if (isArray(item[key])) {
                 for (j in item[key][0]) {
-                  value = item[key][0][0];
+                  value = item[key][0][j];
 				  key = j;
                   break;
                 }
 			  } else{
                 for (j in item[key]) {
                   value = item[key][j];
-                  //break;
+                  break;
                 }
               }
             }
@@ -334,7 +334,7 @@
           obj[key] = value;
           result.push(obj);
           }
-		  console.log(result);	
+		  //console.log(result);	
           return result;
         }, []); //an empty array
 		return changeEvent;
