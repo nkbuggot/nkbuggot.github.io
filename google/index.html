@@ -362,8 +362,9 @@
 		    let aOutJson = [];
             showTable(events);
 			aOutJson = changeToEvent(events);
-			console.log(splitPushArray(aOutJson));
-			gridOptions.api.setRowData(aOutJson);
+			console.log(aOutJson);
+			console.log(events);
+			gridOptions.api.setRowData(events);
           } else {
             appendPre('No upcoming events found.');
           }
