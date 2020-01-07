@@ -364,7 +364,7 @@
 			aOutJson = changeToEvent(events);
 			console.log(splitPushArray(aOutJson));
 			let qq=[];
-			qq= splitPushArray(aOutJson);
+			qq= JSON.parse(splitPushArray(aOutJson));
 			//console.log(splitPushArray(events));
 			gridOptions.api.setRowData(qq);
           } else {
