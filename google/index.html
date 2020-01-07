@@ -358,12 +358,11 @@
           appendPre('Upcoming events:' + Calendar_CLIENT_ID);
           console.log(events);	
 		  
-          if (events.length > 0) {
-		    let aOutJson = [];
+          if (events.length > 0) {		    
             showTable(events);
+			let aOutJson = [], showJson = [];
 			aOutJson = changeToEvent(events);//修改資料
 			//console.log(splitPushArray(aOutJson));
-			let showJson = [];
 			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
 			gridOptions.api.setRowData(showJson);
@@ -387,7 +386,12 @@
 //          console.log(events);
           if (events.length > 0) {
 		    showTable(events);
-            gridOptions.api.setRowData(events);
+			let aOutJson = [], showJson = [];
+			aOutJson = changeToEvent(events);//修改資料
+			//console.log(splitPushArray(aOutJson));
+			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
+			//console.log(splitPushArray(events));
+			gridOptions.api.setRowData(showJson);
           } else {
             appendPre('No upcoming events found.');
           }
