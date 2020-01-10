@@ -37,6 +37,7 @@
 	
     <pre id="content" style="white-space: pre-wrap;"></pre>
 	<table id=table1 border =1px></table>
+	<p id="demo"></p>
 
     <script type="text/javascript">
       const columnDefs = [
@@ -200,6 +201,37 @@
         pre.appendChild(textContent);
       }
 	  
+      function makeTitle(array) {
+        let i=0, j=0, text ='';
+        text += '<div class="rwdTable">';
+        for (i in array) {
+          text += '<div class="rwdTr">';
+          for (j in array[i]) {
+            text += '<div class="rwdTh">' + j + '</div>';
+          }
+          text += '</div>';
+          break;
+        }
+        //text += '</div>';
+        return text;
+      }
+	  
+      function makeRow(array) {
+        let i=0, j=0, text ='', sTitle = '';
+		sTitle = makeTitle(array);
+		text += sTitle;
+        //text += '<div class="rwdTable">';
+        for (i in array) {
+          text += '<div class="rwdTr">';
+          for (j in array[i]) {
+            text += '<div class="rwdTd"><span>' + array[i][j] + '</span></div>';
+          }
+          text += '</div>';
+        }
+        text += '</div>';
+        document.getElementById("demo").innerHTML = text;
+      }
+	  
       function isArray(myArray) {
         return myArray.constructor.toString().indexOf("Array") > -1;
       }
@@ -359,13 +391,14 @@
           console.log(events);	
 		  
           if (events.length > 0) {		    
-            showTable(events);
+            //showTable(events);
 			let aOutJson = [], showJson = [];
 			aOutJson = changeToEvent(events);//修改資料
 			//console.log(splitPushArray(aOutJson));
 			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
 			gridOptions.api.setRowData(showJson);
+			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -385,13 +418,14 @@
           appendPre('Upcoming events: CBP09' );
 //          console.log(events);
           if (events.length > 0) {
-		    showTable(events);
+		    //showTable(events);
 			let aOutJson = [], showJson = [];
 			aOutJson = changeToEvent(events);//修改資料
 			//console.log(splitPushArray(aOutJson));
 			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
 			gridOptions.api.setRowData(showJson);
+			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
           }
