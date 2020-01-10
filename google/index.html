@@ -14,10 +14,11 @@
 width: 100%;
 overflow-y: auto;
 max-height:400px;
+max-width:670px;
 _overflow: auto;
 margin: 0 0 1em;
-  border-collapse: separate;
-  border-spacing: 2px;
+border-collapse: separate;
+border-spacing: 2px;
 }
 
 .rwdTable::-webkit-scrollbar
@@ -43,6 +44,7 @@ background-color: yellow;
   vertical-align: top;
   text-align: left;
   padding: 5px 10px;
+  border:1px solid yellow;
 }
 
 /* 表格單雙行顏色變化 */
@@ -265,10 +267,22 @@ background-color: yellow;
         return text;
       }
 	  
+      function makeEnd(array) {
+        let i=0, j=0, text ='';
+        for (i in array) {
+          text += '<div class="rwdTr">';
+          for (j in array[i]) {
+            text += '<div class="rwdTd"><input type="text" id=' +j+ '></div>';
+          }
+          text += '</div>';
+          break;
+        }
+        return text;
+      }
+	  
       function makeRow(array) {
-        let i=0, j=0, text ='', sTitle = '';
-		sTitle = makeTitle(array);
-		text += sTitle;
+        let i=0, j=0, text ='';
+		text += makeTitle(array);
         //text += '<div class="rwdTable">';
         for (i in array) {
           text += '<div class="rwdTr">';
@@ -277,7 +291,7 @@ background-color: yellow;
           }
           text += '</div>';
         }
-        text += '</div>';
+        text += makeEnd(array) + '</div>';
         document.getElementById("demo").innerHTML = text;
       }
 	  
