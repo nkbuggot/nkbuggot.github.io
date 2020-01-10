@@ -7,6 +7,37 @@
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
     <meta charset="utf-8" />
   </head>
+<style>
+/* 基本表格設定 */
+.rwdTable {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+}
+
+.rwdTr, .rwdTitle_gorup {
+  display: table-row;
+}
+
+.rwdTh, .rwdTd {
+  display: table-cell;
+  vertical-align: top;
+  text-align: center;
+  padding: 5px 10px;
+}
+
+/* 表格單雙行顏色變化 */
+.rwdTr:nth-of-type(odd), .rwdTitle_gorup:nth-of-type(odd) {
+  background-color: #eaeaea;
+}
+
+/* 表頭背景藍色 */
+.rwdTh {
+  background-color: #188EBE;
+  color: #ffffff;
+}
+</style>
   <body>
     <div id="myGrid" style="height: 250px; width:1000px;" class="ag-theme-balham"></div>
     <p>Google Calendar API Quickstart</p>
