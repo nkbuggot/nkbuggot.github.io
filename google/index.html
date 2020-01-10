@@ -9,11 +9,28 @@
   </head>
 <style>
 /* 基本表格設定 */
-.rwdTable {
-  display: table;
-  width: 100%;
+.rwdTable
+{
+width: 100%;
+overflow-y: auto;
+_overflow: auto;
+margin: 0 0 1em;
   border-collapse: separate;
-  border-spacing: 5px;
+  border-spacing: 2px;
+}
+
+.rwdTable::-webkit-scrollbar
+{
+-webkit-appearance: none;
+width: 14px;
+height: 14px;
+}
+
+.rwdTable::-webkit-scrollbar-thumb
+{
+border-radius: 18px;
+border: 1px solid blue;
+background-color: yellow;
 }
 
 .rwdTr, .rwdTitle_gorup {
@@ -23,7 +40,7 @@
 .rwdTh, .rwdTd {
   display: table-cell;
   vertical-align: top;
-  text-align: center;
+  text-align: left;
   padding: 5px 10px;
 }
 
