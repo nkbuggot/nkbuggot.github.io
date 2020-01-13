@@ -89,6 +89,7 @@ background-color: yellow;
     <pre id="content" style="white-space: pre-wrap;"></pre>
 	<table id=table1 border =1px></table>
 	<p id="demo"></p>
+	<input type="button" class="add" onclick="add_row();" value="Add Row">
 
     <script type="text/javascript">
       const columnDefs = [
@@ -272,7 +273,7 @@ background-color: yellow;
         for (i in array) {
           text += '<div class="rwdTr">';
           for (j in array[i]) {
-            text += '<div class="rwdTd"><input type="text" id=' +j+ '></div>';
+            text += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';
           }
           text += '</div>';
           break;
@@ -294,6 +295,48 @@ background-color: yellow;
         text += makeEnd(array) + '</div>';
         document.getElementById("demo").innerHTML = text;
       }
+	  
+      function add_row(){
+	    let dDate = new Date(); 
+	    let sDate = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
+	              + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
+	    if (!validateEmail(document.getElementById("organizer_row").value)) {
+		  appendPre('請輸入Email資料!');		
+		} else {
+          var event = {
+            'summary': document.getElementById("summary_row").value,
+            'description': document.getElementById("summary_row").value,
+            'created': sDate,
+            'updated': sDate,
+            'start': {
+              'dateTime': document.getElementById("start").value + 'T' + document.getElementById("startTime").value +'+08:00'
+            },
+            'end': {
+              'dateTime': document.getElementById("end").value + 'T' + document.getElementById("endTime").value +'+08:00'
+            },
+            'creator': {
+              'email': document.getElementById("organizer_row").value
+            },
+            'reminders': {
+              'useDefault': true
+            }
+          };
+		
+          var calendarObject = {
+            'calendarId': Calendar_CLIENT_ID,
+            'resource': event
+          };
+
+          var request = gapi.client.calendar.events.insert(calendarObject);
+          request.execute(function(calendarObject) {
+          if (!calendarObject.iCalUID) {
+            appendPre('No upcoming calendarObject found.' + 'Http Code:' + calendarObject.code + '訊息:' + calendarObject.message);
+          } else {
+            appendPre('calendarObject created: ' + calendarObject.iCalUID);
+          }
+          });
+		}
+      }    
 	  
       function isArray(myArray) {
         return myArray.constructor.toString().indexOf("Array") > -1;
