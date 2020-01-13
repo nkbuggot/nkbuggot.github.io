@@ -89,6 +89,7 @@ background-color: yellow;
     <pre id="content" style="white-space: pre-wrap;"></pre>
 	<table id=table1 border =1px></table>
 	<p id="demo"></p>
+	<p id="ssssss"></p>
 	<input type="button" class="add" onclick="add_row();" value="Add Row">
 
     <script type="text/javascript">
@@ -274,10 +275,10 @@ background-color: yellow;
           text += '<div class="rwdTr">';
           for (j in array[i]) {
 		    if (j === 'start') {
-			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row" type="text"></div>';
+			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
 			} 
 			else if (j === 'end') {
-			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row" type="text"></div>';
+			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
 			} 
 			else {
 			  text += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';
@@ -329,6 +330,7 @@ background-color: yellow;
 		
 		document.getElementById("start_row").value = sDateCreate;
 		document.getElementById("end_row").value = sDateCreate;
+		document.getElementById("ssssss").innserHTML = sDateCreate;
 		
 	    if (!validateEmail(document.getElementById("organizer_row").value)) {
 		  appendPre('請輸入Email資料!');		
