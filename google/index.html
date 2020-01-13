@@ -146,10 +146,8 @@ background-color: yellow;
 	  document.getElementById("start").value = dDate.getFullYear() + '-' + (dDateMon) + '-' + (dDateDay);
 	  document.getElementById("end").value = dDate.getFullYear() + '-' + (dDateMon) + '-' + (dDateDay);
 	  
-	  var sDateCreate = dDate.getFullYear() + '-' + dDateMon + '-' + dDateDay + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1);
+	  var sDateCreate = dDate.getFullYear() + '-' + dDateMon + '-' + dDateDay + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) + ':' + (dDate.getSeconds()+1) + '+8:00';
 		
-	  //document.getElementById("start_row").value = sDateCreate;
-	  //document.getElementById("end_row").value = sDateCreate;
 	  document.getElementById("ssssss").innserHTML = sDateCreate;
 	  // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
