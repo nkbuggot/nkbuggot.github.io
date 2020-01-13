@@ -300,6 +300,26 @@ background-color: yellow;
 	    let dDate = new Date(); 
 	    let sDate = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
 	              + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
+	    let dDateMon;
+	    let dDateDay;
+	    if ((dDate.getMonth()+1).toString().length === 1) {
+	      dDateMon = '0'+ (dDate.getMonth()+1);
+	    }
+	    else {
+	      dDateMon = (dDate.getMonth()+1);
+	    }
+	    if ((dDate.getDate()).toString().length === 1) {
+	      dDateDay = '0'+ (dDate.getDate());
+	    }
+	    else {
+	      dDateDay = (dDate.getDate());
+	    }
+		
+	    let sDateCreate = dDate.getFullYear() + '-' + dDateMon + '-' + dDateDay + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1);
+		
+		document.getElementById("start_row").value = sDateCreate;
+		document.getElementById("end_row").value = sDateCreate;
+		
 	    if (!validateEmail(document.getElementById("organizer_row").value)) {
 		  appendPre('請輸入Email資料!');		
 		} else {
@@ -309,10 +329,10 @@ background-color: yellow;
             'created': sDate,
             'updated': sDate,
             'start': {
-              'dateTime': document.getElementById("start").value + 'T' + document.getElementById("startTime").value +'+08:00'
+              'dateTime': document.getElementById("start_row").value
             },
             'end': {
-              'dateTime': document.getElementById("end").value + 'T' + document.getElementById("endTime").value +'+08:00'
+              'dateTime': document.getElementById("end_row").value
             },
             'creator': {
               'email': document.getElementById("organizer_row").value
