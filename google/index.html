@@ -283,12 +283,9 @@ background-color: yellow;
           for (j in array[i]) {
 		    if (j === 'start') {
 			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
-			  document.getElementById("start_row").value = sDateCreate + 'T' + sTimeCreate;
-
 			} 
 			else if (j === 'end') {
 			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
-			  document.getElementById("end_row").value = sDateCreate + 'T' + sTimeCreate;
 			} 
 			else {
 			  text += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';
@@ -315,6 +312,8 @@ background-color: yellow;
         }
         text += makeEnd(array) + '</div>';
         document.getElementById("demo").innerHTML = text;
+        document.getElementById("start_row").value = sDateCreate + 'T' + sTimeCreate;
+        document.getElementById("end_row").value = sDateCreate + 'T' + sTimeCreate;
       }
 	  
       function changeDate() {
