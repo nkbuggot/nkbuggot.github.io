@@ -89,9 +89,11 @@ background-color: yellow;
     <pre id="content" style="white-space: pre-wrap;"></pre>
 	<table id=table1 border =1px></table>
 	<p id="demo"></p>
-	<p id="ssssss"></p>
+	
 	<input type="button" class="add" onclick="add_row();" value="Add Row">
-
+    <p id="ssssss">QQQQQQQQQQQQQQQQQQQQQQQQ</p>
+	<input type="button" class="changeDate" onclick="changeDate();" value="changeDate">
+	
     <script type="text/javascript">
       const columnDefs = [
         {headerName: 'kind', field: 'kind', editable: true},
@@ -311,6 +313,11 @@ background-color: yellow;
         }
         text += makeEnd(array) + '</div>';
         document.getElementById("demo").innerHTML = text;
+      }
+	  
+      function changeDate() {
+	    document.getElementById("start_row").value = sDateCreate;
+	    document.getElementById("end_row").value = sDateCreate;
       }
 	  
       function add_row(){
