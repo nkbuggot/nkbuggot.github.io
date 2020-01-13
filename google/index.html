@@ -146,8 +146,8 @@ background-color: yellow;
 	  
 	  var sDateCreate = dDate.getFullYear() + '-' + dDateMon + '-' + dDateDay + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1);
 		
-	  document.getElementById("start_row").value = sDateCreate;
-	  document.getElementById("end_row").value = sDateCreate;
+	  //document.getElementById("start_row").value = sDateCreate;
+	  //document.getElementById("end_row").value = sDateCreate;
 	  document.getElementById("ssssss").innserHTML = sDateCreate;
 	  // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
@@ -314,6 +314,8 @@ background-color: yellow;
       }
 	  
       function add_row(){
+	    document.getElementById("start_row").value = sDateCreate;
+	    document.getElementById("end_row").value = sDateCreate;
 	    if (!validateEmail(document.getElementById("organizer_row").value)) {
 		  appendPre('請輸入Email資料!');		
 		} else {
