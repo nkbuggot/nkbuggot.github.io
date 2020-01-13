@@ -146,9 +146,9 @@ background-color: yellow;
 	  document.getElementById("start").value = dDate.getFullYear() + '-' + (dDateMon) + '-' + (dDateDay);
 	  document.getElementById("end").value = dDate.getFullYear() + '-' + (dDateMon) + '-' + (dDateDay);
 	  
-	  var sDateCreate = dDate.getFullYear() + '-' + dDateMon + '-' + dDateDay + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) + ':' + (dDate.getSeconds()+1) + '+8:00';
+	  var sDateCreate = dDate.getFullYear() + '-' + dDateMon + '-' + dDateDay + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1);
 		
-	  document.getElementById("ssssss").innserHTML = sDateCreate;
+	  document.getElementById("ssssss").innerHTML = sDateCreate;
 	  // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
 	  var Calendar_CLIENT_ID = 'nkbuggot1@gmail.com';
@@ -330,10 +330,10 @@ background-color: yellow;
             'created': sDate,
             'updated': sDate,
             'start': {
-              'dateTime': document.getElementById("start_row").value
+              'dateTime': document.getElementById("start_row").value + ':' + (dDate.getSeconds()+1) + '+8:00'
             },
             'end': {
-              'dateTime': document.getElementById("end_row").value
+              'dateTime': document.getElementById("end_row").value + ':' + (dDate.getSeconds()+1) + '+8:00'
             },
             'creator': {
               'email': document.getElementById("organizer_row").value
