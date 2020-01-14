@@ -126,7 +126,6 @@ background-color: yellow;
       var dDate; 
       var sDateCreate; 
       var sTimeCreate; 
-	  initDate(dDate, sDateCreate, sTimeCreate);
 	  
       const eGridDiv = document.querySelector('#myGrid');
       new agGrid.Grid(eGridDiv, gridOptions);
@@ -216,6 +215,8 @@ background-color: yellow;
 	    
 	    document.getElementById("ssssss").innerHTML = sDateCreate + 'T' + sTimeCreate;
       }
+	  
+      initDate(dDate, sDateCreate, sTimeCreate);
 
       /**
        *  Called when the signed in status changes, to update the UI
