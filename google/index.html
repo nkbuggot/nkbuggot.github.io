@@ -122,34 +122,12 @@ background-color: yellow;
         pagination: true
       };
 	  
+	  //預設日期
+	  initDate();
+	  
       const eGridDiv = document.querySelector('#myGrid');
       new agGrid.Grid(eGridDiv, gridOptions);
 	  
-	  //預設起迄日期
-	  var dDate = new Date(); 
-	  var dDateMon;
-	  var dDateDay;
-	  if ((dDate.getMonth()+1).toString().length === 1) {
-	    dDateMon = '0'+ (dDate.getMonth()+1);
-	  }
-	  else {
-	    dDateMon = (dDate.getMonth()+1);
-	  }
-	  if ((dDate.getDate()).toString().length === 1) {
-	    dDateDay = '0'+ (dDate.getDate());
-	  }
-	  else {
-	    dDateDay = (dDate.getDate());
-	  }
-	  var sDate = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
-	              + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
-	  document.getElementById("start").value = dDate.getFullYear() + '-' + (dDateMon) + '-' + (dDateDay);
-	  document.getElementById("end").value = dDate.getFullYear() + '-' + (dDateMon) + '-' + (dDateDay);
-	  
-	  var sDateCreate = dDate.getFullYear() + '-' + dDateMon + '-' + dDateDay;
-	  var sTimeCreate = dDate.getHours() + ':' + (dDate.getMinutes()+1) + ':' + (dDate.getSeconds()+1);
-		
-	  document.getElementById("ssssss").innerHTML = sDateCreate + 'T' + sTimeCreate;
 	  // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
 	  var Calendar_CLIENT_ID = 'nkbuggot1@gmail.com';
@@ -193,6 +171,47 @@ background-color: yellow;
         }, function(error) {
           appendPre(JSON.stringify(error, null, 2));
         });
+      }
+	  
+      function addDateString(sDateAddLength) {
+	    let sString = '';
+	    if (sDateAddLength.length === 1) {
+	      sString = '0'+ (sDateAddLength);
+	    }
+	    else {
+	      sString = (sDateAddLength);
+	    }	  
+	    return sString;
+      }
+	  
+      function initDate() {
+	    //預設起迄日期
+	    var dDate = new Date(); 
+	    var dDateYear;
+	    var dDateMon;
+	    var dDateDay;
+	    var dDateHour;
+	    var dDateMinutes;
+	    var dDateSeconds;
+		
+		dDateYear = dDate.getFullYear();
+		dDateMon = addDateString((dDate.getMonth()+1).toString());
+		dDateDay = addDateString((dDate.getDate()).toString());
+		dDateHour = addDateString((dDate.getHours()).toString());
+		dDateMinutes = addDateString((dDate.getMinutes()+1).toString());
+		dDateSeconds = addDateString((dDate.getSeconds()+1).toString());
+	  
+	    var aDate = new Date(dDateYear, dDateMon, dDateDay+1, dDateHour, dDateMinutes, dDateSeconds);
+	  
+	    var sDate = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
+                    + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
+	    document.getElementById("start").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
+	    document.getElementById("end").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
+	  
+	    var sDateCreate = dDateYear + '-' + dDateMon + '-' + addDateString((aDate.getDate()).toString());
+	    var sTimeCreate = dDateHour + ':' + dDateMinutes + ':' + dDateSeconds;
+	    
+	    document.getElementById("ssssss").innerHTML = sDateCreate + 'T' + sTimeCreate;
       }
 
       /**
@@ -337,7 +356,7 @@ background-color: yellow;
               'dateTime': sDateCreate + 'T' + sTimeCreate +'+08:00'
             },
             'creator': {
-              'email': document.getElementById("organizer_row").value
+              'email': Calendar_CLIENT_ID
             },
             'reminders': {
               'useDefault': true
