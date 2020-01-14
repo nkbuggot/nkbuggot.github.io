@@ -132,7 +132,8 @@ background-color: yellow;
         {name: 'dDateSeconds', value: ''},
         {name: 'aDate', value: ''},
         {name: 'sDateCreate', value: ''},
-        {name: 'sTimeCreate', value: ''}
+        {name: 'sTimeCreate', value: ''},
+        {name: 'sDate', value: ''}
       ];
 	  
 	  //預設日期
@@ -217,8 +218,8 @@ background-color: yellow;
 	  
 	    var aDate = new Date(dDateYear, dDateMon, dDateDay+1, dDateHour, dDateMinutes, dDateSeconds);
 	  
-	    var sDate = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
-                    + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
+	    getSysDate[10].value = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
+                               + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
 	    document.getElementById("start").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
 	    document.getElementById("end").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
 	  
@@ -370,8 +371,8 @@ background-color: yellow;
           var event = {
             'summary': document.getElementById("summary_row").value,
             'description': document.getElementById("summary_row").value,
-            'created': sDate,
-            'updated': sDate,
+            'created': getSysDate[10].value,
+            'updated': getSysDate[10].value,
             'start': {
               'dateTime': sDateCreate + 'T' + sTimeCreate +'+08:00'
             },
@@ -622,8 +623,8 @@ background-color: yellow;
           var event = {
             'summary': document.getElementById("summary").value,
             'description': document.getElementById("description").value,
-            'created': sDate,
-            'updated': sDate,
+            'created': getSysDate[10].value,
+            'updated': getSysDate[10].value,
             'start': {
               'dateTime': document.getElementById("start").value + 'T' + document.getElementById("startTime").value +'+08:00'
             },
