@@ -121,9 +121,22 @@ background-color: yellow;
         enableFilter: true,
         pagination: true
       };
+		
+      const getSysDate = [
+        {name: 'dDate', value: new Date()},
+        {name: 'dDateYear', value: ''},
+        {name: 'dDateMon', value: ''},
+        {name: 'dDateDay', value: ''},
+        {name: 'dDateHour', value: ''},
+        {name: 'dDateMinutes', value: ''},
+        {name: 'dDateSeconds', value: ''},
+        {name: 'aDate', value: ''},
+        {name: 'sDateCreate', value: ''},
+        {name: 'sTimeCreate', value: ''}
+      ];
 	  
 	  //預設日期
-      var dDate; 
+      var dDate = getSysDate[0].value; 
       var sDateCreate; 
       var sTimeCreate; 
 	  
@@ -186,9 +199,8 @@ background-color: yellow;
 	    return sString;
       }
 	  
-      function initDate(dDate, sDateCreate, sTimeCreate) {
+      function initDate(dDate) {
 	    //預設起迄日期
-	    dDate = new Date(); 
 	    var dDateYear;
 	    var dDateMon;
 	    var dDateDay;
@@ -210,15 +222,19 @@ background-color: yellow;
 	    document.getElementById("start").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
 	    document.getElementById("end").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
 	  
-	    sDateCreate = dDateYear + '-' + dDateMon + '-' + addDateString((aDate.getDate()).toString());
-	    sTimeCreate = dDateHour + ':' + dDateMinutes + ':' + dDateSeconds;
+	    let sDateCreate = dDateYear + '-' + dDateMon + '-' + addDateString((aDate.getDate()).toString());
+	    let sTimeCreate = dDateHour + ':' + dDateMinutes + ':' + dDateSeconds;
+		getSysDate[7].value = aDate;
+		getSysDate[8].value = sDateCreate;
+		getSysDate[9].value = sTimeCreate;
 	    
 	    document.getElementById("ssssss").innerHTML = sDateCreate + 'T' + sTimeCreate;
-		return sDateCreate;
       }
 	  
 	  document.getElementById("ssssss").innerHTML ='A';
-      sDateCreate = initDate(dDate, sDateCreate, sTimeCreate);
+      initDate(dDate);
+	  sDateCreate = getSysDate[8].value;
+	  sTimeCreate = getSysDate[9].value
 	  document.getElementById("ssssss").innerHTML = sDateCreate + 'T' + sTimeCreate;
 
       /**
