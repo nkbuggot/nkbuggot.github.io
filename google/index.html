@@ -214,10 +214,10 @@ background-color: yellow;
 	    sTimeCreate = dDateHour + ':' + dDateMinutes + ':' + dDateSeconds;
 	    
 	    document.getElementById("ssssss").innerHTML = sDateCreate + 'T' + sTimeCreate;
-		return dDate, sDateCreate, sTimeCreate;
+		return sDateCreate;
       }
 	  
-      dDate, sDateCreate, sTimeCreate = initDate(dDate, sDateCreate, sTimeCreate);
+      sDateCreate = initDate(dDate, sDateCreate, sTimeCreate);
 
       /**
        *  Called when the signed in status changes, to update the UI
