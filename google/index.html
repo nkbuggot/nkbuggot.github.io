@@ -217,7 +217,7 @@ background-color: yellow;
 		return dDate, sDateCreate, sTimeCreate;
       }
 	  
-      initDate(dDate, sDateCreate, sTimeCreate);
+      dDate, sDateCreate, sTimeCreate = initDate(dDate, sDateCreate, sTimeCreate);
 
       /**
        *  Called when the signed in status changes, to update the UI
