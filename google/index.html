@@ -216,7 +216,7 @@ background-color: yellow;
 		dDateMinutes = addDateString((dDate.getMinutes()+1).toString());
 		dDateSeconds = addDateString((dDate.getSeconds()+1).toString());
 	  
-	    var aDate = new Date(dDateYear, dDateMon, dDateDay+1, dDateHour, dDateMinutes, dDateSeconds);
+	    var aDate = new Date(dDateYear, dDateMon, dDateDay, dDateHour+1, dDateMinutes, dDateSeconds);
 	  
 	    getSysDate[10].value = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
                                + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
