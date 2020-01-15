@@ -540,19 +540,20 @@ background-color: yellow;
 	    //aArray 原本的資料，bArray預計SHOW出的欄位對應
         let aOutJson = [];
         aOutJson = changeToEvent(aArray);//修改資料
-        let i=0,j=0, k=0, m=0, text='';
+        let i=0,j=0, k=0, m=0, text='', aTempArray =[];
         for (i in aOutJson) {
           for(j in aOutJson[i]) {
             for (k in bArray) {
               for (m in bArray[k]) {
                 if(bArray[k][m] === j && m ==='field') {
-                  text += j +':' + aOutJson[i][j]+ ' ';  
+				  aTempArray.push(j);
+				  aTempArray.push(aOutJson[i][j]);
                 }
               }
             }
           }
         }
-		return text;
+		return aTempArray;
       }
 
       /**
