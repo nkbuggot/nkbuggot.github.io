@@ -2,9 +2,9 @@
 <html>
   <head>
     <title>Google Calendar API Quickstart</title>
-    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    /*<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">*/
     <meta charset="utf-8" />
   </head>
 <style>
@@ -146,7 +146,7 @@ background-color: yellow;
       var sTimeEnd; 
 	  
       const eGridDiv = document.querySelector('#myGrid');
-      new agGrid.Grid(eGridDiv, gridOptions);
+      //new agGrid.Grid(eGridDiv, gridOptions);
 	  
 	  // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
@@ -206,13 +206,13 @@ background-color: yellow;
 	  
       function initDate(dDate) {
 	    //預設起迄日期
-	    var dDateYear;
-	    var dDateMon;
-	    var dDateDay;
-	    var dDateHour;
-	    var dDateHourEnd;
-	    var dDateMinutes;
-	    var dDateSeconds;
+	    let dDateYear;
+	    let dDateMon;
+	    let dDateDay;
+	    let dDateHour;
+	    let dDateHourEnd;
+	    let dDateMinutes;
+	    let dDateSeconds;
 		
 		dDateYear = dDate.getFullYear();
 		dDateMon = addDateString((dDate.getMonth()+1).toString());
@@ -222,7 +222,7 @@ background-color: yellow;
 		dDateMinutes = addDateString((dDate.getMinutes()+1).toString());
 		dDateSeconds = addDateString((dDate.getSeconds()+1).toString());
 	  
-	    var aDate = new Date(dDateYear, dDateMon, dDateDay, dDateHour, dDateMinutes, dDateSeconds);
+	    let aDate = new Date(dDateYear, dDateMon, dDateDay, dDateHour, dDateMinutes, dDateSeconds);
 	  
 	    getSysDate[10].value = dDate.getFullYear() + '-' + (dDate.getMonth()+1) + '-' + (dDate.getDate()) + 'T' + dDate.getHours() + ':' + (dDate.getMinutes()+1) 
                                + ':' + (dDate.getSeconds()+1) + '.' + (dDate.getMilliseconds()) + 'Z';
@@ -587,7 +587,7 @@ background-color: yellow;
 			//console.log(splitPushArray(aOutJson));
 			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			gridOptions.api.setRowData(showJson);
+			//gridOptions.api.setRowData(showJson);
 			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
@@ -614,7 +614,7 @@ background-color: yellow;
 			//console.log(splitPushArray(aOutJson));
 			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			gridOptions.api.setRowData(showJson);
+			//gridOptions.api.setRowData(showJson);
 			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
