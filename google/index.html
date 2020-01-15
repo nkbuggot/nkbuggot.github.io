@@ -92,31 +92,10 @@ background-color: yellow;
 	
     <script type="text/javascript">
       const columnDefs = [
-        {headerName: 'kind', field: 'kind', editable: true},
-        {headerName: 'etag', field: 'etag', editable: true},
-        {headerName: 'id', field: 'id'},
-        {headerName: 'status', field: 'status', editable: true},
-        {headerName: 'htmlLink', field: 'htmlLink'},
-        {headerName: 'created', field: 'created'},
-        {headerName: 'updated', field: 'updated', editable: true},
-        {headerName: 'summary', field: 'summary', editable: true},
-        {headerName: 'creator', field: 'creator', editable: true},
-        {headerName: 'organizer', field: 'organizer'},
-        {headerName: 'start', field: 'start', editable: true},
-        {headerName: 'end', field: 'end', editable: true},
-        {headerName: 'iCalUID', field: 'iCalUID'},
-        {headerName: 'sequence', field: 'sequence'},
-        {headerName: 'reminders', field: 'reminders'}
+        {headerName: '活動', field: 'summary', editable: true},
+        {headerName: '起始日期', field: 'start', editable: true},
+        {headerName: '結束日期', field: 'end', editable: true}
       ];
-	  
-      const data =[];
-      const gridOptions = {
-        columnDefs: columnDefs,
-        rowData: data,
-        enableSorting: true,
-        enableFilter: true,
-        pagination: true
-      };
 		
       const getSysDate = [
         {name: 'dDate', value: new Date()},
@@ -142,7 +121,6 @@ background-color: yellow;
       var sTimeEnd; 
 	  
       const eGridDiv = document.querySelector('#myGrid');
-      //new agGrid.Grid(eGridDiv, gridOptions);
 	  
 	  // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
@@ -557,6 +535,25 @@ background-color: yellow;
         }, []); //an empty array
 		return changeEvent;
       }
+	  
+      function matchForShow(aArray, bArray) {
+	    //aArray 原本的資料，bArray預計SHOW出的欄位對應
+        let aOutJson = [];
+        aOutJson = changeToEvent(aArray);//修改資料
+        let i=0,j=0, k=0, m=0, text='';
+        for (i in aOutJson) {
+          for(j in aOutJson[i]) {
+            for (k in bArray) {
+              for (m in bArray[k]) {
+                if(bArray[k][m] === j && m ==='field') {
+                  text += j +':' + aOutJson[i][j]+ ' ';  
+                }
+              }
+            }
+          }
+        }
+		return text;
+      }
 
       /**
        * Print the summary and start datetime/date of the next ten events in
@@ -583,7 +580,8 @@ background-color: yellow;
 			//console.log(splitPushArray(aOutJson));
 			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			//gridOptions.api.setRowData(showJson);
+			let qq= matchForShow(events, columnDefs);
+			console.log(qq);
 			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
@@ -610,7 +608,6 @@ background-color: yellow;
 			//console.log(splitPushArray(aOutJson));
 			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			//gridOptions.api.setRowData(showJson);
 			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
