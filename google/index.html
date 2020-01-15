@@ -538,17 +538,18 @@ background-color: yellow;
 	  
       function matchForShow(aArray, bArray) {
 	    //aArray 原本的資料，bArray預計SHOW出的欄位對應
-        let aOutJson = [];
+        let aOutJson = [], showJson=[];
         aOutJson = changeToEvent(aArray);//修改資料
+		showJson = JSON.parse(splitPushArray(aOutJson));
         let i=0,j=0, k=0, m=0, aTempArray =[];
-        for (i in aOutJson) {
-          for(j in aOutJson[i]) {
+        for (i in showJson) {
+          for(j in showJson[i]) {
             for (k in bArray) {
               for (m in bArray[k]) {
                 if(bArray[k][m] === j && m ==='field') {
                   aTempArray.push(i);
                   aTempArray.push(bArray[k]["headerName"]);
-                  aTempArray.push(aOutJson[i][j]);
+                  aTempArray.push(showJson[i][j]);
                 }
               }
             }
