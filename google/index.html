@@ -229,11 +229,11 @@ background-color: yellow;
 	    document.getElementById("start").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
 	    document.getElementById("end").value = dDateYear + '-' + (dDateMon) + '-' + (dDateDay);
 	  
-	    let sDateStart = aDate.getFullYear() + '-' + addDateString((aDate.getMonth()+1).toString()) + '-' + addDateString((aDate.getDate()).toString());
-	    let sTimeStart = addDateString((aDate.getHours()).toString()) + ':' + addDateString((aDate.getMinutes()+1).toString()) + ':' + addDateString((aDate.getSeconds()+1).toString());
+	    let sDateStart = aDate.getFullYear() + '-' + addDateString((aDate.getMonth()).toString()) + '-' + addDateString((aDate.getDate()).toString());
+	    let sTimeStart = addDateString((aDate.getHours()).toString()) + ':' + addDateString((aDate.getMinutes()).toString()) + ':' + addDateString((aDate.getSeconds()).toString());
 		aDate = new Date(dDateYear, dDateMon, dDateDay, dDateHourEnd, dDateMinutes, dDateSeconds);
-	    let sDateEnd = aDate.getFullYear() + '-' + addDateString((aDate.getMonth()+1).toString()) + '-' + addDateString((aDate.getDate()).toString());
-	    let sTimeEnd = addDateString((aDate.getHours()).toString()) + ':' + addDateString((aDate.getMinutes()+1).toString()) + ':' + addDateString((aDate.getSeconds()+1).toString());
+	    let sDateEnd = aDate.getFullYear() + '-' + addDateString((aDate.getMonth()).toString()) + '-' + addDateString((aDate.getDate()).toString());
+	    let sTimeEnd = addDateString((aDate.getHours()).toString()) + ':' + addDateString((aDate.getMinutes()).toString()) + ':' + addDateString((aDate.getSeconds()).toString());
 		getSysDate[7].value = aDate;
 		getSysDate[8].value = sDateStart;
 		getSysDate[9].value = sTimeStart;
