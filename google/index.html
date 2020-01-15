@@ -562,15 +562,16 @@ background-color: yellow;
 	    let k=0, text = '',l=0;
 		text += '[';
         for (i in aArray) {
-          if(i===k && k === 0) {
+		  text += i + ':' + aArray[i] ;
+          /*if(i===k && k === 0) {
 			text += '{';
 			k = i + 1;
 		  } else if(i===k && k !== 0) {
 		    text += '},{';
 			k = i + 1;
 		  } else {
-		    text += '"' + aArray[i] + '"';
-		  }
+		    text += i + ':' + aArray[i] ;
+		  }*/
         }
 		
 		text += ']';
