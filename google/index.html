@@ -606,15 +606,12 @@ background-color: yellow;
 		  
           if (events.length > 0) {		    
             //showTable(events);
-			let aOutJson = [], showJson = [];
-			aOutJson = changeToEvent(events);//修改資料
+			//let aOutJson = [], showJson = [];
+			//aOutJson = changeToEvent(events);//修改資料
 			//console.log(splitPushArray(aOutJson));
-			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
+			//showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			let qq= matchForShow(events, columnDefs);
-			let mmm=matchShowFormat(qq);
-			console.log(mmm);
-			showJson = JSON.parse(mmm);
+			showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));
 			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
