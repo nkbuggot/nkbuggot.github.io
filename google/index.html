@@ -563,16 +563,16 @@ background-color: yellow;
 		text += '[';
         for (i in aArray) {
 		  //text += i + ':' + aArray[i] ;
-          if(i===k && k === 0) {
+          if(i==k && k === 0) {
 			text += '{';
 			k = i + 1;
-		  } else if(i===k && k !== 0) {
+		  } else if(i==k && k !== 0) {
 		    text += '},{';
 			k = i + 1;
 		  } else if(aArray[i]==k-1) {
 		    null;
 		  } else {
-		    text += i + ':' + aArray[i] ;
+		    text += i + ':' + aArray[i] + 'k:' + k + ' ';
 		  }
 /*[0:0
  1:活動
