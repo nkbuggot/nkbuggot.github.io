@@ -111,7 +111,8 @@ background-color: yellow;
         {name: 'sTimeStart', value: ''},
         {name: 'sDate', value: ''},
         {name: 'sDateEnd', value: ''},
-        {name: 'sTimeEnd', value: ''}
+        {name: 'sTimeEnd', value: ''},
+        {name: 'sRow', value: ''}
       ];
 	  
 	  //預設日期
@@ -551,7 +552,6 @@ background-color: yellow;
 				  if (i==0) {
 				    l+=1;
 				  }
-                  aTempArray.push(i);
                   aTempArray.push(bArray[k]["headerName"]);
                   aTempArray.push(showJson[i][j]);
                 }
@@ -559,26 +559,25 @@ background-color: yellow;
             }
           }
         }
-		document.getElementById("qqqqqq").innerHTML = l;
+		getSysDate[13].value = l;
 		console.log(l);
 		return aTempArray;
       }
 
       function matchShowFormat(aArray) {
 	    let k=0, text = '',l=0;
+		k = getSysDate[13].value * 2;
 		text += '[';
-        for (i=0; i<aArray.length; i++) {
-		  text += i + ':' + aArray[i] ;
-          if(i===k && k === 0) {
-			text += '{';
-			k = i + 1;
-		  } else if(a[i]===k && k !== 0) {
-		    text += '},{';
-			k = i + 1;
-		  } else if(aArray[i]==k-1) {
-		    null;
+        for (i=0; i<aArray.length; i++) {		  
+		  //text += i + ':' + aArray[i] ;
+          if(i===0){
+		    text += '{' + '"' + aArray[i] + '":';
+			
+		  } else if(i===k -1) {
+		    text += '"' + aArray[i] + '"';
+			text += '}';
 		  } else {
-		    text += i + ':' + aArray[i] + 'k:' + k + ' ';
+		    text += '"' + aArray[i] + '"';
 		  }
 /*[0:0
  1:活動
