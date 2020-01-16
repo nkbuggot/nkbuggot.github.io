@@ -570,14 +570,13 @@ background-color: yellow;
 		text += '[';
         for (i=0; i<aArray.length; i++) {		  
 		  //text += i + ':' + aArray[i] ;
-          if(i===0){
-		    text += '{' + '"' + aArray[i] + '":';
-			
-		  } else if(i===k -1) {
+          if(i%k===0){
+		    text += '{' + '"' + aArray[i] + '":';			
+		  } else if(i%k === k-1) {
 		    text += '"' + aArray[i] + '"';
-			text += '}';
+			text += '}';	
 		  } else {
-		    text += '"' + aArray[i] + '"';
+		    text += '"' + aArray[i] + '",';
 		  }
 /*[0:0
  1:活動
