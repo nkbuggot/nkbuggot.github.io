@@ -184,8 +184,9 @@ background-color: yellow;
       }
 	  
       function changeDateString(dDate) {
-	    let sDateStart = dDate.getFullYear() + '-' + addDateString((dDate.getMonth()).toString()) + '-' + addDateString((dDate.getDate()).toString());
-	    let sTimeStart = addDateString((dDate.getHours()).toString()) + ':' + addDateString((dDate.getMinutes()).toString()) + ':' + addDateString((dDate.getSeconds()).toString());
+	    let sDateStart = dDate.getFullYear() + '-' + addDateString((dDate.getMonth()+1).toString()) + '-' + addDateString((dDate.getDate()+1).toString());
+	    let sTimeStart = addDateString((dDate.getHours()).toString()) + ':' + addDateString((dDate.getMinutes()+1).toString()) + ':' + addDateString((dDate.getSeconds()+1).toString());
+		console.log(sDateStart + 'T' + sTimeStart);
 	    return sDateStart + 'T' + sTimeStart;
       }
 	  
