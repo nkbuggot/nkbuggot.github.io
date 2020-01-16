@@ -293,12 +293,12 @@ background-color: yellow;
         pre.appendChild(textContent);
       }
 	  
-      function makeTitle(array) {
+      function makeTitle(aArray) {
         let i=0, j=0, text ='';
         text += '<div class="rwdTable">';
-        for (i in array) {
+        for (i in aArray) {
           text += '<div class="rwdTr">';
-          for (j in array[i]) {
+          for (j in aArray[i]) {
             text += '<div class="rwdTh">' + j + '</div>';
           }
           text += '</div>';
@@ -308,41 +308,50 @@ background-color: yellow;
         return text;
       }
 	  
-      function makeEnd(array) {
-        let i=0, j=0, text ='';
-        for (i in array) {
-          text += '<div class="rwdTr">';
-          for (j in array[i]) {
-		    if (j === '起始日期') {
-			  text += '<div class="rwdTd"><input type="datetime-local" id="' + 'start_row"></div>';
-			} 
-			else if (j === '結束日期') {
-			  text += '<div class="rwdTd"><input type="datetime-local" id="' + 'end_row"></div>';
-			} 
-			else {
-			  text += '<div class="rwdTd"><input id="' + i + '_row" type="text"></div>';
-			
-			}
-            
+      function makeEnd(aArray, bArray) {
+        let i=0,j=0, k=0, m=0, aTempArray= [];
+        for (i in aArray) {
+          for(j in aArray[i]) {
+            for (k in bArray) {
+              for (m in bArray[k]) {
+                if(bArray[k][m] === j && m ==='headerName') {
+                  aTempArray.push(bArray[k]["field"]);
+                  aTempArray.push(bArray[k][m]);
+                }
+              }
+            }
           }
-          text += '</div>';
-          break;
+		  break;
         }
+		
+		i=0;
+		let text ='';
+		if (aTempArray.length > 0) {
+		  text += '<div class="rwdTr">';
+		  for (i in aTempArray) {
+		    if (aTempArray[i] === 'start' || aTempArray[i] === 'end') {
+		      text += '<div class="rwdTd"><input type="datetime-local" id="' + aTempArray[i] + '_row"></div>';
+		    } else {
+  		      text += '<div class="rwdTd"><input id="' + aTempArray[i] + '_row" type="text"></div>';			
+		    }
+		  }
+		  text += '</div">';
+		}
         return text;
       }
 	  
-      function makeRow(array) {
+      function makeRow(aArray) {
         let i=0, j=0, text ='';
-		text += makeTitle(array);
+		text += makeTitle(aArray);
         //text += '<div class="rwdTable">';
-        for (i in array) {
+        for (i in aArray) {
           text += '<div class="rwdTr">';
-          for (j in array[i]) {
-            text += '<div class="rwdTd"><span>' + array[i][j] + '</span></div>';
+          for (j in aArray[i]) {
+            text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
           }
           text += '</div>';
         }
-        text += makeEnd(array) + '</div>';
+        text += makeEnd(aArray, columnDefs) + '</div>';
         document.getElementById("demo").innerHTML = text;
         document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
         document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
