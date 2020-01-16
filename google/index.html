@@ -87,9 +87,7 @@ background-color: yellow;
 	<p id="demo"></p>
 	
 	<input type="button" class="add" onclick="add_row();" value="Add Row">
-    <p id="ssssss">QQQQQQQQQQQQQQQQQQQQQQQQ</p>
 	<p id="qqqqqq">QQQQQQQQQQQQQQQQQQQQQQQQ</p>
-	<input type="button" class="changeDate" onclick="changeDate();" value="changeDate">
 	
     <script type="text/javascript">
       const columnDefs = [
@@ -117,10 +115,6 @@ background-color: yellow;
 	  
 	  //預設日期
       var dDate = getSysDate[0].value; 
-      var sDateStart; 
-      var sTimeStart;
-      var sDateEnd; 
-      var sTimeEnd; 
 	  
       const eGridDiv = document.querySelector('#myGrid');
 	  
@@ -183,13 +177,6 @@ background-color: yellow;
 	    return sString;
       }
 	  
-      function changeDateString(dDate) {
-	    let sDateStart = dDate.getFullYear() + '-' + addDateString((dDate.getMonth()+1).toString()) + '-' + addDateString((dDate.getDate()).toString());
-	    let sTimeStart = addDateString((dDate.getHours()).toString()) + ':' + addDateString((dDate.getMinutes()).toString()) + ':' + addDateString((dDate.getSeconds()).toString());
-		//console.log(sDateStart + 'T' + sTimeStart); 
-	    return sDateStart + 'T' + sTimeStart;
-      }
-	  
       function initDate(dDate) {
 	    //預設起迄日期
 	    let dDateYear;
@@ -226,16 +213,9 @@ background-color: yellow;
 		getSysDate[11].value = sDateEnd;
 		getSysDate[12].value = sTimeEnd;
 	    
-	    document.getElementById("ssssss").innerHTML = sDateStart + 'T' + sTimeStart;
       }
 	  
-	  document.getElementById("ssssss").innerHTML ='A';
       initDate(dDate);
-	  sDateStart = getSysDate[8].value;
-	  sTimeStart = getSysDate[9].value
-	  sDateEnd = getSysDate[11].value;
-	  sTimeEnd = getSysDate[12].value
-	  document.getElementById("ssssss").innerHTML = sDateStart + 'T' + sTimeStart;
 
       /**
        *  Called when the signed in status changes, to update the UI
@@ -363,8 +343,15 @@ background-color: yellow;
         }
         text += makeEnd(aArray, columnDefs) + '</div>';
         document.getElementById("demo").innerHTML = text;
-        document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
-        document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
+        document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
+        document.getElementById("end_row").value = getSysDate[11].value + 'T' + getSysDate[12].value;
+      }
+	  
+      function changeDateString(dDate) {
+	    let sDateStart = dDate.getFullYear() + '-' + addDateString((dDate.getMonth()+1).toString()) + '-' + addDateString((dDate.getDate()).toString());
+	    let sTimeStart = addDateString((dDate.getHours()).toString()) + ':' + addDateString((dDate.getMinutes()).toString()) + ':' + addDateString((dDate.getSeconds()).toString());
+		//console.log(sDateStart + 'T' + sTimeStart); 
+	    return sDateStart + 'T' + sTimeStart;
       }
 	  
       function getInputDate(dDateValue) {
