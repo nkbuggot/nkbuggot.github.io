@@ -174,10 +174,19 @@ background-color: yellow;
 	    if (sDateAddLength.length === 1) {
 	      sString = '0'+ (sDateAddLength);
 	    }
+	    else if (sDateAddLength.length === 0) {
+	      sString = '00';
+	    }	
 	    else {
 	      sString = (sDateAddLength);
-	    }	  
+	    }
 	    return sString;
+      }
+	  
+      function changeDateString(dDate) {
+	    let sDateStart = dDate.getFullYear() + '-' + addDateString((dDate.getMonth()).toString()) + '-' + addDateString((dDate.getDate()).toString());
+	    let sTimeStart = addDateString((dDate.getHours()).toString()) + ':' + addDateString((dDate.getMinutes()).toString()) + ':' + addDateString((dDate.getSeconds()).toString());
+	    return sDateStart + 'T' + sTimeStart;
       }
 	  
       function initDate(dDate) {
@@ -334,7 +343,7 @@ background-color: yellow;
   		      text += '<div class="rwdTd"><input id="' + aTempArray[i] + '_row" type="text"></div>';			
 		    }
 		  }
-		  text += '</div">';
+		  text += '</div>';
 		}
 		console.log(text);
         return text;
@@ -357,19 +366,19 @@ background-color: yellow;
         document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
       }
 	  
-      function changeDate() {
-	    initDate(new Date());
-	    sDateStart = getSysDate[8].value;
-	    sTimeStart = getSysDate[9].value
-	    sDateEnd = getSysDate[11].value;
-	    sTimeEnd = getSysDate[12].value
-	    document.getElementById("ssssss").innerHTML = sDateStart + 'T' + sTimeStart;
-	    document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
-	    document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
+      function getInputDate(dDateValue) {
+		let dDateInput;
+		
+		if (dDateValue) {
+		  dDateInput = new Date(dDateValue);
+		} else {
+		  dDateInput = new Date();
+		}
+		return changeDateString(dDateInput);
       }
 	  
       function add_row(){
-	    if (!validateEmail(document.getElementById("organizer_row").value)) {
+	    if (!validateEmail(Calendar_CLIENT_ID)) {
 		  appendPre('請輸入Email資料!');		
 		} else {
           var event = {
@@ -378,10 +387,10 @@ background-color: yellow;
             'created': getSysDate[10].value,
             'updated': getSysDate[10].value,
             'start': {
-              'dateTime': sDateStart + 'T' + sTimeStart +'+08:00'
+              'dateTime': getInputDate(document.getElementById("start_row").value) +'+08:00'
             },
             'end': {
-              'dateTime': sDateStart + 'T' + sTimeStart +'+08:00'
+              'dateTime': getInputDate(document.getElementById("end_row").value) +'+08:00'
             },
             'creator': {
               'email': Calendar_CLIENT_ID
