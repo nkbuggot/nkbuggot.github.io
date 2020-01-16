@@ -344,8 +344,8 @@ background-color: yellow;
         }
         text += makeEnd(array) + '</div>';
         document.getElementById("demo").innerHTML = text;
-        document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
-        document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
+        //document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
+        //document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
       }
 	  
       function changeDate() {
@@ -355,8 +355,8 @@ background-color: yellow;
 	    sDateEnd = getSysDate[11].value;
 	    sTimeEnd = getSysDate[12].value
 	    document.getElementById("ssssss").innerHTML = sDateStart + 'T' + sTimeStart;
-	    document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
-	    document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
+	    //document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
+	    //document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
       }
 	  
       function add_row(){
@@ -611,7 +611,7 @@ background-color: yellow;
 			//console.log(splitPushArray(aOutJson));
 			//showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));
+			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));//先透過matchForShow比對要顯示的欄位，再透過matchShowFormat轉換成文字格式，最後轉換成陣列
 			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
@@ -633,11 +633,12 @@ background-color: yellow;
 //          console.log(events);
           if (events.length > 0) {
 		    //showTable(events);
-			let aOutJson = [], showJson = [];
-			aOutJson = changeToEvent(events);//修改資料
+			//let aOutJson = [], showJson = [];
+			//aOutJson = changeToEvent(events);//修改資料
 			//console.log(splitPushArray(aOutJson));
-			showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
+			//showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
+			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));
 			makeRow(showJson);
           } else {
             appendPre('No upcoming events found.');
