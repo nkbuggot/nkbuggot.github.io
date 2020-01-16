@@ -313,14 +313,14 @@ background-color: yellow;
         for (i in array) {
           text += '<div class="rwdTr">';
           for (j in array[i]) {
-		    if (j === 'start') {
-			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
+		    if (j === '起始日期') {
+			  text += '<div class="rwdTd"><input type="datetime-local" id="' + 'start_row"></div>';
 			} 
-			else if (j === 'end') {
-			  text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
+			else if (j === '結束日期') {
+			  text += '<div class="rwdTd"><input type="datetime-local" id="' + 'end_row"></div>';
 			} 
 			else {
-			  text += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';
+			  text += '<div class="rwdTd"><input id="' + i + '_row" type="text"></div>';
 			
 			}
             
@@ -344,8 +344,8 @@ background-color: yellow;
         }
         text += makeEnd(array) + '</div>';
         document.getElementById("demo").innerHTML = text;
-        //document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
-        //document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
+        document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
+        document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
       }
 	  
       function changeDate() {
@@ -355,8 +355,8 @@ background-color: yellow;
 	    sDateEnd = getSysDate[11].value;
 	    sTimeEnd = getSysDate[12].value
 	    document.getElementById("ssssss").innerHTML = sDateStart + 'T' + sTimeStart;
-	    //document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
-	    //document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
+	    document.getElementById("start_row").value = sDateStart + 'T' + sTimeStart;
+	    document.getElementById("end_row").value = sDateEnd + 'T' + sTimeEnd;
       }
 	  
       function add_row(){
