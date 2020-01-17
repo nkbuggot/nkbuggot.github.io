@@ -341,28 +341,22 @@ background-color: yellow;
       }	  
 	  
       function makeRow(aArray) {
-        let i=0, j=0, text ='', k=0, aTemp=[], text1='';
+        let i=0, j=0, text ='', k=0;//, aTemp=[];
 		compareArraryForShow(aArray, columnDefs);
 		text += makeTitle(getRow[2].value);
         //text += '<div class="rwdTable">';//放到makeTitle裡了
-		aTemp = getRow[4].value;
-		console.log(aArray);
-		console.log(aTemp);
+		//aTemp = getRow[2].value;
 		for (i in aArray) {
           text += '<div class="rwdTr">';
-		  text1 += '<div class="rwdTr">';
-		  for (k in aTemp) {
+		  for (k in getRow[2].value) {
             for (j in aArray[i]) {
-			  if(aTemp[k] === j){
+			  if(getRow[2].value[k] === j){
                 text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
-				text1 += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
 			  }
             }
 		  }
           text += '</div>';
-		  text1 += '</div>';
         }
-		console.log(text1);
         /*for (i in aArray) {
           text += '<div class="rwdTr">';
           for (j in aArray[i]) {
