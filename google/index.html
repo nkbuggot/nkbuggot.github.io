@@ -564,9 +564,9 @@ background-color: yellow;
 		  if(aIdArray.length > 0) {
 		    text += '<span style="font-size:15px;">' + 'id選擇：</span>';
 		    text += '<select id="chooseId" onchange="showiCalUID()">';
-            for (i in aArray) {
-              for (k in aIdArray) {
-			    text += '<optgroup label="' + aIdArray[k] + '">';
+            for (k in aIdArray) {
+			  text += '<optgroup label="' + aIdArray[k] + '">';
+			  for (i in aArray) {
                 for(j in aArray[i]){
                   if (j === aIdArray[k]) {
                     text += '<option value="'+aArray[i][j]+'">'+aArray[i][j]+'</option>';
@@ -574,19 +574,6 @@ background-color: yellow;
                 }
               }
             }
-		    /*text += '<span style="font-size:15px;">' + 'id選擇：</span>';
-		    text += '<select id="chooseId" onchange="showiCalUID()">';
-            for (i in aTempArray) {
-              text += '<optgroup label="' + aTempArray[i] + '">';
-            
-              for (j in aArray) {
-                for(k in aArray[j]){
-                  if (k === aTempArray[i]) {
-                    text += '<option value="'+aArray[j][k]+'">'+aArray[j][k]+'</option>';
-                  }
-                }
-              }
-            }*/
             text += '</select> <span id="check" style="color:red;"></span><br>';
 		  }
 		  
@@ -596,7 +583,7 @@ background-color: yellow;
 	  
       function showiCalUID() {
         let noteToMe ='你好喔';
-		let whichUserChoose=choose.options[choose.selectedIndex].text;
+		var whichUserChoose=choose.options[choose.selectedIndex].text;
 		listIdEvents(whichUserChoose);
 		document.getElementById("check").innerHTML = noteToMe;
       }
