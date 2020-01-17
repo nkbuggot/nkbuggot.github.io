@@ -338,7 +338,7 @@ background-color: yellow;
             for (k in bArray) {
               for (m in bArray[k]) {
                 if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
-                  aTempArray.push(bArray[k][sName]);
+                  aTempArray.push(bArray[k]['"' + sName + '"']);
                 }
               }
             }
