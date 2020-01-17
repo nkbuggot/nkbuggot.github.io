@@ -336,22 +336,19 @@ background-color: yellow;
             }
           }
 		  text += '</div>';
-        }		
+        }
 		getRow[2].value = aTitleArray;
 		getRow[3].value = text;
 		getRow[4].value = aEndArray;
-		console.log(getRow[3].value);
-		console.log(getRow[2].value);
-		console.log(getRow[4].value);
       }	  
 	  
       function makeRow(aArray) {
-        let i=0, j=0, text ='', k=0;//, aTemp=[];
+        let i=0, j=0, text ='', k=0;
 		compareArraryForShow(aArray, columnDefs);
 		text += makeTitle(getRow[2].value);
         //text += '<div class="rwdTable">';//放到makeTitle裡了
 		//aTemp = getRow[2].value;
-		for (i in aArray) {
+		/*for (i in aArray) {
           text += '<div class="rwdTr">';
 		  for (k in getRow[2].value) {
             for (j in aArray[i]) {
@@ -361,15 +358,8 @@ background-color: yellow;
             }
 		  }
           text += '</div>';
-        }
-        /*for (i in aArray) {
-          text += '<div class="rwdTr">';
-          for (j in aArray[i]) {
-            text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
-          }
-          text += '</div>';
         }*/
-		//text += getRow[3].value;
+        text += getRow[3].value;
         text += makeEnd(getRow[4].value) + '</div>';
         document.getElementById("demo").innerHTML = text;
         document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
