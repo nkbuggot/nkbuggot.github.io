@@ -320,10 +320,11 @@ background-color: yellow;
       }
 
       function compareArraryForShow(aArray, bArray) {
-        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [], aBodyArray= [];
+        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [], aBodyArray= [],text = '';
         for (i in aArray) {
           for(j in aArray[i]) {
             for (k in bArray) {
+			  text += '<div class="rwdTr">';
               for (m in bArray[k]) {
                 if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
 				  if(i==='0') {
@@ -331,19 +332,19 @@ background-color: yellow;
 				     aEndArray.push(bArray[k]['field']);
 				  }
 				  aBodyArray.push(bArray[k]['field']);
+				  text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
                 }
-				/*if (bArray[k]["editable"]) {
-				  aBodyArray.push(bArray[k][m]);
-				}*/
+				text += '</div>';
               }
             }
           }
         }		
 		console.log(aTitleArray);
 		console.log(aEndArray);
+		console.log(text);
 		console.log(aBodyArray);
 		getRow[2].value = aTitleArray;
-		getRow[3].value = aBodyArray;
+		getRow[3].value = text;
 		getRow[4].value = aEndArray;
       }	  
 	  
@@ -351,14 +352,15 @@ background-color: yellow;
         let i=0, j=0, text ='';
 		compareArraryForShow(aArray, columnDefs);
 		text += makeTitle(getRow[2].value);
-        //text += '<div class="rwdTable">';
-        for (i in aArray) {
+        //text += '<div class="rwdTable">';//放到makeTitle裡了
+        /*for (i in aArray) {
           text += '<div class="rwdTr">';
           for (j in aArray[i]) {
             text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
           }
           text += '</div>';
-        }
+        }*/
+		text += getRow[3].value;
         text += makeEnd(getRow[4].value) + '</div>';
         document.getElementById("demo").innerHTML = text;
         document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
