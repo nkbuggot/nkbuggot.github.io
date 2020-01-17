@@ -95,8 +95,8 @@ background-color: yellow;
         {headerName: '活動', field: 'summary', editable: true},
         {headerName: '起始日期', field: 'start', editable: true},
         {headerName: '結束日期', field: 'end', editable: true},
-        {headerName: 'id', field: 'id', editable: false, fordelete: true},
-        {headerName: 'iCalUID', field: 'iCalUID', editable: false, fordelete: true}
+        {headerName: 'id', field: 'id', editable: false, forDelete: false},
+        {headerName: 'iCalUID', field: 'iCalUID', editable: false, forDelete: true}
       ];
 		
       const getSysDate = [
@@ -319,9 +319,9 @@ background-color: yellow;
       }
 
       function compareArraryForShow(aArray, bArray) {
-        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [], text='';
+        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [], sBody='';
         for (i in aArray) {  
-          text += '<div class="rwdTr">';        
+          sBody += '<div class="rwdTr">';        
           for (k in bArray) {
             for (m in bArray[k]) {
 			  for(j in aArray[i]) {
@@ -330,35 +330,22 @@ background-color: yellow;
                      aTitleArray.push(bArray[k]['headerName']);
 				     aEndArray.push(bArray[k]['field']);
 				  }
-				  text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
+				  sBody += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
                 }
               }
             }
           }
-		  text += '</div>';
+		  sBody += '</div>';
         }
 		getRow[2].value = aTitleArray;
-		getRow[3].value = text;
+		getRow[3].value = sBody;
 		getRow[4].value = aEndArray;
       }	  
 	  
       function makeRow(aArray) {
-        let i=0, j=0, text ='', k=0;
+        let text ='';
 		compareArraryForShow(aArray, columnDefs);
 		text += makeTitle(getRow[2].value);
-        //text += '<div class="rwdTable">';//放到makeTitle裡了
-		//aTemp = getRow[2].value;
-		/*for (i in aArray) {
-          text += '<div class="rwdTr">';
-		  for (k in getRow[2].value) {
-            for (j in aArray[i]) {
-			  if(getRow[2].value[k] === j){
-                text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
-			  }
-            }
-		  }
-          text += '</div>';
-        }*/
         text += getRow[3].value;
         text += makeEnd(getRow[4].value) + '</div>';
         document.getElementById("demo").innerHTML = text;
@@ -564,19 +551,31 @@ background-color: yellow;
       }
 	  
       function getSelectId(aArray, columnDefs) {
-        let text = '', i=0, j=0, aTempArray = [];
+        let text = '', i=0, j=0, aIdArray = [], aiCalUIDArray = [];
 		if (aArray.length > 0 && columnDefs.length > 0) {
 		  for (i in columnDefs){		  
 		    for(j in columnDefs[i]) {
-			   if (j ==='fordelete' && columnDefs[i][j]) {
-			     aTempArray.push(columnDefs[i]['field']);
-			   }
+			   if (j ==='forDelete' && columnDefs[i][j]) {
+			     aIdArray.push(columnDefs[i]['field']);
+			   }			   
 			}
 		  }
 		  
-		  if(aTempArray.length > 0) {
+		  if(aIdArray.length > 0) {
 		    text += '<span style="font-size:15px;">' + 'id選擇：</span>';
-		    text += '<select id="chooseId">';
+		    text += '<select id="chooseId" onchange="showiCalUID()">';
+            for (i in aArray) {
+              for (k in aIdArray) {
+			    text += '<optgroup label="' + aIdArray[k] + '">';
+                for(j in aArray[i]){
+                  if (j === aIdArray[k]) {
+                    text += '<option value="'+aArray[i][j]+'">'+aArray[i][j]+'</option>';
+                  }
+                }
+              }
+            }
+		    /*text += '<span style="font-size:15px;">' + 'id選擇：</span>';
+		    text += '<select id="chooseId" onchange="showiCalUID()">';
             for (i in aTempArray) {
               text += '<optgroup label="' + aTempArray[i] + '">';
             
@@ -587,27 +586,19 @@ background-color: yellow;
                   }
                 }
               }
-            }
-            text += '</select>';
+            }*/
+            text += '</select> <span id="check" style="color:red;"></span><br>';
 		  }
 		  
 		}
 		document.getElementById("showId").innerHTML = text;
-		/*
-			<span style="font-size:13px;">跳出確認小視窗並前往該連結之頁面：</span>
-	<select id="choose" onchange="TheConfirmBox()">
-		<option disabled=disabled selected=selected>哈囉，這是我的筆記實作</option>
-		<optgroup label="群組標籤1">
-			<option value="https://www.google.com.tw/">Google</option>
-			<option value="http://www.w3schools.com/">W3Schools</option>
-		</optgroup>
-		<optgroup label="群組標籤2">
-			<option value="http://blog.yam.com/dllee">dllee</option>
-			<option value="https://tw.yahoo.com/">Yahoo奇摩</option>
-		</optgroup>
-		<option disabled=disabled value="https://tw.yahoo.com/">歡迎給予指導！</option>
-	</select>
-		*/
+      }
+	  
+      function showiCalUID() {
+        let noteToMe ='你好喔';
+		let whichUserChoose=choose.options[choose.selectedIndex].text;
+		listIdEvents(whichUserChoose);
+		document.getElementById("check").innerHTML = noteToMe;
       }
 	  
       function matchForShow(aArray, bArray) {
