@@ -335,7 +335,7 @@ background-color: yellow;
       }	  
 	  
       function makeRow(aArray) {
-        let i=0, j=0, text ='', aTempArray=[];
+        let i=0, j=0, text ='', aTempArray=[], bTempArray=[];
 		aTempArray = compareArraryForShow(aArray, columnDefs, "headerName");
 		text += makeTitle(aTempArray);
         //text += '<div class="rwdTable">';
@@ -346,7 +346,8 @@ background-color: yellow;
           }
           text += '</div>';
         }
-        text += makeEnd(aTempArray) + '</div>';
+		bTempArray = compareArraryForShow(aArray, columnDefs, "field");
+        text += makeEnd(bTempArray) + '</div>';
         document.getElementById("demo").innerHTML = text;
         document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
         document.getElementById("end_row").value = getSysDate[11].value + 'T' + getSysDate[12].value;
