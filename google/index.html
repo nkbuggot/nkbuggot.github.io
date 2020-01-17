@@ -115,7 +115,7 @@ background-color: yellow;
       ];
 		
       const getRow = [
-        {name: 'sRow', value: ''}
+        {name: 'sRow', value: ''},
 		{name: 'aArray', value: ''}
       ];
 	  
@@ -670,8 +670,8 @@ background-color: yellow;
 			//console.log(splitPushArray(events));
 			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));//先透過matchForShow比對要顯示的欄位，再透過matchShowFormat轉換成文字格式，最後轉換成陣列
 			getRow[1].value = showJson;
-			makeRow(showJson);
-			let c = getSelectId(showJson, columnDefs);
+			makeRow(getRow[1].value);
+			let c = getSelectId(getRow[1].value, columnDefs);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -699,8 +699,8 @@ background-color: yellow;
 			//console.log(splitPushArray(events));
 			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));
 			getRow[1].value = showJson;
-			makeRow(showJson);
-			let c = getSelectId(showJson, columnDefs);
+			makeRow(getRow[1].value);
+			let c = getSelectId(getRow[1].value, columnDefs);
           } else {
             appendPre('No upcoming events found.');
           }
