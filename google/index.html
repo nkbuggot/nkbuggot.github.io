@@ -121,7 +121,8 @@ background-color: yellow;
 		{name: 'titleArray', value: ''},
 		{name: 'bodyArray', value: ''},
 		{name: 'endArray', value: ''},
-		{name: 'showListId', value: ''}
+		{name: 'showListId', value: ''},
+		{name: 'showMassage', value: ''}
       ];
 	  
 	  //預設日期
@@ -602,15 +603,14 @@ background-color: yellow;
           'orderBy': 'startTime'
         }).then(function(response) {
         events = response.result.items;
-        appendPre('Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + niCalUID);
-        console.log(events);
+        sMessage = 'Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + niCalUID + ' ';
         if (events.length > 0) {
-          sMessage = events["0"]["id"];
+          sMessage += events["0"]["id"];
 		  getRow[5].value = events["0"]["id"];
-		  console.log(sMessage);
+		  getRow[6].value = sMessage;
+		  console.log(getRow[5].value);
         } else {
-          appendPre('No upcoming events found.');
-		  sMessage = 'No upcoming events found.';
+		  sMessage += 'No upcoming events found.';
         }
         });
       }
