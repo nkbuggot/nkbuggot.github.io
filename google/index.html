@@ -331,7 +331,9 @@ background-color: yellow;
 				     aEndArray.push(bArray[k]['field']);
 				  }				  
                 }
-				aBodyArray.push(bArray[k][m]);
+				if (bArray[k]["editable"]) {
+				  aBodyArray.push(bArray[k][m]);
+				}
               }
             }
           }
@@ -340,6 +342,7 @@ background-color: yellow;
 		console.log(aEndArray);
 		console.log(aBodyArray);
 		getRow(2).value = aTitleArray;
+		getRow(3).value = aBodyArray;
 		getRow(4).value = aEndArray;
       }	  
 	  
