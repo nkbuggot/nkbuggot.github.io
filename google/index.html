@@ -120,7 +120,8 @@ background-color: yellow;
 		{name: 'aArray', value: ''},
 		{name: 'titleArray', value: ''},
 		{name: 'bodyArray', value: ''},
-		{name: 'endArray', value: ''}
+		{name: 'endArray', value: ''},
+		{name: 'showListId', value: ''}
       ];
 	  
 	  //預設日期
@@ -581,6 +582,15 @@ background-color: yellow;
 		document.getElementById("showId").innerHTML = text;
       }
 	  
+      function showiCalUID() {
+        let noteToMe ='你好喔';
+		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
+		showListId(whichUserChoose);
+		console.log(noteToMe);
+		console.log(getRow[5].value);
+		document.getElementById("check").innerHTML = getRow[5].value;
+      }
+	  
       function showListId(niCalUID) {
         var events, sMessage ='';
         gapi.client.calendar.events.list({
@@ -596,23 +606,13 @@ background-color: yellow;
         console.log(events);
         if (events.length > 0) {
           sMessage = events["0"]["id"];
+		  getRow[5].value = events["0"]["id"];
 		  console.log(sMessage);
         } else {
           appendPre('No upcoming events found.');
 		  sMessage = 'No upcoming events found.';
         }
-		return sMessage;
-        } 
-		);
-		
-      }
-	  
-      function showiCalUID() {
-        let noteToMe ='你好喔';
-		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
-		noteToMe = showListId(whichUserChoose);
-		console.log(noteToMe);
-		document.getElementById("check").innerHTML = noteToMe;
+        });
       }
 	  
       function matchForShow(aArray, bArray) {
