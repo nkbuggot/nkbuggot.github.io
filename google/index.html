@@ -299,15 +299,15 @@ background-color: yellow;
         return text;
       }
 	  
-      function makeEnd(aTempArray) {
+      function makeEnd(aArray) {
         let i=0, text ='';
-		if (aTempArray.length > 0) {
+		if (aArray.length > 0) {
 		  text += '<div class="rwdTr">';
-		  for (i in aTempArray) {
-		    if (aTempArray[i] === 'start' || aTempArray[i] === 'end') {
-		      text += '<div class="rwdTd"><input type="datetime-local" id="' + aTempArray[i] + '_row"></div>';
+		  for (i in aArray) {
+		    if (aArray[i] === 'start' || aArray[i] === 'end') {
+		      text += '<div class="rwdTd"><input type="datetime-local" id="' + aArray[i] + '_row"></div>';
 		    } else {
-  		      text += '<div class="rwdTd"><input id="' + aTempArray[i] + '_row" type="text"></div>';			
+  		      text += '<div class="rwdTd"><input id="' + aArray[i] + '_row" type="text"></div>';			
 		    }
 		  }
 		  text += '</div>';
