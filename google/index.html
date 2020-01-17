@@ -320,7 +320,7 @@ background-color: yellow;
       }
 
       function compareArraryForShow(aArray, bArray) {
-        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [], aBodyArray= [];
+        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [];
         for (i in aArray) {
           for(j in aArray[i]) {
             for (k in bArray) {
@@ -330,7 +330,6 @@ background-color: yellow;
                      aTitleArray.push(bArray[k]['headerName']);
 				     aEndArray.push(bArray[k]['field']);
 				  }
-				  aBodyArray.push(bArray[k]['field']);
                 }
               }
             }
@@ -339,24 +338,35 @@ background-color: yellow;
         }		
 		console.log(aTitleArray);
 		console.log(aEndArray);
-		console.log(aBodyArray);
 		getRow[2].value = aTitleArray;
-		getRow[3].value = aBodyArray;
 		getRow[4].value = aEndArray;
       }	  
 	  
       function makeRow(aArray) {
-        let i=0, j=0, text ='';
+        let i=0, j=0, text ='', k=0;
 		compareArraryForShow(aArray, columnDefs);
 		text += makeTitle(getRow[2].value);
         //text += '<div class="rwdTable">';//放到makeTitle裡了
-        for (i in aArray) {
+		//for (k in getRow[4].value){
+		for (i in aArray) {
+          text += '<div class="rwdTr">';
+		  for (k in getRow[4].value) {
+            for (j in aArray[i]) {
+			  if(getRow[4].value[k] === j){
+                text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
+			  }
+            }
+		  }
+          text += '</div>';
+        }
+		
+        /*for (i in aArray) {
           text += '<div class="rwdTr">';
           for (j in aArray[i]) {
             text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
           }
           text += '</div>';
-        }
+        }*/
 		//text += getRow[3].value;
         text += makeEnd(getRow[4].value) + '</div>';
         document.getElementById("demo").innerHTML = text;
