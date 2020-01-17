@@ -88,6 +88,7 @@ background-color: yellow;
 	
 	<input type="button" class="add" onclick="add_row();" value="Add Row">
 	<p id="qqqqqq">QQQQQQQQQQQQQQQQQQQQQQQQ</p>
+	<p id="showId">QQQQQQQQQQQQQQQQQQQQQQQQ</p>
 	
     <script type="text/javascript">
       const columnDefs = [
@@ -577,6 +578,7 @@ background-color: yellow;
 		  }
 		  
 		}
+		document.getElementById("showId").innerHTML = text;
 		/*
 			<span style="font-size:13px;">跳出確認小視窗並前往該連結之頁面：</span>
 	<select id="choose" onchange="TheConfirmBox()">
