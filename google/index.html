@@ -336,8 +336,6 @@ background-color: yellow;
           }
 		  break;
         }		
-		console.log(aTitleArray);
-		console.log(aEndArray);
 		getRow[2].value = aTitleArray;
 		getRow[4].value = aEndArray;
       }	  
@@ -348,6 +346,8 @@ background-color: yellow;
 		text += makeTitle(getRow[2].value);
         //text += '<div class="rwdTable">';//放到makeTitle裡了
 		aTemp = getRow[4].value;
+		console.log(aArray);
+		console.log(aTemp);
 		for (i in aArray) {
           text += '<div class="rwdTr">';
 		  text1 += '<div class="rwdTr">';
