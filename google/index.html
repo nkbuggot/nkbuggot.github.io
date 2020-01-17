@@ -584,8 +584,31 @@ background-color: yellow;
       function showiCalUID() {
         let noteToMe ='你好喔';
 		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
-		listIdEvents(whichUserChoose);
+		noteToMe = showListId(whichUserChoose);
 		document.getElementById("check").innerHTML = noteToMe;
+      }
+	  
+      function showListId(niCalUID) {
+        let events, sMessage ='';
+        gapi.client.calendar.events.list({
+          'calendarId': Calendar_CLIENT_ID,
+          'iCalUID': niCalUID,
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        }).then(function(response) {
+        events = response.result.items;
+        appendPre('Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + p_id);
+        console.log(events);
+        if (events.length > 0) {
+          sMessage = events[0][id];
+        } else {
+          appendPre('No upcoming events found.');
+		  sMessage = 'No upcoming events found.';
+        }
+        });
+		return sMessage;
       }
 	  
       function matchForShow(aArray, bArray) {
