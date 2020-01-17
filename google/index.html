@@ -326,13 +326,15 @@ background-color: yellow;
             for (k in bArray) {
               for (m in bArray[k]) {
                 if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
-                  aTitleArray.push(bArray[k]['headerName']);
-				  aEndArray.push(bArray[k]['field']);
+				  if(i==='0') {
+                     aTitleArray.push(bArray[k]['headerName']);
+				     aEndArray.push(bArray[k]['field']);
+				  }
+				  aBodyArray.push(bArray[k][m]);
                 }
               }
             }
           }
-		  //break;
         }		
 		console.log(aTitleArray);
 		console.log(aEndArray);
