@@ -95,8 +95,8 @@ background-color: yellow;
         {headerName: '活動', field: 'summary', editable: true},
         {headerName: '起始日期', field: 'start', editable: true},
         {headerName: '結束日期', field: 'end', editable: true},
-        {headerName: 'id', field: 'id', editable: true, fordelete: true},
-        {headerName: 'iCalUID', field: 'iCalUID', editable: true, fordelete: true}
+        {headerName: 'id', field: 'id', editable: false, fordelete: true},
+        {headerName: 'iCalUID', field: 'iCalUID', editable: false, fordelete: true}
       ];
 		
       const getSysDate = [
@@ -309,7 +309,7 @@ background-color: yellow;
           for(j in aArray[i]) {
             for (k in bArray) {
               for (m in bArray[k]) {
-                if(bArray[k][m] === j && m ==='headerName') {
+                if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
                   aTempArray.push(bArray[k]["field"]);
                 }
               }
