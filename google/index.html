@@ -291,15 +291,11 @@ background-color: yellow;
       function makeTitle(aArray) {
         let i=0, j=0, text ='';
         text += '<div class="rwdTable">';
+		text += '<div class="rwdTr">';
         for (i in aArray) {
-          text += '<div class="rwdTr">';
-          for (j in aArray[i]) {
-            text += '<div class="rwdTh">' + j + '</div>';
-          }
-          text += '</div>';
-          break;
+          text += '<div class="rwdTh">' + j + '</div>';
         }
-        //text += '</div>';
+        text += '</div>';
         return text;
       }
 	  
@@ -309,7 +305,7 @@ background-color: yellow;
           for(j in aArray[i]) {
             for (k in bArray) {
               for (m in bArray[k]) {
-                if(bArray[k][m] === j && m ==='headerName') {
+                if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
                   aTempArray.push(bArray[k]["field"]);
                 }
               }
@@ -334,10 +330,28 @@ background-color: yellow;
 		console.log(text);
         return text;
       }
+
+      function compareArraryForShow(aArray, bArray, sName) {
+        let i=0,j=0, k=0, m=0, aTempArray= [];
+        for (i in aArray) {
+          for(j in aArray[i]) {
+            for (k in bArray) {
+              for (m in bArray[k]) {
+                if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
+                  aTempArray.push(bArray[k][sName]);
+                }
+              }
+            }
+          }
+		  break;
+        }		
+        return aTempArray;
+      }	  
 	  
       function makeRow(aArray) {
-        let i=0, j=0, text ='';
-		text += makeTitle(aArray);
+        let i=0, j=0, text ='', aTempArray=[];
+		aTempArray = compareArraryForShow(aArray, columnDefs, "headerName");
+		text += makeTitle(aTempArray);
         //text += '<div class="rwdTable">';
         for (i in aArray) {
           text += '<div class="rwdTr">';
