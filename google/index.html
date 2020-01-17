@@ -602,7 +602,9 @@ background-color: yellow;
         appendPre('Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + niCalUID);
         console.log(events);
         if (events.length > 0) {
-          sMessage = events[0]["id"];
+          sMessage = events["0"]["id"];
+		  console.log(events["0"]["id"]);
+		  console.log(events[0]["id"]);
         } else {
           appendPre('No upcoming events found.');
 		  sMessage = 'No upcoming events found.';
