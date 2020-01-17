@@ -315,29 +315,34 @@ background-color: yellow;
 		  }
 		  text += '</div>';
 		}
-		console.log(text);
         return text;
       }
 
       function compareArraryForShow(aArray, bArray) {
-        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [];
-        for (i in aArray) {
-          for(j in aArray[i]) {
-            for (k in bArray) {
-              for (m in bArray[k]) {
+        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [], text='';
+        for (i in aArray) {  
+          text += '<div class="rwdTr">';        
+          for (k in bArray) {
+            for (m in bArray[k]) {
+			  for(j in aArray[i]) {
                 if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
 				  if(i==='0') {
                      aTitleArray.push(bArray[k]['headerName']);
 				     aEndArray.push(bArray[k]['field']);
 				  }
+				  text += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';
                 }
               }
             }
           }
-		  break;
+		  text += '</div>';
         }		
 		getRow[2].value = aTitleArray;
+		getRow[3].value = text;
 		getRow[4].value = aEndArray;
+		console.log(getRow[3].value);
+		console.log(getRow[2].value);
+		console.log(getRow[4].value);
       }	  
 	  
       function makeRow(aArray) {
