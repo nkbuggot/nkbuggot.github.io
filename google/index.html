@@ -581,16 +581,8 @@ background-color: yellow;
 		document.getElementById("showId").innerHTML = text;
       }
 	  
-      function showiCalUID() {
-        let noteToMe ='你好喔';
-		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
-		noteToMe = showListId(whichUserChoose);
-		console.log(noteToMe);
-		document.getElementById("check").innerHTML = noteToMe;
-      }
-	  
       function showListId(niCalUID) {
-        let events, sMessage ='';
+        var events, sMessage ='';
         gapi.client.calendar.events.list({
           'calendarId': Calendar_CLIENT_ID,
           'iCalUID': niCalUID,
@@ -613,6 +605,14 @@ background-color: yellow;
         } 
 		);
 		
+      }
+	  
+      function showiCalUID() {
+        let noteToMe ='你好喔';
+		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
+		noteToMe = showListId(whichUserChoose);
+		console.log(noteToMe);
+		document.getElementById("check").innerHTML = noteToMe;
       }
 	  
       function matchForShow(aArray, bArray) {
