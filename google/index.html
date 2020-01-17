@@ -117,7 +117,10 @@ background-color: yellow;
 		
       const getRow = [
         {name: 'sRow', value: ''},
-		{name: 'aArray', value: ''}
+		{name: 'aArray', value: ''},
+		{name: 'titleArray', value: ''},
+		{name: 'bodyArray', value: ''},
+		{name: 'endArray', value: ''}
       ];
 	  
 	  //預設日期
@@ -316,28 +319,32 @@ background-color: yellow;
         return text;
       }
 
-      function compareArraryForShow(aArray, bArray, sName) {
-        let i=0,j=0, k=0, m=0, aTempArray= [];
+      function compareArraryForShow(aArray, bArray) {
+        let i=0,j=0, k=0, m=0, aTitleArray= [], aEndArray= [], aBodyArray= [];
         for (i in aArray) {
           for(j in aArray[i]) {
             for (k in bArray) {
               for (m in bArray[k]) {
                 if(bArray[k][m] === j && m ==='headerName' && bArray[k]["editable"]) {
-                  aTempArray.push(bArray[k][sName]);
+                  aTitleArray.push(bArray[k]['headerName']);
+				  aEndArray.push(bArray[k]['field']);
                 }
               }
             }
           }
-		  break;
+		  //break;
         }		
-		console.log(aTempArray);
-        return aTempArray;
+		console.log(aTitleArray);
+		console.log(aEndArray);
+		console.log(aBodyArray);
+		getRow(2).value = aTitleArray;
+		getRow(4).value = aEndArray;
       }	  
 	  
       function makeRow(aArray) {
-        let i=0, j=0, text ='', aTempArray=[], bTempArray=[];
-		aTempArray = compareArraryForShow(aArray, columnDefs, "headerName");
-		text += makeTitle(aTempArray);
+        let i=0, j=0, text ='';
+		compareArraryForShow(aArray, columnDefs);
+		text += makeTitle(getRow(2).value);
         //text += '<div class="rwdTable">';
         for (i in aArray) {
           text += '<div class="rwdTr">';
@@ -346,8 +353,7 @@ background-color: yellow;
           }
           text += '</div>';
         }
-		bTempArray = compareArraryForShow(aArray, columnDefs, "field");
-        text += makeEnd(bTempArray) + '</div>';
+        text += makeEnd(getRow(4).value) + '</div>';
         document.getElementById("demo").innerHTML = text;
         document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
         document.getElementById("end_row").value = getSysDate[11].value + 'T' + getSysDate[12].value;
