@@ -78,9 +78,9 @@ background-color: yellow;
 	Email<input id="email" type="text">
 	<BR>
 	<input id="insertCalendar" type="button" value="寫入行事曆" onClick="insertEvents()">
-	<input id="iddw" type="text" value='m37fk7hdo4m6pd6bci67bmr3ak'> 
+	<input id="idDelete" type="text" value='m37fk7hdo4m6pd6bci67bmr3ak'> 
 	<input id="iCalUID" type="text"> 
-	<input id="deleteCalendar" type="button" value="刪除行事曆" onClick="deleteIdEvents(document.getElementById('iddw').value, document.getElementById('iCalUID').value)"> 
+	<input id="deleteCalendar" type="button" value="刪除行事曆" onClick="deleteIdEvents(document.getElementById('idDelete').value, document.getElementById('iCalUID').value)"> 
 	
     <pre id="content" style="white-space: pre-wrap;"></pre>
 	<table id=table1 border =1px></table>
@@ -93,7 +93,9 @@ background-color: yellow;
       const columnDefs = [
         {headerName: '活動', field: 'summary', editable: true},
         {headerName: '起始日期', field: 'start', editable: true},
-        {headerName: '結束日期', field: 'end', editable: true}
+        {headerName: '結束日期', field: 'end', editable: true},
+        {headerName: 'id', field: 'id', editable: true, fordelete: true},
+        {headerName: 'iCalUID', field: 'iCalUID', editable: true, fordelete: true}
       ];
 		
       const getSysDate = [
@@ -109,14 +111,16 @@ background-color: yellow;
         {name: 'sTimeStart', value: ''},
         {name: 'sDate', value: ''},
         {name: 'sDateEnd', value: ''},
-        {name: 'sTimeEnd', value: ''},
+        {name: 'sTimeEnd', value: ''},        
+      ];
+		
+      const getRow = [
         {name: 'sRow', value: ''}
+		{name: 'aArray', value: ''}
       ];
 	  
 	  //預設日期
       var dDate = getSysDate[0].value; 
-	  
-      const eGridDiv = document.querySelector('#myGrid');
 	  
 	  // Client ID and API key from the Developer Console
       var JAVASCRIPT_CLIENT_ID = '58255687849-eu8ac612s43lj1munnrg1jhhvrcse282.apps.googleusercontent.com';
@@ -544,6 +548,53 @@ background-color: yellow;
 		return changeEvent;
       }
 	  
+      function getSelectId(aArray, columnDefs) {
+        let text = '', i=0, j=0, aTempArray = [];
+		if (aArray.length > 0 && columnDefs.length > 0) {
+		  for (i in columnDefs){		  
+		    for(j in columnDefs[i]) {
+			   if (j ==='fordelete' && columnDefs[i][j]) {
+			     aTempArray.push(columnDefs[i]['field']);
+			   }
+			}
+		  }
+		  
+		  if(aTempArray.length > 0) {
+		    text += '<span style="font-size:15px;">' + 'id選擇：</span>';
+		    text += '<select id="chooseId">';
+            for (i in aTempArray) {
+              text += '<optgroup label="' + aTempArray[i] + '">';
+            
+              for (j in aArray) {
+                for(k in aArray[j]){
+                  if (k === aTempArray[i]) {
+                    text += '<option value="'+aArray[j][k]+'">'+aArray[j][k]+'</option>';
+                  }
+                }
+              }
+            }
+            text += '</select>';
+		  }
+		  
+		}
+		/*
+			<span style="font-size:13px;">跳出確認小視窗並前往該連結之頁面：</span>
+	<select id="choose" onchange="TheConfirmBox()">
+		<option disabled=disabled selected=selected>哈囉，這是我的筆記實作</option>
+		<optgroup label="群組標籤1">
+			<option value="https://www.google.com.tw/">Google</option>
+			<option value="http://www.w3schools.com/">W3Schools</option>
+		</optgroup>
+		<optgroup label="群組標籤2">
+			<option value="http://blog.yam.com/dllee">dllee</option>
+			<option value="https://tw.yahoo.com/">Yahoo奇摩</option>
+		</optgroup>
+		<option disabled=disabled value="https://tw.yahoo.com/">歡迎給予指導！</option>
+	</select>
+		*/
+		return text;
+      }
+	  
       function matchForShow(aArray, bArray) {
 	    //aArray 原本的資料，bArray預計SHOW出的欄位對應
         let aOutJson = [], showJson=[];
@@ -565,13 +616,13 @@ background-color: yellow;
             }
           }
         }
-		getSysDate[13].value = l;
+		getRow[0].value = l;
 		return aTempArray;
       }
 
       function matchShowFormat(aArray) {
-	    let k=0, text = '',l=0;
-		k = getSysDate[13].value * 2;
+	    let k=0, text = '';
+		k = getRow[0].value * 2;
 		text += '[';
         for (i=0; i<aArray.length; i++) {
           if(i%k===0){
@@ -618,7 +669,9 @@ background-color: yellow;
 			//showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
 			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));//先透過matchForShow比對要顯示的欄位，再透過matchShowFormat轉換成文字格式，最後轉換成陣列
+			getRow[1].value = showJson;
 			makeRow(showJson);
+			let c = getSelectId(showJson, columnDefs);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -645,7 +698,9 @@ background-color: yellow;
 			//showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
 			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));
+			getRow[1].value = showJson;
 			makeRow(showJson);
+			let c = getSelectId(showJson, columnDefs);
           } else {
             appendPre('No upcoming events found.');
           }
@@ -701,7 +756,7 @@ background-color: yellow;
           } else {
             appendPre('calendarObject created: ' + calendarObject.iCalUID);
             listIdEvents(calendarObject.iCalUID);
-            document.getElementById("iddw").value = calendarObject.id;
+            document.getElementById("idDelete").value = calendarObject.id;
 			document.getElementById("iCalUID").value = calendarObject.iCalUID;
           }
           });
