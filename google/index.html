@@ -581,6 +581,9 @@ background-color: yellow;
 		showListId(whichUserChoose);
 		console.log(noteToMe);
 		console.log(getRow[5].value);
+		if (getRow[5].value ==''){
+		  showListId(whichUserChoose);
+		}
 		document.getElementById("check").innerHTML = getRow[5].value;
       }
 	  
