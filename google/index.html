@@ -552,6 +552,38 @@ background-color: yellow;
 		return changeEvent;
       }
 	  
+      function showListId(niCalUID) {
+        var events, sMessage ='';
+        gapi.client.calendar.events.list({
+          'calendarId': Calendar_CLIENT_ID,
+          'iCalUID': niCalUID,
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        }).then(function(response) {
+        events = response.result.items;
+        sMessage = 'Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + niCalUID + ' ';
+        if (events.length > 0) {
+          sMessage += events["0"]["id"];
+		  getRow[5].value = events["0"]["id"];
+		  getRow[6].value = sMessage;
+		  console.log(getRow[5].value);
+        } else {
+		  sMessage += 'No upcoming events found.';
+        }
+        });
+      }	  
+	  
+      function showiCalUID() {
+        let noteToMe ='你好喔';
+		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
+		showListId(whichUserChoose);
+		console.log(noteToMe);
+		console.log(getRow[5].value);
+		document.getElementById("check").innerHTML = getRow[5].value;
+      }
+	  
       function getSelectId(aArray, columnDefs) {
         let text = '', i=0, j=0, aIdArray = [], aiCalUIDArray = [];
 		if (aArray.length > 0 && columnDefs.length > 0) {
@@ -581,38 +613,6 @@ background-color: yellow;
 		  
 		}
 		document.getElementById("showId").innerHTML = text;
-      }
-	  
-      function showiCalUID() {
-        let noteToMe ='你好喔';
-		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
-		showListId(whichUserChoose);
-		console.log(noteToMe);
-		console.log(getRow[5].value);
-		document.getElementById("check").innerHTML = getRow[5].value;
-      }
-	  
-      function showListId(niCalUID) {
-        var events, sMessage ='';
-        gapi.client.calendar.events.list({
-          'calendarId': Calendar_CLIENT_ID,
-          'iCalUID': niCalUID,
-          'showDeleted': false,
-          'singleEvents': true,
-          'maxResults': 10,
-          'orderBy': 'startTime'
-        }).then(function(response) {
-        events = response.result.items;
-        sMessage = 'Upcoming events:' + Calendar_CLIENT_ID + ' iCalUID:' + niCalUID + ' ';
-        if (events.length > 0) {
-          sMessage += events["0"]["id"];
-		  getRow[5].value = events["0"]["id"];
-		  getRow[6].value = sMessage;
-		  console.log(getRow[5].value);
-        } else {
-		  sMessage += 'No upcoming events found.';
-        }
-        });
       }
 	  
       function matchForShow(aArray, bArray) {
