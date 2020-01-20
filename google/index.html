@@ -581,7 +581,8 @@ background-color: yellow;
 		var a = new Promise(function(resolve, reject) {
           setTimeout(function(){
             showListId(whichUserChoose);
-          }, 1000);
+			console.log('AA');
+          }, 10000);
 		});
 		a.then(function(value) {
 		  console.log(a);				// Promise {<resolved>: "hello world"}
