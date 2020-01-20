@@ -410,10 +410,42 @@ background-color: yellow;
           }
           });
 		}
-      }    
+      }
+      var my_obj = new obj();
+      function obj(){
+        obj=new Object();
+        this.add=function(key,value){
+        obj[""+key+""]=value;
+        }
+        this.obj=obj
+      }
 	  
       function isArray(myArray) {
         return myArray.constructor.toString().indexOf("Array") > -1;
+      }
+	  
+      function changeObjectFormat(myArrary, type, preName){
+        if (myArrary.length > 0) {
+		  var i=0,j=0;
+		}
+        for (i in myArrary){
+          for (j in myArrary[i]){
+            if (isArray(myArrary[i][j])) {
+              changeObjectFormat(myArrary[i][j], '1', j + i);
+            }
+            else {
+              if (preName) {
+                my_obj.add(preName, myArrary[i][j]);
+              } else {
+                my_obj.add(j + i, myArrary[i][j]);
+              }
+            }
+          } 
+		  if(type) {
+            break;
+		  }
+        }
+        return my_obj;
       }
 	  
       function splitPushArray(myArray) {
@@ -578,21 +610,7 @@ background-color: yellow;
       function showiCalUID() {
         let noteToMe ='你好喔';
 		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
-		var a = new Promise(function(resolve, reject) {
-          setTimeout(function(){
-            showListId(whichUserChoose);
-			console.log('AA');
-          }, 10000);
-		});
-		a.then(function(value) {
-		  console.log(a);				// Promise {<resolved>: "hello world"}
-		  console.log(value + '1');		// "hello world1"
-		});
-		
-		a.catch(function(value) {
-		  console.log(a);				// Promise {<resolved>: "hello world"}
-		  console.log(value + '2');		// "hello world1"
-		});		
+		showListId(whichUserChoose);
 		console.log(noteToMe);
 		console.log(getRow[5].value);
 
@@ -696,7 +714,8 @@ background-color: yellow;
           var events = response.result.items;
           appendPre('Upcoming events:' + Calendar_CLIENT_ID);
           console.log(events);	
-		  
+		  my_obj = changeObjectFormat(events);
+		  console.log(my_obj);	
           if (events.length > 0) {		    
             //showTable(events);
 			//let aOutJson = [], showJson = [];
