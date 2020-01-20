@@ -556,7 +556,7 @@ background-color: yellow;
         var events, sMessage ='';
         gapi.client.calendar.events.list({
           'calendarId': Calendar_CLIENT_ID,
-          'iCalUID': 'cor64cpo6hj6ab9pcoo6ab9kchhj2bb170pj2bb66lh6ac1o65j68d1jc4@google.com',
+          'iCalUID': niCalUID,
           'showDeleted': false,
           'singleEvents': true,
           'maxResults': 10,
@@ -578,12 +578,23 @@ background-color: yellow;
       function showiCalUID() {
         let noteToMe ='你好喔';
 		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
-		showListId(whichUserChoose);
+		var a = new Promise(function(resolve, reject) {
+          setTimeout(function(){
+            showListId(whichUserChoose);
+          }, 1000);
+		});
+		a.then(function(value) {
+		  console.log(a);				// Promise {<resolved>: "hello world"}
+		  console.log(value + '1');		// "hello world1"
+		});
+		
+		a.catch(function(value) {
+		  console.log(a);				// Promise {<resolved>: "hello world"}
+		  console.log(value + '2');		// "hello world1"
+		});		
 		console.log(noteToMe);
 		console.log(getRow[5].value);
-		if (getRow[5].value.length = 0){
-		  showListId(whichUserChoose);
-		}
+
 		document.getElementById("qqqqqq").innerHTML = 'Q' + getRow[5].value.length + 'S';
 		document.getElementById("check").innerHTML = getRow[5].value;
       }
