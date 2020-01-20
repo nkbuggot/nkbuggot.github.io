@@ -411,23 +411,23 @@ background-color: yellow;
           });
 		}
       }
-      var my_obj = new obj();
-      function obj(){
-        obj=new Object();
-        this.add=function(key,value){
-        obj[""+key+""]=value;
-        }
-        this.obj=obj
-      }
 	  
       function isArray(myArray) {
         return myArray.constructor.toString().indexOf("Array") > -1;
       }
 	  
+      var my_obj = new obj();
+      function obj(key){
+        obj=new Object();
+        this.add = function(key,value){
+        obj[""+key+""]=value;
+        }
+        this.obj= obj
+      }
+	  
       function changeObjectFormat(myArrary, type, preName){
-        if (myArrary.length > 0) {
-		  var i=0,j=0;
-		}
+	    var ttttt=[{0:"ff"},{1:"ff"},{2:"ff"},{3:"ff"},{4:"ff"}];
+        var i=0,j=0;		
         for (i in myArrary){
           for (j in myArrary[i]){
             if (isArray(myArrary[i][j])) {
@@ -445,6 +445,7 @@ background-color: yellow;
             break;
 		  }
         }
+		console.log(ttttt);
         return my_obj;
       }
 	  
