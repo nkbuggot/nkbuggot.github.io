@@ -435,7 +435,7 @@ background-color: yellow;
         for (i in myArrary){
           for (j in myArrary[i]){
 		    for (k in myArrary[i][j]){
-			  if (typeof(myArrary[i][j]) === 'object') {
+			  if (typeof(myArrary[i][j][k]) === 'object') {
 			    changeObjectFormat(myArrary[i][j][k], '1', k + i);
 			  } else {
                 if (preName) {
