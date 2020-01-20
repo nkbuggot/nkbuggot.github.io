@@ -581,10 +581,10 @@ background-color: yellow;
 		showListId(whichUserChoose);
 		console.log(noteToMe);
 		console.log(getRow[5].value);
-		if (getRow[5].value ==''){
+		if (getRow[5].value.length = 0){
 		  showListId(whichUserChoose);
 		}
-		document.getElementById("qqqqqq").innerHTML = 'Q' + getRow[5].value + 'S';
+		document.getElementById("qqqqqq").innerHTML = 'Q' + getRow[5].value.length + 'S';
 		document.getElementById("check").innerHTML = getRow[5].value;
       }
 	  
