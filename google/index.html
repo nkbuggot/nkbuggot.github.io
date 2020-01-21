@@ -130,7 +130,8 @@ background-color: yellow;
         data: [],
         tranceData : [],//轉格式
         compareTitle : [],//比對後表頭名稱與對應的ID		  
-        compareValue : []//比對後對應ID與Value
+        compareValue : [],//比對後對應ID與Value
+		deleteKey : []//刪除用資料，將iCalUID記起來
       };
 	  
 	  //預設日期
@@ -494,9 +495,10 @@ background-color: yellow;
           data: [],
           tranceData : [],//轉格式
           compareTitle : [],//比對後表頭名稱與對應的ID		  
-          compareValue : []//比對後對應ID與Value
+          compareValue : [],//比對後對應ID與Value
+		  deleteKey : []
         };
-        let i=0,j=0, k = 0, obj=new Object();;
+        let i=0,j=0, k = 0, obj=new Object();
         for (i in myArrary) {
 		  arrArray.data.push(myArrary[i]);
         }
@@ -530,14 +532,19 @@ background-color: yellow;
       }
 	  
       function compareArraryTitle(compareArray){
-        let showArray=[], l = false, obj = new Object();
+        let showArray=[], l = false, objTitle = new Object(), objDelete = new Object();
 		showArray = arrArray.name;
-        obj={};
+        objTitle={};
+		objDelete={};
         for (i in showArray) {
           for(j in compareArray) {
             for (k in compareArray[j]) {
+              if(compareArray[j]["forDelete"]) {
+                objDelete[showArray[i]] =  compareArray[j]["headerName"];
+				arrArray.deleteKey.push(objDelete);
+              }
               if(compareArray[j][k] === showArray[i] && k ==='field' && compareArray[j]["editable"]) {
-                obj[showArray[i]] =  compareArray[j]["headerName"];
+                objTitle[showArray[i]] =  compareArray[j]["headerName"];
                 l = true;
                 break;
               }
@@ -545,11 +552,12 @@ background-color: yellow;
           }
           
           if (l) {
-            arrArray.compareTitle.push(obj);
-            obj={};
+            arrArray.compareTitle.push(objTitle);
+            objTitle={};
             l = false
           }
         }
+		console.log(arrArray.deleteKey);
       }
 	  
       function compareArraryValue(){
