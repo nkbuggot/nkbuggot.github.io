@@ -460,8 +460,8 @@ background-color: yellow;
       function showBody(aArray) {
         let i=0, j=0, sBody ='';
 		if (aArray.length > 0) {		  
+		  sBody += '<div class="rwdTr">';
 		  for (i in aArray) {
-		    sBody += '<div class="rwdTr">';
 		    for (j in aArray[i]) {
               sBody += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';			
 			}		    
