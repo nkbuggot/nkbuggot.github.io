@@ -536,7 +536,7 @@ background-color: yellow;
         for (i in showArray) {
           for(j in compareArray) {
             for (k in compareArray[j]) {
-              if(compareArray[j][k] === showArray[i] && k ==='field') {
+              if(compareArray[j][k] === showArray[i] && k ==='field' && compareArray[j]["editable"]) {
                 obj[showArray[i]] =  compareArray[j]["headerName"];
                 l = true;
                 break;
@@ -871,17 +871,17 @@ background-color: yellow;
           appendPre('Upcoming events: CBP09' );
 //          console.log(events);
           if (events.length > 0) {
-		    changeObjectFormat(events);		  
+		    makeRowArray(events);
 		    //showTable(events);
 			//let aOutJson = [], showJson = [];
 			//aOutJson = changeToEvent(events);//修改資料
 			//console.log(splitPushArray(aOutJson));
 			//showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));
-			getRow[1].value = showJson;
-			makeRow(getRow[1].value);
-			getSelectId(getRow[1].value, columnDefs);
+			//let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));
+			//getRow[1].value = showJson;
+			//makeRow(getRow[1].value);
+			//getSelectId(getRow[1].value, columnDefs);
           } else {
             appendPre('No upcoming events found.');
           }
