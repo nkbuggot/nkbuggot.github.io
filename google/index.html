@@ -459,8 +459,8 @@ background-color: yellow;
         let i=0, j=0, sBody ='';
 		if (aArray.length > 0) {		  
 		  for (i in aArray) {
+		    sBody += '<div class="rwdTr">';
 		    for (j in aArray[i]) {
-			  sBody += '<div class="rwdTr">';
               sBody += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';			
 			}		    
 		  }
