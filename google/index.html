@@ -425,36 +425,36 @@ background-color: yellow;
       }
 	  
       function showTitle(aArray) {
-        let i = 0, j = 0, text ='';
-		text += '<div class="rwdTable">';
-		text += '<div class="rwdTr">';
+        let i = 0, j = 0, sTitle ='';
+		sTitle += '<div class="rwdTable">';
+		sTitle += '<div class="rwdTr">';
 		for (i in aArray) {		  
 		  for (j in aArray[i]) {
-		    text += '<div class="rwdTh">' + aArray[i][j] + '</div>';
+		    sTitle += '<div class="rwdTh">' + aArray[i][j] + '</div>';
 		  }		  
 		}
-		text += '</div>';
+		sTitle += '</div>';
 		
-		return text;
+		return sTitle;
       }
 	  
       function showEnd(aArray) {
-        let i=0, j=0, text ='';
+        let i=0, j=0, sEnd ='';
 		if (aArray.length > 0) {		  
-		  text += '<div class="rwdTr">';
+		  sEnd += '<div class="rwdTr">';
 		  for (i in aArray) {
 		    for (j in aArray[i]) {
               if (j === 'start' || j === 'end') {
-		        text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
+		        sEnd += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
               } else {
-                text += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';			
+                sEnd += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';			
               }			
 			}
 		  }
-		  text += '</div>';
+		  sEnd += '</div>';
 		}
-		//console.log(text);
-        return text;
+		//console.log(sEnd);
+        return sEnd;
       }
 	  
       function showBody(aArray) {
