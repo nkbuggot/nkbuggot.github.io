@@ -466,6 +466,7 @@ background-color: yellow;
 		  }
 		  sBody += '</div>';
 		}
+		console.log(sBody);
 		return sBody ;
       }	  
 	  
@@ -475,7 +476,7 @@ background-color: yellow;
         text += showBody(arrArray.compareValue);
         text += /*showEnd(arrArray.compareTitle) + */'</div>';
         document.getElementById("demo").innerHTML = text;
-		console.log(text);
+		
         //document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
         //document.getElementById("end_row").value = getSysDate[11].value + 'T' + getSysDate[12].value;
       }	  
