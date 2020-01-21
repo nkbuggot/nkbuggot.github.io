@@ -434,7 +434,7 @@ background-color: yellow;
           compareTitle : [],//比對後表頭名稱與對應的ID		  
           compareValue : []//比對後對應ID與Value
         };
-        let i=0,j=0, k =0, obj=new Object();		    
+        let i=0,j=0;
         for (i in myArrary) {
 		  arrArray.data.push(myArrary[i]);
         }
@@ -447,6 +447,7 @@ background-color: yellow;
         }
 		
         i=0,j=0;
+		let k = 0, obj=new Object();
         for (i in arrArray.data){
           for (j in arrArray.data[i]){
 			if (typeof(arrArray.data[i][j]) === 'object') {
