@@ -422,7 +422,62 @@ background-color: yellow;
 	  
       function isArray(myArray) {
         return myArray.constructor.toString().indexOf("Array") > -1;
-      } 
+      }
+	  
+      function showTitle(aArray) {
+        let i = 0, j = 0, text ='';
+		text += '<div class="rwdTable">';
+		text += '<div class="rwdTr">';
+		for (i in aArray) {
+		  for (j in aArray[i]) {
+		    text += '<div class="rwdTh">' + arr.compareTitle[i][j] + '</div>';
+		  }
+		}
+		text += '</div>';
+		return text;
+      }
+	  
+      function showEnd(aArray) {
+        let i=0, j=0, text ='';
+		if (aArray.length > 0) {
+		  text += '<div class="rwdTr">';
+		  for (i in aArray) {
+		    for (j in aArray[i]) {
+              if (j === 'start' || j === 'end') {
+		        text += '<div class="rwdTd"><input type="datetime-local" id="' + aArray[i][j] + '_row"></div>';
+              } else {
+                text += '<div class="rwdTd"><input id="' + aArray[i][j] + '_row" type="text"></div>';			
+              }			
+			}		    
+		  }
+		  text += '</div>';
+		}
+        return text;
+      }
+	  
+      function showBody(aArray) {
+        let i=0, j=0, sBody ='';
+		if (aArray.length > 0) {
+		  sBody += '<div class="rwdTr">';
+		  for (i in aArray) {
+		    for (j in aArray[i]) {
+              sBody += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';			
+			}		    
+		  }
+		  sBody += '</div>';
+		}
+		return sBody ;
+      }	  
+	  
+      function makeRowArray(aArray) {
+        let text ='';
+		text += showTitle(arrArray.compareTitle);
+        text += showBody(arrArray.compareValue);
+        text += showEnd(arrArray.compareTitle) + '</div>';
+        document.getElementById("demo").innerHTML = text;
+        document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
+        document.getElementById("end_row").value = getSysDate[11].value + 'T' + getSysDate[12].value;
+      }	  
 	  
       function changeObjectFormat(myArrary){
         //先將預設值塞入arrArray，name、data，然後tranceData塞入轉換過的資料
@@ -464,7 +519,7 @@ background-color: yellow;
 		
 		compareArraryTitle(columnDefs);
 		compareArraryValue();
-		console.log(JSON.stringify(arrArray));
+		//console.log(JSON.stringify(arrArray));
       }
 	  
       function compareArraryTitle(compareArray){
@@ -499,7 +554,7 @@ background-color: yellow;
             for (k in arrArray.compareTitle) {
               for (m in arrArray.compareTitle[k]) {
                 if (j === m){
-                   obj[arrArray.compareTitle[k][m]] =  showArray[i][j];
+                   obj[m] =  showArray[i][j];
                    break;
                 }
               }
@@ -777,8 +832,10 @@ background-color: yellow;
           var events = response.result.items;
           appendPre('Upcoming events:' + Calendar_CLIENT_ID);
           console.log(events);	
-		  changeObjectFormat(events);
-          if (events.length > 0) {		    
+
+          if (events.length > 0) {
+            changeObjectFormat(events);
+			makeRowArray(arrArray);
             //showTable(events);
 			//let aOutJson = [], showJson = [];
 			//aOutJson = changeToEvent(events);//修改資料
@@ -808,6 +865,7 @@ background-color: yellow;
           appendPre('Upcoming events: CBP09' );
 //          console.log(events);
           if (events.length > 0) {
+		    changeObjectFormat(events);		  
 		    //showTable(events);
 			//let aOutJson = [], showJson = [];
 			//aOutJson = changeToEvent(events);//修改資料
