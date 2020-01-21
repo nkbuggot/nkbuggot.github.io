@@ -124,6 +124,14 @@ background-color: yellow;
 		{name: 'showListId', value: ''},
 		{name: 'showMassage', value: ''}
       ];
+
+      var arrArray = {
+        name: [],
+        data: [],
+        tranceData : [],//轉格式
+        compareTitle : [],//比對後表頭名稱與對應的ID		  
+        compareValue : []//比對後對應ID與Value
+      };
 	  
 	  //預設日期
       var dDate = getSysDate[0].value; 
@@ -419,12 +427,14 @@ background-color: yellow;
       function changeObjectFormat(myArrary){
         //先將預設值塞入arrArray，name、data，然後tranceData塞入轉換過的資料
 		//tranceData為後續使用的ARRAY
-        var arrArray = {
+        arrArray = {
           name: [],
           data: [],
-          tranceData : []
+          tranceData : [],//轉格式
+          compareTitle : [],//比對後表頭名稱與對應的ID		  
+          compareValue : []//比對後對應ID與Value
         };
-        var i=0,j=0, k =0, obj=new Object();		    
+        let i=0,j=0, k =0, obj=new Object();		    
         for (i in myArrary) {
 		  arrArray.data.push(myArrary[i]);
         }
@@ -452,9 +462,53 @@ background-color: yellow;
           obj={};
         }
 		
-		
-		console.log(arrArray);
-		//console.log(JSON.stringify(arrArray));
+		compareArraryTitle(columnDefs);
+		compareArraryValue();
+		console.log(JSON.stringify(arrArray));
+      }
+	  
+      function compareArraryTitle(compareArray){
+        let showArray=[], l = false, obj = new Object();
+		showArray = arrArray.name;
+        obj={};
+        for (i in showArray) {
+          for(j in compareArray) {
+            for (k in compareArray[j]) {
+              if(compareArray[j][k] === showArray[i] && k ==='field') {
+                obj[showArray[i]] =  compareArray[j]["headerName"];
+                l = true;
+                break;
+              }
+            }
+          }
+          
+          if (l) {
+            arrArray.compareTitle.push(obj);
+            obj={};
+            l = false
+          }
+        }
+      }
+	  
+      function compareArraryValue(){
+        let showArray=[], obj = new Object(), i=0, j=0, k=0,m=0;
+		showArray = arrArray.tranceData;
+        obj={};
+        for (i in showArray) {
+          for (j in showArray[i]) {
+            for (k in arrArray.compareTitle) {
+              for (m in arrArray.compareTitle[k]) {
+                if (j === m){
+                   obj[arrArray.compareTitle[k][m]] =  showArray[i][j];
+                   break;
+                }
+              }
+            }
+            
+          }
+          arrArray.compareValue.push(obj);
+          obj={};
+        }
       }
 	  
       function splitPushArray(myArray) {
