@@ -842,10 +842,10 @@ background-color: yellow;
 			//console.log(splitPushArray(aOutJson));
 			//showJson = JSON.parse(splitPushArray(aOutJson));//透過splitPushArray將ARRAY轉成字串，再透過JSON.parse轉回JSON格式
 			//console.log(splitPushArray(events));
-			let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));//先透過matchForShow比對要顯示的欄位，再透過matchShowFormat轉換成文字格式，最後轉換成陣列
-			getRow[1].value = showJson;
-			makeRow(getRow[1].value);
-			getSelectId(getRow[1].value, columnDefs);
+			//let showJson = JSON.parse(matchShowFormat(matchForShow(events, columnDefs)));//先透過matchForShow比對要顯示的欄位，再透過matchShowFormat轉換成文字格式，最後轉換成陣列
+			//getRow[1].value = showJson;
+			//makeRow(getRow[1].value);
+			//getSelectId(getRow[1].value, columnDefs);
           } else {
             appendPre('No upcoming events found.');
           }
