@@ -125,6 +125,12 @@ background-color: yellow;
 		{name: 'showMassage', value: ''}
       ];
 	  
+      var arrArray = {
+	    name: [],
+		data: [],
+		tranceData : []
+      };
+	  
 	  //預設日期
       var dDate = getSysDate[0].value; 
 	  
@@ -414,44 +420,34 @@ background-color: yellow;
 	  
       function isArray(myArray) {
         return myArray.constructor.toString().indexOf("Array") > -1;
-      }
+      } 
 	  
-      var my_obj = new obj();
-      function obj(key){
-        obj=new Object();
-        this.add = function(key,value){
-        obj[""+key+""]=value;
-        }
-        this.obj= obj
-      }
-	  
-      function changeObjectFormat(myArrary, type, preName){
-	    var myArrary=[{0:{"kind": "calendar#event", "etag": 3143424309487000,"id": "6co68ob4c4oj0b9j6hhjcb9k6sp6abb", "MM1":{"QQ":123,"CC":456}}},
-		           {1:{"kind": "calendar#event", "etag": 3143424309487000,"id": "6co68ob4c4oj0b9j6hhjcb9k6sp6abb", "MM61":{"QQ1":567,"CC2":343}}},
-		           {2:{"kind": "calendar#event", "etag": 3143424309487000,"id": "6co68ob4c4oj0b9j6hhjcb9k6sp6abb", "MM141":{"QQ2":890,"CC3":55}}},
-				   {3:{"kind": "calendar#event", "etag": 3143424309487000,"id": "6co68ob4c4oj0b9j6hhjcb9k6sp6abb", "MM14":{"QQ3":888,"CC4":66}}},
-				   {4:{"kind": "calendar#event", "etag": 3143424309487000,"id": "6co68ob4c4oj0b9j6hhjcb9k6sp6abb", "MM23":{"QQ4":444,"CC5":77}}}];
-        var i=0,j=0, k=0;		
-        for (i in myArrary){
+      function changeObjectFormat(myArrary){
+        var i=0,j=0, k =0, obj=new Object();;	
+	    //先將預設值塞入arrArray，name、data，然後tranceData塞入轉換過的資料
+        for (i in myArrary) {
           for (j in myArrary[i]){
-		    for (k in myArrary[i][j]){
-			  if (typeof(myArrary[i][j][k]) === 'object') {
-			    changeObjectFormat(myArrary[i][j][k], '1', k + i);
-			  } else {
-                if (preName) {
-                  my_obj.add(preName, myArrary[i][j][k]);
-                } else {
-                  my_obj.add(k + i, myArrary[i][j][k]);
-                }
-			  }
-			}			
-          } 
-		  if(type) {
-            break;
-		  }
+            arrArray.name.push(j);
+            arrArray.data.push(myArrary[i][j]);
+          }
         }
-		console.log(my_obj);
-        return my_obj;
+		
+        i=0,j=0;
+        for (i in arrArray.data){
+          for (j in arrArray.data[i]){
+			if (typeof(arrArray.data[i][j]) === 'object') {
+              for (var k in arrArray.data[i][j]) {
+                obj[j] =  arrArray.data[i][j][k];
+                break;
+              }
+		    } else {
+              obj[j] =  arrArray.data[i][j];
+			}		
+          }
+		  arrArray.tranceData.push(obj);
+		  obj={};
+        }
+		console.log(arrArray);
       }
 	  
       function splitPushArray(myArray) {
@@ -720,8 +716,7 @@ background-color: yellow;
           var events = response.result.items;
           appendPre('Upcoming events:' + Calendar_CLIENT_ID);
           console.log(events);	
-		  my_obj = changeObjectFormat(events);
-		  console.log(my_obj);	
+		  changeObjectFormat(events);
           if (events.length > 0) {		    
             //showTable(events);
 			//let aOutJson = [], showJson = [];
