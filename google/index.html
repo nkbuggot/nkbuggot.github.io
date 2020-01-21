@@ -425,7 +425,10 @@ background-color: yellow;
           tranceData : []
         };
         var i=0,j=0, k =0, obj=new Object();		    
-		arrArray.data.push(myArrary);
+        for (i in myArrary) {
+		  arrArray.data.push(myArrary[i]);
+        }
+		i=0
         for (i in myArrary) {
           for (j in myArrary[i]){
             arrArray.name.push(j);            
