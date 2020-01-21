@@ -423,7 +423,8 @@ background-color: yellow;
       } 
 	  
       function changeObjectFormat(myArrary){
-        var i=0,j=0, k =0, obj=new Object();;	
+	    console.log(JSON.stringify(myArrary));
+        var i=0,j=0, k =0, obj=new Object();	
 	    //先將預設值塞入arrArray，name、data，然後tranceData塞入轉換過的資料
         for (i in myArrary) {
           for (j in myArrary[i]){
@@ -447,6 +448,7 @@ background-color: yellow;
           arrArray.tranceData.push(obj);
           obj={};
         }
+		
 		console.log(JSON.stringify(arrArray));
       }
 	  
