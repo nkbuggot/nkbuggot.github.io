@@ -426,31 +426,32 @@ background-color: yellow;
 	  
       function showTitle(aArray) {
         let i = 0, j = 0, text ='';
-		text += '<div class="rwdTable">';
-		text += '<div class="rwdTr">';
+		text += '<div class="rwdTable">';		
 		for (i in aArray) {
+		  text += '<div class="rwdTr">';
 		  for (j in aArray[i]) {
 		    text += '<div class="rwdTh">' + aArray[i][j] + '</div>';
 		  }
+		  text += '</div>';
 		}
-		text += '</div>';
+		
 		return text;
       }
 	  
       function showEnd(aArray) {
         let i=0, j=0, text ='';
-		if (aArray.length > 0) {
-		  text += '<div class="rwdTr">';
+		if (aArray.length > 0) {		  
 		  for (i in aArray) {
+		    text += '<div class="rwdTr">';
 		    for (j in aArray[i]) {
               if (j === 'start' || j === 'end') {
 		        text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
               } else {
                 text += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';			
               }			
-			}		    
+			}
+			text += '</div>';
 		  }
-		  text += '</div>';
 		}
 		console.log(text);
         return text;
@@ -475,7 +476,7 @@ background-color: yellow;
 	  
       function makeRowArray(aArray) {
         let text ='';
-		//text += showTitle(arrArray.compareTitle);
+		text += showTitle(arrArray.compareTitle);
         text += showBody(arrArray.compareValue);
         text += showEnd(arrArray.compareTitle) + '</div>';
         document.getElementById("demo").innerHTML = text;
