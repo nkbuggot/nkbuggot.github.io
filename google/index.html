@@ -445,9 +445,9 @@ background-color: yellow;
 		    text += '<div class="rwdTr">';
 		    for (j in aArray[i]) {
               if (j === 'start' || j === 'end') {
-		        text += '<div class="rwdTd"><input type="datetime-local" id="' + aArray[i][j] + '_row"></div>';
+		        text += '<div class="rwdTd"><input type="datetime-local" id="' + j + '_row"></div>';
               } else {
-                text += '<div class="rwdTd"><input id="' + aArray[i][j] + '_row" type="text"></div>';			
+                text += '<div class="rwdTd"><input id="' + j + '_row" type="text"></div>';			
               }			
 			}		    
 		  }
@@ -479,8 +479,8 @@ background-color: yellow;
         text += showEnd(arrArray.compareTitle) + '</div>';
         document.getElementById("demo").innerHTML = text;
 		
-        //document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
-        //document.getElementById("end_row").value = getSysDate[11].value + 'T' + getSysDate[12].value;
+        document.getElementById("start_row").value = getSysDate[8].value + 'T' + getSysDate[9].value;
+        document.getElementById("end_row").value = getSysDate[11].value + 'T' + getSysDate[12].value;
       }	  
 	  
       function changeObjectFormat(myArrary){
