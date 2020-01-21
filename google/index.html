@@ -532,15 +532,16 @@ background-color: yellow;
       }
 	  
       function compareArraryTitle(compareArray){
-        let showArray=[], l = false, objTitle = new Object(), objDelete = new Object();
+        let showArray=[], l = false, objTitle = new Object(), objDelete = new Object(), bDel = false;
 		showArray = arrArray.name;
         objTitle={};
 		objDelete={};
         for (i in showArray) {
           for(j in compareArray) {
             for (k in compareArray[j]) {
-              if(compareArray[j]["forDelete"]) {
+              if(compareArray[j][k] === showArray[i] && compareArray[j]["forDelete"]) {
                 objDelete[showArray[i]] =  compareArray[j]["headerName"];
+				//bDel = true;
 				arrArray.deleteKey.push(objDelete);
               }
               if(compareArray[j][k] === showArray[i] && k ==='field' && compareArray[j]["editable"]) {
