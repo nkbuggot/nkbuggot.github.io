@@ -460,8 +460,8 @@ background-color: yellow;
         let i=0, j=0, sBody ='';
 		if (aArray.length > 0) {		  
 		  
-		  for (i in aArray) {
-		    sBody += '<div class="rwdTr">';
+		  for (i in aArray) {		    
+		  sBody += '<div class="rwdTr">';
 		    for (j in aArray[i]) {
               sBody += '<div class="rwdTd"><span>' + aArray[i][j] + '</span></div>';			
 			}		    
@@ -474,7 +474,7 @@ background-color: yellow;
 	  
       function makeRowArray(aArray) {
         let text ='';
-		text += showTitle(arrArray.compareTitle);
+		//text += showTitle(arrArray.compareTitle);
         text += showBody(arrArray.compareValue);
         text += showEnd(arrArray.compareTitle) + '</div>';
         document.getElementById("demo").innerHTML = text;
