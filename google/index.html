@@ -526,14 +526,12 @@ background-color: yellow;
           obj={};
         }
 		
-		compareArraryTitle(columnDefs);
-		compareArraryValue();
+		compareArraryTitle(arrArray.name, columnDefs);		
 		//console.log(JSON.stringify(arrArray));
       }
 	  
-      function compareArraryTitle(compareArray){
-        let showArray=[], l = false, objTitle = new Object(), objDelete = new Object(), bDel = true;
-		showArray = arrArray.name;
+      function compareArraryTitle(showArray, compareArray){
+        let l = false, objTitle = new Object(), objDelete = new Object(), bDel = true;
         objTitle={};
 		objDelete={};
         for (i in showArray) {
@@ -558,27 +556,26 @@ background-color: yellow;
             l = false
           }		  
         }
+		compareArraryValue(arrArray.tranceData, arrArray.compareTitle);
 		console.log(arrArray.deleteKey);
       }
 	  
-      function compareArraryValue(){
-        let showArray=[], obj = new Object(), i=0, j=0, k=0,m=0;
-		showArray = arrArray.tranceData;
-        obj={};
+      function compareArraryValue(showArray, compareArray){
+        let objValue = new Object(), i=0, j=0, k=0,m=0;
+        objValue={};
         for (i in showArray) {
           for (j in showArray[i]) {
-            for (k in arrArray.compareTitle) {
-              for (m in arrArray.compareTitle[k]) {
+            for (k in compareArray) {
+              for (m in compareArray[k]) {
                 if (j === m){
-                   obj[m] =  showArray[i][j];
+                   objValue[m] =  showArray[i][j];
                    break;
                 }
               }
             }
-            
           }
-          arrArray.compareValue.push(obj);
-          obj={};
+          arrArray.compareValue.push(objValue);
+          objValue={};
         }
       }
 	  
@@ -750,6 +747,25 @@ background-color: yellow;
 
 		document.getElementById("qqqqqq").innerHTML = 'Q' + getRow[5].value.length + 'S';
 		document.getElementById("check").innerHTML = getRow[5].value;
+      }
+	  
+      function getSelectForId(aArray) {
+        let text = '', i=0, j=0, aIdArray = [], aiCalUIDArray = [];
+		if (aArray.length > 0) {
+		  text += '<span style="font-size:15px;">' + 'id選擇：</span>';
+		  text += '<select id="chooseId" onchange="showiCalUID()">';
+          for (i in aArray) {
+            for(j in aArray[i]){
+			  text += '<optgroup label="' + j + '">';
+              text += '<option value="'+j+'">'+aArray[i][j]+'</option>';
+            }
+          }
+            
+            text += '</select> <span id="check" style="color:red;"></span><br>';
+		  }
+		  
+		}
+		document.getElementById("showId").innerHTML = text;
       }
 	  
       function getSelectId(aArray, columnDefs) {
