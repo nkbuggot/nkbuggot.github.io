@@ -125,12 +125,6 @@ background-color: yellow;
 		{name: 'showMassage', value: ''}
       ];
 	  
-      var arrArray = {
-	    name: [],
-		data: [],
-		tranceData : []
-      };
-	  
 	  //預設日期
       var dDate = getSysDate[0].value; 
 	  
@@ -423,8 +417,14 @@ background-color: yellow;
       } 
 	  
       function changeObjectFormat(myArrary){
-        var i=0,j=0, k =0, obj=new Object();	
-	    //先將預設值塞入arrArray，name、data，然後tranceData塞入轉換過的資料
+        //先將預設值塞入arrArray，name、data，然後tranceData塞入轉換過的資料
+		//tranceData為後續使用的ARRAY
+        var arrArray = {
+          name: [],
+          data: [],
+          tranceData : []
+        };
+        var i=0,j=0, k =0, obj=new Object();		    
 		arrArray.data.push(myArrary);
         for (i in myArrary) {
           for (j in myArrary[i]){
@@ -449,8 +449,9 @@ background-color: yellow;
           obj={};
         }
 		
-		//console.log(JSON.stringify(arrArray));
+		
 		console.log(arrArray);
+		console.log(JSON.stringify(arrArray));
       }
 	  
       function splitPushArray(myArray) {
