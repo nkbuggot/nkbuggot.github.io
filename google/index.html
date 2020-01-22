@@ -777,7 +777,7 @@ background-color: yellow;
 		if (aArray.length > 0) {
 		  text += '<span style="font-size:15px;">' + 'id選擇：</span>';
 		  text += '<select id="chooseId" onchange="showiCalUID()">';
-		  text += '<optgroup label="' + aArray[0][0] + '">';
+		  text += '<optgroup label="' + aArray[0]["iCalUID"] + '">';
           for (i in aArray) {
             for(j in aArray[i]){
 			  if (i%2===0) {
