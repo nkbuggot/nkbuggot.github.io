@@ -775,12 +775,12 @@ background-color: yellow;
       function useiCalUIDGetId() {
         let i=0, j=0;
 		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
-		let aArray = arrArray.compareDeleteValue;
-		if (aArray.length > 0) {
-          for (i in aArray) {
-            for(j in aArray[i]){
-			  if (j==='iCalUID' && aArray[i][j] === whichUserChoose) {
-				document.getElementById("check").innerHTML = aArray[i]["id"];
+		let aTempArray = arrArray.compareDeleteValue;
+		if (aTempArray.length > 0) {
+          for (i in aTempArray) {
+            for(j in aTempArray[i]){
+			  if (j==='iCalUID' && aTempArray[i][j] === whichUserChoose) {
+				document.getElementById("check").innerHTML = aTempArray[i]["id"];
 				break;
 			  }
             }
