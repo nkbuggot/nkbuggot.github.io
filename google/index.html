@@ -772,16 +772,30 @@ background-color: yellow;
 		document.getElementById("check").innerHTML = getRow[5].value;
       }
 	  
+      function useiCalUIDGetId(aArray, p_iCalUID) {
+        let i=0, j=0;
+		if (aArray.length > 0) {
+          for (i in aArray) {
+            for(j in aArray[i]){
+			  if (j==='iCalUID' && aArray[i][j] === p_iCalUID) {
+				document.getElementById("check").innerHTML = aArray[i]["id"];
+				break;
+			  }
+            }
+          }
+		}
+		
+      }
+	  
       function getSelectForId(aArray) {
         let text = '', i=0, j=0;
 		if (aArray.length > 0) {
 		  text += '<span style="font-size:15px;">' + 'id選擇：</span>';
-		  text += '<select id="chooseId" onchange="showiCalUID()">';
+		  text += '<select id="chooseId">';
 		  text += '<optgroup label="iCalUID">';
           for (i in aArray) {
             for(j in aArray[i]){
 			  if (j==='id') {
-			    //text += '<option value="'+j+'">'+aArray[i][j]+'</option>';
 				text += '<option value="'+aArray[i][j]+'">';
 			  } else {
 			    text += aArray[i][j]+'</option>';
@@ -790,6 +804,7 @@ background-color: yellow;
           }
 		  text += '</select> <span id="check" style="color:red;"></span><br>';
 		}
+		useiCalUIDGetId(aArray, chooseId.options[chooseId.selectedIndex].text);
 		document.getElementById("showId").innerHTML = text;
       }
 	  
