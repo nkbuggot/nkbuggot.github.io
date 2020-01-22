@@ -772,8 +772,8 @@ background-color: yellow;
 		document.getElementById("check").innerHTML = getRow[5].value;
       }
 	  
-      /*function getSelectForId(aArray) {
-        let text = '', i=0, j=0, aIdArray = [], aiCalUIDArray = [];
+      function getSelectForId(aArray) {
+        let text = '', i=0, j=0;
 		if (aArray.length > 0) {
 		  text += '<span style="font-size:15px;">' + 'id選擇：</span>';
 		  text += '<select id="chooseId" onchange="showiCalUID()">';
@@ -787,7 +787,7 @@ background-color: yellow;
             text += '</select> <span id="check" style="color:red;"></span><br>';
 		  }
 		document.getElementById("showId").innerHTML = text;
-      }*/
+      }
 	  
       function getSelectId(aArray, columnDefs) {
         let text = '', i=0, j=0, aIdArray = [], aiCalUIDArray = [];
@@ -888,6 +888,7 @@ background-color: yellow;
 
           if (events.length > 0) {            
 			makeRowArray(events);
+			getSelectForId(arrArray.compareDeleteValue);
             //showTable(events);
 			//let aOutJson = [], showJson = [];
 			//aOutJson = changeToEvent(events);//修改資料
