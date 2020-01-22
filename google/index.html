@@ -772,12 +772,13 @@ background-color: yellow;
 		document.getElementById("check").innerHTML = getRow[5].value;
       }
 	  
-      function useiCalUIDGetId(aArray, p_iCalUID) {
+      function useiCalUIDGetId(aArray) {
         let i=0, j=0;
+		var whichUserChoose=chooseId.options[chooseId.selectedIndex].text;
 		if (aArray.length > 0) {
           for (i in aArray) {
             for(j in aArray[i]){
-			  if (j==='iCalUID' && aArray[i][j] === p_iCalUID) {
+			  if (j==='iCalUID' && aArray[i][j] === whichUserChoose) {
 				document.getElementById("check").innerHTML = aArray[i]["id"];
 				break;
 			  }
@@ -804,7 +805,7 @@ background-color: yellow;
           }
 		  text += '</select> <span id="check" style="color:red;"></span><br>';
 		}
-		useiCalUIDGetId(aArray, chooseId.options[chooseId.selectedIndex].text);
+		useiCalUIDGetId(aArray);
 		document.getElementById("showId").innerHTML = text;
       }
 	  
