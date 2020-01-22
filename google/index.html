@@ -529,7 +529,7 @@ background-color: yellow;
         }
 		
 		compareArraryTitle(arrArray.name, columnDefs);		
-		console.log(JSON.stringify(arrArray));
+		//console.log(JSON.stringify(arrArray));
       }
 	  
       function compareArraryTitle(showArray, compareArray){
@@ -592,6 +592,7 @@ background-color: yellow;
               for (m in compareArray[k]) {
                 if (j === m){
                    objValue[m] =  showArray[i][j];
+				   objValue["id"] =  showArray[i]["id"];
                 }
               }
             }
