@@ -591,8 +591,8 @@ background-color: yellow;
             for (k in compareArray) {
               for (m in compareArray[k]) {
                 if (j === m){
-                   objValue[m] =  showArray[i][j];
-				   objValue["id"] =  showArray[i]["id"];
+                   objValue["id"] =  showArray[i]["id"];
+				   objValue[m] =  showArray[i][j];
                 }
               }
             }
@@ -777,15 +777,19 @@ background-color: yellow;
 		if (aArray.length > 0) {
 		  text += '<span style="font-size:15px;">' + 'id選擇：</span>';
 		  text += '<select id="chooseId" onchange="showiCalUID()">';
+		  text += '<optgroup label="' + aArray[0][0] + '">';
           for (i in aArray) {
             for(j in aArray[i]){
-			  text += '<optgroup label="' + j + '">';
-              text += '<option value="'+j+'">'+aArray[i][j]+'</option>';
+			  if (i%2===0) {
+			    //text += '<option value="'+j+'">'+aArray[i][j]+'</option>';
+				text += '<option value="'+aArray[i][j]+'">';
+			  } else {
+			    text += aArray[i][j]+'</option>';
+			  }
             }
           }
-            
-            text += '</select> <span id="check" style="color:red;"></span><br>';
-		  }
+		  text += '</select> <span id="check" style="color:red;"></span><br>';
+		}
 		document.getElementById("showId").innerHTML = text;
       }
 	  
