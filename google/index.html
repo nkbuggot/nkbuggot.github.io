@@ -131,7 +131,8 @@ background-color: yellow;
         tranceData : [],//轉格式
         compareTitle : [],//比對後表頭名稱與對應的ID		  
         compareValue : [],//比對後對應ID與Value
-		deleteKey : []//刪除用資料，將iCalUID記起來
+		deleteKey : [],//刪除用資料，將iCalUID記起來
+		compareDeleteValue : []
       };
 	  
 	  //預設日期
@@ -496,7 +497,8 @@ background-color: yellow;
           tranceData : [],//轉格式
           compareTitle : [],//比對後表頭名稱與對應的ID		  
           compareValue : [],//比對後對應ID與Value
-		  deleteKey : []
+		  deleteKey : [],
+		  compareDeleteValue : []
         };
         let i=0,j=0, k = 0, obj=new Object();
         for (i in myArrary) {
@@ -557,24 +559,44 @@ background-color: yellow;
           }		  
         }
 		compareArraryValue(arrArray.tranceData, arrArray.compareTitle);
+		compareDeleteValue(arrArray.tranceData, arrArray.deleteKey);
 		console.log(arrArray.deleteKey);
+		console.log(arrArray.compareDeleteValue);
       }
 	  
       function compareArraryValue(showArray, compareArray){
         let objValue = new Object(), i=0, j=0, k=0,m=0;
         objValue={};
-        for (i in showArray) {
-          for (j in showArray[i]) {
-            for (k in compareArray) {
-              for (m in compareArray[k]) {
+        for (i in compareArray) {
+          for (j in compareArray[i]) {
+            for (k in showArray) {
+              for (m in showArray[k]) {
                 if (j === m){
-                   objValue[m] =  showArray[i][j];
-                   break;
+                   objValue[m] =  compareArray[i][j];
+				   break;
                 }
               }
             }
           }
           arrArray.compareValue.push(objValue);
+          objValue={};
+        }
+      }
+	  
+      function compareDeleteValue(showArray, compareArray){
+        let objValue = new Object(), i=0, j=0, k=0,m=0;
+        objValue={};
+        for (i in compareArray) {
+          for (j in compareArray[i]) {
+            for (k in showArray) {
+              for (m in showArray[k]) {
+                if (j === m){
+                   objValue[m] =  compareArray[i][j];
+                }
+              }
+            }
+          }
+          arrArray.compareDeleteValue.push(objValue);
           objValue={};
         }
       }
