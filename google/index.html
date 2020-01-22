@@ -559,7 +559,7 @@ background-color: yellow;
           }		  
         }
 		compareArraryValue(arrArray.tranceData, arrArray.compareTitle);
-		//compareDeleteValue(arrArray.tranceData, arrArray.deleteKey);
+		compareDeleteValue(arrArray.tranceData, arrArray.deleteKey);
 		console.log(arrArray.deleteKey);
 		console.log(arrArray.compareDeleteValue);
       }
@@ -567,12 +567,12 @@ background-color: yellow;
       function compareArraryValue(showArray, compareArray){
         let objValue = new Object(), i=0, j=0, k=0,m=0;
         objValue={};
-        for (i in compareArray) {
-          for (j in compareArray[i]) {
-            for (k in showArray) {
-              for (m in showArray[k]) {
+        for (i in showArray) {
+          for (j in showArray[i]) {
+            for (k in compareArray) {
+              for (m in compareArray[k]) {
                 if (j === m){
-                   objValue[m] =  compareArray[i][j];
+                   objValue[m] =  showArray[i][j];
 				   break;
                 }
               }
@@ -586,10 +586,10 @@ background-color: yellow;
       function compareDeleteValue(showArray, compareArray){
         let objValue = new Object(), i=0, j=0, k=0,m=0;
         objValue={};
-        for (i in compareArray) {
-          for (j in compareArray[i]) {
-            for (k in showArray) {
-              for (m in showArray[k]) {
+        for (i in showArray) {
+          for (j in showArray[i]) {
+            for (k in compareArray) {
+              for (m in compareArray[k]) {
                 if (j === m){
                    objValue[m] =  showArray[i][j];
                 }
