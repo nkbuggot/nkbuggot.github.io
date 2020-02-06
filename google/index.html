@@ -475,7 +475,7 @@ background-color: yellow;
                 let sDateStart = aDate.getFullYear() + '-' + addDateString((aDate.getMonth()).toString()) + '-' + addDateString((aDate.getDate()).toString());
                 let sTimeStart = addDateString((aDate.getHours()).toString()) + ':' + addDateString((aDate.getMinutes()).toString()) + ':' + addDateString((aDate.getSeconds()).toString());
 
-				sBody += '<div class="rwdTd"><input type="datetime-local" value = ' + sDateStart + 'T' + sTimeEnd + '></div>';
+				sBody += '<div class="rwdTd"><input type="datetime-local" value = ' + sDateStart + 'T' + sTimeStart + '></div>';
               } else {
                 sBody += '<div class="rwdTd"><input type="text" value = ' + aArray[i][j] + '></div>';
               }	
