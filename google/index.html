@@ -466,25 +466,18 @@ background-color: yellow;
 		  for (i in aArray) {
 		    sBody += '<div class="rwdTr">';
 		    for (j in aArray[i]) {
-              if (j === 'start' || j === 'end') {
-                let dArrayDate;
-                dArrayDate = aArray[i][j];
-	  
-                let aDate = new Date(dArrayDate);
-	  
+              if (j === 'start' || j === 'end') {	  
+                let aDate = new Date(aArray[i][j]);	  
                 let sDateStart = aDate.getFullYear() + '-' + addDateString((aDate.getMonth()).toString()) + '-' + addDateString((aDate.getDate()).toString());
                 let sTimeStart = addDateString((aDate.getHours()).toString()) + ':' + addDateString((aDate.getMinutes()).toString()) + ':' + addDateString((aDate.getSeconds()).toString());
-
 				sBody += '<div class="rwdTd"><input type="datetime-local" value = ' + sDateStart + 'T' + sTimeStart + '></div>';
               } else {
                 sBody += '<div class="rwdTd"><input type="text" value = ' + aArray[i][j] + '></div>';
               }	
               //sBody += '<div class="rwdTd">' + aArray[i][j] + '</span></div>';			
-			  
 			}	
 			sBody += '</div>';
 		  }
-		  
 		}
 		//console.log(sBody);
 		return sBody ;
@@ -574,8 +567,8 @@ background-color: yellow;
         }
 		compareArraryValue(arrArray.tranceData, arrArray.compareTitle);
 		compareDeleteValue(arrArray.tranceData, arrArray.deleteKey);
-		console.log(arrArray.deleteKey);
-		console.log(JSON.stringify(arrArray.compareDeleteValue));
+		//console.log(arrArray.deleteKey);
+		//console.log(JSON.stringify(arrArray.compareDeleteValue));
       }
 	  
       function compareArraryValue(showArray, compareArray){
