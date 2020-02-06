@@ -466,8 +466,13 @@ background-color: yellow;
 		  for (i in aArray) {
 		    sBody += '<div class="rwdTr">';
 		    for (j in aArray[i]) {
+              if (j === 'start' || j === 'end') {
+				sBody += '<div class="rwdTd"><input type="datetime-local" value = ' + aArray[i][j] + '></div>';
+              } else {
+                sBody += '<div class="rwdTd"><input type="text" value = ' + aArray[i][j] + '></div>';
+              }	
               //sBody += '<div class="rwdTd">' + aArray[i][j] + '</span></div>';			
-			  sBody += '<div class="rwdTd"><input size=25 type="text" value = ' + aArray[i][j] + '></div>';
+			  
 			}	
 			sBody += '</div>';
 		  }
