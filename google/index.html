@@ -970,9 +970,12 @@ background-color: yellow;
       function insertEvents() {
 	    if (!validateEmail(document.getElementById("email").value)) {
 		  appendPre('請輸入Email資料!');		
-		} else if (!document.getElementById("summary").value){
-		  appendPre('請輸入活動資料!');
 		} else {
+		  if (document.getElementById("summary").value){
+		    appendPre('請輸入活動資料!' + document.getElementById("summary").value);
+		  } else {
+		    appendPre('www!' + document.getElementById("summary").value);
+		  }
 		  if (!document.getElementById("startTime").value) {
 		    document.getElementById("startTime").value = dDate.getHours() + ':' + (dDate.getMinutes()+1) + ':' + (dDate.getSeconds()+1);
 		  }
